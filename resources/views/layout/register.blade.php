@@ -1,0 +1,199 @@
+@extends('welcome')
+@section('title', 'Registration')
+@section('content')
+<style>
+   @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+   @import url(https://fonts.googleapis.com/css?family=Arimo:300,400,400italic,700,700italic);
+
+   * {
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+   }
+
+   .body-quang {
+      font-family: "Open Sans";
+      background-image: url("https://cdn-imgix.headout.com/microbrands-content-image/image/8fedc7b7c9c8a6724c20095403281854-sea%20life%20london.jpg");
+      height: 100%;
+      width: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+   }
+
+   img {
+      max-width: 100%;
+   }
+
+   .a-quang {
+      text-decoration: none;
+      outline: none;
+      color: #444;
+   }
+
+   .a-quang:hover {
+      color: #444;
+   }
+
+   .a-quang:hover,
+   .a-quang:focus,
+   input,
+   textarea {
+      text-decoration: none;
+      outline: none;
+   }
+
+   ._lk_de {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding: 10vh 0;
+      position: relative;
+
+   }
+
+   .form-main {
+      width: 500px;
+      display: block;
+      margin: 20px auto;
+      padding: 25px 50px 25px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 6px;
+      z-index: 9;
+   }
+
+   .logo {
+      display: block;
+      margin: 20px auto;
+      width: 100px;
+      height: 100px;
+   }
+
+   .form-group {
+      padding-top: 18px;
+      padding-bottom: 17px;
+      display: inline-block;
+      width: 100%;
+      position: relative;
+   }
+
+   .form-group-rg {
+      padding: 6px 0px;
+      display: inline-block;
+      width: 100%;
+      position: relative;
+   }
+
+
+   .form-group p {
+      margin: 0px;
+   }
+
+   .form-control {
+      min-height: 45px;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      border: 1px solid#2b3990;
+   }
+
+   .checkbox {
+      display: flex;
+      justify-content: space-around;
+   }
+
+   ._btn_04 {
+      display: inline-block;
+      width: 100%;
+      padding: 12px 0px;
+      background: #2b3980;
+      border-radius: 20px;
+      border: 1px #fff;
+      text-align: center;
+      font-size: 16px;
+   }
+
+   ._btn_04 .a-quang {
+      font-size: 15px;
+      color: #fff;
+   }
+
+   .form-end {
+      display: flex;
+      justify-content: center;
+   }
+
+   .form-end a {
+      text-decoration: none;
+   }
+   .error-rg{
+     color: red;
+     font-size: 11px;
+   }
+
+   @media screen and (max-width: 600px) {
+      .form-main {
+         width: 90%;
+      }
+   }
+</style>
+<div>
+   <div class="body-quang">
+      <div class="form-02-main">
+         <div class="row">
+            <div class="_lk_de">
+               <!-- form login -->
+               <form action="{{Route('register.edit')}}" method="post">
+                  @csrf
+                  <div class="form-main">
+                     <div class="logo">
+                        <img src="" alt="logo">
+                     </div>
+                     <div class="form-group-rg">
+                        <input type="fullname" name="fullname" class="form-control " type="text" placeholder="Fullname">
+                     </div>
+                     <div class="form-group-rg">
+                        <input type="email" name="email" class="form-control " type="text" placeholder="Email">
+                     </div>
+                     <div class="form-group-rg">
+                        <input type="password" name="password" class="form-control" type="Password" placeholder="Password">
+                     </div>
+                     @error('password')
+                     <div class="">
+                        <span class="error-rg">{{ $message }}</span>
+                     </div>
+                     @enderror
+                     @error('email')
+                     <div class="">
+                        <span class="error-rg">{{ $message }}</span>
+                     </div>
+                     @enderror
+                     @error('fullname')
+                     <div class="">
+                        <span class="error-rg">{{ $message }}</span>
+                     </div>
+                     @enderror
+                     <div class="form-group">
+                        <button type="submit" class="_btn_04">
+                           <div class="a-quang">Register</div>
+                        </button>
+                     </div>
+                     <div class="form-end">
+                        <div>You have account? <a href="{{Route('login')}}">Sign in</a></div>
+                     </div>
+                  </div>
+               </form>
+               <!-- end form  -->
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+@endsection
