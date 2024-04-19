@@ -18,7 +18,7 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout/Homepage');
 });
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
