@@ -29,6 +29,7 @@ Route::get('/logout', [LoginController::class, 'HandleLogout'])->name('logout');
 
 
 
+
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
