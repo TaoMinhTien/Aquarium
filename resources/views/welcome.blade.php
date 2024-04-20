@@ -12,7 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="{{ asset('asset/css/theme-quang.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/css/theme-hieu.css') }}">
     <script src="{{ asset('asset/js/theme-hieu.js') }}"></script>
 </head>
@@ -22,5 +21,6 @@
     @yield('content')
     @include('footer.footer')
 </body>
+
 
 </html>

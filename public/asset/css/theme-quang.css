@@ -267,3 +267,30 @@ textarea {
       width: 90%;
    }
 }
+/* slider, news */
+.right-news {
+   top: 410px;
+   width: 450px;
+   max-height: 100vh;
+   overflow-y: auto;
+   position: sticky;
+   top: 0;
+   right: 27px;
+ }
+
+ @media only screen and (max-width: 768px) {
+   .right-news {
+     position: fixed;
+     top: 0;
+     right: 0;
+     width: 100%;
+     z-index: 9999;
+   }
+ }
+
+ @media screen and (max-width: 1000px) {
+   .right-news {
+     position: static;
+     width: 100%;
+   }
+ }
