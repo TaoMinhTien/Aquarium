@@ -36,6 +36,7 @@ Route::Post('/handle/contact', [ContactController::class, 'HandleContact'])->nam
 
 
 
+
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');

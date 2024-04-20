@@ -10,7 +10,7 @@
         <div class = "Homepage-box">
             <div class = "box1">
                 <div class=box1-picture>
-                    <img src = "picture/fish.png" alt = "fish">
+                    <img src = "{{ asset('asset/Image/fish.png') }}" alt = "fish">
                 </div>
 
                 <div class = "box1-text">
@@ -19,6 +19,7 @@
                         inoovative design.</p>
                     <button>Read more</button>
                 </div>
+
             </div>
             <div class = "box2">
                 <div class = "box2-text">
@@ -37,12 +38,13 @@
         <!-- Swiper -->
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
+                <div class="swiper-slide" data-swiper-autoplay="4000">
+                    <img class = "slider-picture"
+                        src = "{{ asset('asset/Image/aqua1.jpg') }}"></div>
                 <div class="swiper-slide" data-swiper-autoplay="4000"><img class = "slider-picture"
-                        src = "picture/aqua1.jpg"></div>
+                        src = "{{ asset('asset/Image/aqua2.jpg') }}"></div>
                 <div class="swiper-slide" data-swiper-autoplay="4000"><img class = "slider-picture"
-                        src = "picture/aqua2.jpg"></div>
-                <div class="swiper-slide" data-swiper-autoplay="4000"><img class = "slider-picture"
-                        src = "picture/aqua3.jpg"></div>
+                        src = "{{ asset('asset/Image/aqua3.jpg') }}"></div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -51,7 +53,7 @@
         <!-- Fourblock Information -->
         <div class = "Homepage-information">
             <div class = "Homepage-information-picture">
-                <img src = "/picture/image-info.jpg">
+                <img src = "{{ asset('asset/Image/image-info.jpg') }}">
             </div>
             <div class = "Homepage-information-text">
                 <div class = "Homepage-Info">
@@ -63,7 +65,7 @@
                 </div>
             </div>
             <div class = "Homepage-information-picture2">
-                <img src = "/picture/image-info.jpg">
+                <img src = "{{ asset('asset/Image/image-info.jpg')}}">
             </div>
             <div class = "Homepage-information-text2">
                 <div class = "Homepage-Info">
@@ -94,21 +96,21 @@
             <h1>Lastest Posts</h1>
             <div class = "Homepage-Events">
                 <div class = "Homepage-top-events">
-                    <img src = "/picture/fish2.jpg" class = "Homepage-EventPicture">
+                    <img src = "{{ asset('asset/Image/fish2.jpg')}}" class = "Homepage-EventPicture">
                     <h3>Looking for aquarium specialists?</h3>
                     <p>Celebrate the best of Easter in AquariumName with new activities at the AquariumName and get ready
                         for an extraordinary adventure that will enchant the whole family!</p>
                     <button>Read More</button>
                 </div>
                 <div class = "Homepage-top-events">
-                    <img src = "/picture/fish1.jpg" class = "Homepage-EventPicture">
+                    <img src = "{{ asset('asset/Image/fish1.jpg')}}" class = "Homepage-EventPicture">
                     <h3>Looking for aquarium specialists?</h3>
                     <p>Celebrate the best of Easter in AquariumName with new activities at the AquariumName and get ready
                         for an extraordinary adventure that will enchant the whole family!</p>
                     <button>Read More</button>
                 </div>
                 <div class = "Homepage-top-events">
-                    <img src = "/picture/fish2.jpg" class = "Homepage-EventPicture">
+                    <img src = "{{ asset('asset/Image/fish2.jpg')}}" class = "Homepage-EventPicture">
                     <h3>Looking for aquarium specialists?</h3>
                     <p>Celebrate the best of Easter in AquariumName with new activities at the AquariumName and get ready
                         for an extraordinary adventure that will enchant the whole family!</p>
@@ -125,42 +127,42 @@
                     <div class="layer">
                         <p>+ Paul Gilmore</p>
                     </div>
-                    <img src="picture/aqua1.jpg" alt="" />
+                    <img src="{{ asset('asset/Image/aqua1.jpg')}}" alt="" />
                 </div>
 
                 <div class="media">
                     <div class="layer">
                         <p>+ M. O' Neil</p>
                     </div>
-                    <img src="picture/fish1.jpg" alt="" />
+                    <img src="{{ asset('asset/Image/fish1.jpg')}}" alt="" />
                 </div>
 
                 <div class="media">
                     <div class="layer">
                         <p>+ N. Mehta</p>
                     </div>
-                    <img src="picture/aqua2.jpg" alt="" />
+                    <img src="{{ asset('asset/Image/aqua2.jpg')}}" alt="" />
                 </div>
 
                 <div class="media">
                     <div class="layer">
                         <p>+ N. Mehta</p>
                     </div>
-                    <img src="picture/aqua3.jpg" alt="" />
+                    <img src="{{ asset('asset/Image/aqua3.jpg')}}" alt="" />
                 </div>
 
                 <div class="media">
                     <div class="layer">
                         <p>+ N. Mehta</p>
                     </div>
-                    <img src="picture/image-info.jpg" alt="" />
+                    <img src="{{ asset('asset/Image/image-info.jpg')}}" alt="" />
                 </div>
 
                 <div class="media">
                     <div class="layer">
                         <p>+ N. Mehta</p>
                     </div>
-                    <img src="picture/fish2.jpg" alt="" />
+                    <img src="{{ asset('asset/Image/fish2.jpg')}}" alt="" />
                 </div>
 
             </div>
@@ -172,7 +174,7 @@
             <h1>Clients About Us</h1>
             <div class = "Homepage_AboutUs_1">
                 <div class = "Homepage_AboutUs_rectangle">
-                    <img src = "/picture/AboutUs_rectangle1.jpg">
+                    <img src = "{{ asset('asset/Image/AboutUs_rectangle1.jpg')}}">
                 </div>
                 <div class = "Homepage_AboutUs_rectangle">
                     <p>
@@ -193,16 +195,15 @@
                         <br><br>
                         <b>-Matthew Shaw</b>
                     </p>
-
                 </div>
                 <div class = "Homepage_AboutUs_square">
-                    <img src = "/picture/AboutUs-square1.jpg">
+                    <img src = "{{ asset('asset/Image/AboutUs-square1.jpg')}}">
                 </div>
                 <div class = "Homepage_AboutUs_square">
-                    <img src = "/picture/fish1.jpg">
+                    <img src = "{{ asset('asset/Image/fish1.jpg')}}">
                 </div>
                 <div class = "Homepage_AboutUs_square">
-                    <img src = "/picture/AboutUs-square1.jpg">
+                    <img src = "{{ asset('asset/Image/AboutUs-square1.jpg')}}">
                 </div>
 
                 <div class = "Homepage_AboutUs_square">
@@ -217,7 +218,7 @@
                 </div>
 
                 <div class = "Homepage_AboutUs_square">
-                    <img src = "/picture/aqua2.jpg">
+                    <img src = "{{ asset('asset/Image/aqua2.jpg')}}">
                 </div>
 
                 <div class = "Homepage_AboutUs_square">
@@ -228,4 +229,5 @@
             </div>
         </div>
     </div>
+    
 @endsection
