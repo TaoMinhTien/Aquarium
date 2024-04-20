@@ -36,17 +36,19 @@
 
 
         <!-- Swiper -->
+        <div class = "Hieu">
         <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" data-swiper-autoplay="4000">
-                    <img class = "slider-picture"
-                        src = "{{ asset('asset/Image/aqua1.jpg') }}"></div>
-                <div class="swiper-slide" data-swiper-autoplay="4000"><img class = "slider-picture"
-                        src = "{{ asset('asset/Image/aqua2.jpg') }}"></div>
-                <div class="swiper-slide" data-swiper-autoplay="4000"><img class = "slider-picture"
-                        src = "{{ asset('asset/Image/aqua3.jpg') }}"></div>
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" data-swiper-autoplay="4000">
+                        <img class = "slider-picture"
+                            src = "{{ asset('asset/Image/aqua1.jpg') }}"></div>
+                    <div class="swiper-slide" data-swiper-autoplay="4000"><img class = "slider-picture"
+                            src = "{{ asset('asset/Image/aqua2.jpg') }}"></div>
+                    <div class="swiper-slide" data-swiper-autoplay="4000"><img class = "slider-picture"
+                            src = "{{ asset('asset/Image/aqua3.jpg') }}"></div>
+                </div>
+                <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-pagination"></div>
         </div>
 
 
