@@ -46,7 +46,7 @@ class RegisterController extends Controller
             $user->save();
             Auth::login($user);
             DB::commit();
-            return redirect()->route('login')->with('success', 'Your account has been registered successfully! Please log in.');
+            return redirect()->route('admin.dashboard')->with('success', 'Your account has been registered successfully! Please log in.');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->route('register')->withErrors([$e->getMessage()])->withInput();
