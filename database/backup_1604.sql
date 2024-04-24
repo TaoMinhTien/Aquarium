@@ -35,18 +35,6 @@ CREATE TABLE IF NOT EXISTS `animals` (
 
 -- Dumping data for table aquarium.animals: ~0 rows (approximately)
 
--- Dumping structure for table aquarium.booking
-CREATE TABLE IF NOT EXISTS `booking` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `customer_id` int NOT NULL,
-  `ticket_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `customer_id` (`customer_id`),
-  KEY `ticket_id` (`ticket_id`),
-  CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
-  CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 -- Dumping data for table aquarium.booking: ~0 rows (approximately)
 
 -- Dumping structure for table aquarium.contact
@@ -78,6 +66,19 @@ CREATE TABLE IF NOT EXISTS `customers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table aquarium.customers: ~0 rows (approximately)
+
+-- Dumping structure for table aquarium.booking
+CREATE TABLE IF NOT EXISTS `booking` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `customer_id` int NOT NULL,
+  `ticket_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `customer_id` (`customer_id`),
+  KEY `ticket_id` (`ticket_id`),
+  CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
+  CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 -- Dumping structure for table aquarium.event
 CREATE TABLE IF NOT EXISTS `event` (

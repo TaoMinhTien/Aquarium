@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -30,6 +31,7 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'HandleRegister'])->name('register.edit');
 Route::get('/logout', [LoginController::class, 'HandleLogout'])->name('logout');
 Route::get('/news', [NewsController::class, 'news'])->name('news.view');
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout.view');
 Route::post('/news/read/', [ReadController::class, 'newsRead'])->name('news.read');
 Route::Post('/tickets', [TicketController::class, 'BuyTicket'])->name('tickets.buy');
 Route::Post('/handle/contact', [ContactController::class, 'HandleContact'])->name('handle.contact');
