@@ -29,9 +29,10 @@
                     <button>Contact Details</button>
                 </div>
             </div>
-            <div class = "box3">
-                Youtube link
-            </div>
+            <a href = "https://www.youtube.com/">
+                <div class = "box3">
+                </div>
+            </a>
         </div>
 
 
