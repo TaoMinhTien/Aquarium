@@ -184,7 +184,6 @@ textarea {
   font-size: 11px;
 }
 /* slider, news */
-
  .container-quang {
    margin-top: 100px;
    padding: 0px 20px;
@@ -380,7 +379,7 @@ margin: 0px ;
 
 }
 .container_dashboard {
-   margin-top: 100px;
+   margin-top: 83px;
    font-family: 'Poppins', sans-serif;
    height: max-content;
 
@@ -396,8 +395,6 @@ a:focus {
 
 
 #sidebar_quang {
-   min-width: 250px;
-   background: #7386D5;
    color: #fff;
    transition: all 0.3s;
 }
@@ -429,7 +426,7 @@ a[aria-expanded="true"] {
 }
 /* checkout css */
 .checkout_body {
-   margin-top: 100px;
+   margin-top: 90px;
    /* background-color: #f1f3f7; */
 }
 
@@ -560,4 +557,9 @@ a {
    position: absolute;
    right: 25px;
    margin-top: -50px;
+}
+.wrapper_quang{
+   height: 750px;
+   width: 150px;
+   background: #7386D5;
 }
