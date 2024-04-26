@@ -70,7 +70,37 @@
       eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
       quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
       eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat.eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
+      eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
+      eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
+      eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
+      eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat.eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
+      eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
+      eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
+      eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
+      eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat.eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
+      eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
+      eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
+      eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
+      quidem quam repellat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
+      eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
       quidem quam repellat.
    </p>
 </div>
+<p class="text-xl mt-4 flex justify-center font-bold text-gray-900 sm:text-3xl">Relate tickets</p>
+<div class="flex pb-4 justify-end border-t border-gray-500"></div>
+@include('layout.relate_ticket')
 @endsection
