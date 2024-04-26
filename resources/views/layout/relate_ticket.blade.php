@@ -119,6 +119,7 @@
             </li>
          </ul>
       </div>
-
-
    </div>
+   <div class="flex w-full items-center mt-10 justify-center ">
+   <button class="text-gray-800  hover:underline">Load more</button>
+</div>

@@ -17,12 +17,18 @@
                   @csrf
                   <div class="flex">
                      <div class="w-full">
-                        <input type="hidden" name="discountPercent" id="discountPercent" value="">
-                        <select for="size" name="size" id="size" class="text-[12px] border-gray-400 rounded border w-2/6 mt-1 p-1 text-gray-700 hover:text-blue-700">
-                           <option for="size" value="selectsize" hidden selected>Select quantity</option>
-                           <option for="size" value="">1</option>
-                           <option for="size" value="">2</option>
-                        </select>
+                        <div>
+                           <label for="Quantity" class="sr-only"> Quantity </label>
+                           <div class="flex items-center gap-1">
+                              <button type="button" class="size-9 leading-10 text-gray-600 transition hover:opacity-75">
+                                 &minus;
+                              </button>
+                              <input type="number" id="Quantity" value="1" class="h-8 w-16 border rounded border-gray-400 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+                              <button type="button" class="size-9 leading-10 text-gray-600 transition hover:opacity-75">
+                                 &plus;
+                              </button>
+                           </div>
+                        </div>
                      </div>
                   </div>
                </form>
