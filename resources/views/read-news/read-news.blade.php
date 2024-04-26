@@ -1,191 +1,103 @@
 @extends('welcome')
 @section('title', 'News')
 @section('content')
-<link rel="stylesheet" href="{{ asset('asset/css/theme-quang.css') }}">
+<!-- start -->
 <div class="container-quang">
-   <div class="head-news">
-      <span class="stand-news">Event</span>
-   </div>
-   <div class="row news_news">
-      <!-- left -->
-      <div class="col-8  left-news shadow-sm p-3 mb-5 bg-body-tertiary rounded">
-         <div class="_news_left">
-            <div>
-               <img class=" _news_left_image" alt="" src="https://a.cdn-hotels.com/gdcs/production92/d257/02157ac0-adda-4a14-9bb6-58eb7ecc28a1.jpg?impolicy=fcrop&w=800&h=533&q=medium" />
-               <div class="_news_l">
-                  <div class="_news_l_date">20.04.2024</div>
-                  <span>
-                     <h3 class="_news_l_h">How to position your furniture for positivity</h3>
-                  </span>
-                  <p class="_news_l_text">
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                     pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia <br> itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                     dignissimos. Molestias explicabo corporis voluptatem?
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                     pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                     dignissimos. Molestias explicabo corporis <br> voluptatem?
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                     pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                     dignissimos. Molestias explicabo corporis voluptatem?
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                     pariatur animi <br> temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                     pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                     dignissimos. Molestias explicabo corporis voluptatem?
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Recusandae dolores, possimus
-                     pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                     dignissimos. Molestias explicabo corporis voluptatem?
-                     <br>
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                     pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                     pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                     dignissimos. Molestias explicabo corporis voluptatem?
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                     pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                     dignissimos. Molestias explicabo corporis voluptatem?
-                     <br>
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                     pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                     pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia itaque minus soluta, voluptates neque explicabo <br> tempora nisi culpa eius atque
-                     dignissimos. Molestias explicabo corporis voluptatem?
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                     pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                     dignissimos. Molestias explicabo corporis voluptatem?
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                     pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                     mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                  </p>
-               </div>
-               <div class="d-flex _news_l_b">
-                  <div>
-                     <form action="{{Route('tickets.buy')}}" method="post">
-                        @csrf
-                        <button type="submit" class=" _btn">
+   <div>
+      @include('layout.slider_ticket')
+      <span class="flex py-4 items-center">
+         <span class="h-px flex-1 "></span>
+      </span>
+      <div class="grid grid-cols-1 px-20 gap-1 lg:grid-cols-3 lg:gap-1">
+         <div class="left-news rounded-lg  lg:col-span-2">
+            <h2 class="text-xl mb-4 font-bold text-gray-900 sm:text-3xl">Detail evens</h2>
+            <div class="_news_left">
+               <div>
+                  <img class=" _news_left_image" alt="" src="{{ asset('images-quang/aqua1.jpg') }}" />
+                  <div class="_news_l">
+                     <div class="_news_l_date">20.04.2024</div>
+                     <span>
+                        <h3 class="_news_l_h">How to position your furniture for positivity</h3>
+                     </span>
+                     <p class="_news_l_text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+                        pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
+                        mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
+                        dignissimos. Molestias explicabo corporis voluptatem?
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+                        pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
+                        mollitia itaque minus soluta, voluptates neque explicabo tempora nisi cupariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
+                        mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
+                        dignissimos. Molestias explicabo corporis voluptatem?
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+                        pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
+                        mollitia itaque minus soluta, voluptates neque explicabo tempora nisi cupariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
+                        mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
+                        dignissimos. Molestias explicabo corporis voluptatem?
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+                        pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
+                        mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque.....
+                     </p>
+                  </div>
+                  <div class="flex py-3">
+                     <div class="mr-1">
+                        <a href="{{Route('ticket.view')}}" class="block rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
                            Buy Tickets
-                        </button>
-                     </form>
+                        </a>
+                     </div>
+                     <div class="">
+
+                        <a href="{{Route('contact.view')}}" type="submit" class="block rounded-xl bg-gray-800 px-6 py-2 text-sm text-white transition hover:bg-black">
+                           Receive contact
+                        </a>
+                     </div>
                   </div>
-                  <div class="ms-2">
-                     <form action="{{Route('tickets.buy')}}" method="post">
-                        @csrf
-                        <button type="submit" class=" _btn">
-                           Contact
-                        </button>
-                     </form>
-                  </div>
+
+                  <div class="flex py-3 justify-end border-t border-gray-500"></div>
+
                </div>
-               <div class="__line_end"></div>
             </div>
          </div>
-      </div>
-      <!-- right -->
-      <div class="col-4 right-news shadow-sm p-3 mb-5 bg-body-tertiary rounded">
-         <div class="_news_r">
-            <span class="_event">Related events</span>
-         </div>
-         <div class="__line"></div>
-         <div>
-            <ul>
-               <li class="_new_r">
-                  <div class="d-flex">
-                     <a href="">
-                        <img src="https://a.cdn-hotels.com/gdcs/production92/d257/02157ac0-adda-4a14-9bb6-58eb7ecc28a1.jpg?impolicy=fcrop&w=800&h=533&q=medium" alt="" class="">
-                     </a>
-                     <div class="_name">
+         <div class="right-news h-fit rounded-lg ">
+            <div class="_news_r">
+               <span class="text-xl ml-2 mb-1 font-bold text-gray-900 sm:text-xl">Tickets</span>
+            </div>
+            <div class="flex justify-end border-t border-gray-500"></div>
+            <div>
+               <ul>
+                  <li class="_new_r">
+                     <div class="d-flex">
                         <a href="">
-                           <h3 class="event_name"><strong>News name</strong></h3>
+                           <img src="{{ asset('images-quang/aqua1.jpg') }}" alt="" class="">
                         </a>
-                        <dl class="_news_r_ticket">
-                           <div class="d-flex">
-                              <dt class="inline">Date:</dt>
-                              <dd class="inline ms-1">20.04.2024</dd>
-                           </div>
-                           <div class="d-flex">
-                              <dt class="inline">Ticket:</dt>
-                              <dd class="inline mx-1">299.000đ</dd>
-                           </div>
-                        </dl>
+                        <div class="_name mt-2">
+                           <a href="">
+                              <h3 class="event_name"><strong>News name</strong></h3>
+                           </a>
+                           <dl class="_news_r_ticket mt-1">
+                              <div class="d-flex">
+                                 <dt class="inline">Date:</dt>
+                                 <dd class="inline ms-1">20.04.2024</dd>
+                              </div>
+                              <div class="d-flex">
+                                 <dt class="inline">Ticket:</dt>
+                                 <dd class="inline ms-1">299.000đ</dd>
+                              </div>
+                           </dl>
+                        </div>
                      </div>
-                  </div>
-                  <div class="_new_r_form">
-                     <div>
-                        <form action="{{Route('tickets.buy')}}" method="post">
-                           @csrf
-                           <button type="submit" class="_btn_buy">
-                              Buy now
-                           </button>
-                        </form>
+                     <div class="_new_r_form">
+                        <a href="{{Route('ticket.view')}}" class="block rounded-xl bg-gray-800 px-4 mr-8 py-2 text-sm text-white transition hover:bg-black">
+                           Buy now
+                        </a>
                      </div>
-                  </div>
-               </li>
+            </div>
+            </li>
             </ul>
          </div>
-         <div class="_news_r">
-            <span class="_event">Contacts</span>
-         </div>
-         <div class="__line"></div>
-         <div class="px-2 mt-3">
-            <form>
-               <div class="form-group-detail">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <br>
-                  <input type="email" class="form-control-detail" id="exampleInputEmail1"  placeholder="Enter email">
-               </div>
-               <div class="form-group-detail">
-                  <label for="name">Fullname</label>
-                  <br>
-                  <input type="name" class="form-control-detail" id="name" placeholder="Enter your name">
-               </div>
-               <div class="form-group-detail">
-                  <label for="phone">Phone number</label>
-                  <br>
-                  <input type="phone" class="form-control-detail" id="phone" placeholder="enter your Phone number">
-               </div>
-               <button type="submit" class="_btn mt-4 ">Submit</button>
-            </form>
-         </div>
+
       </div>
    </div>
-   <p class="news_bt">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-      pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-      mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-      dignissimos. Molestias explicabo corporis voluptatem?
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-      pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-      mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-      dignissimos. Molestias explicabo corporis voluptatem?
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-      pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-      mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-      dignissimos. Molestias explicabo corporis voluptatem?
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-      pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-      mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-      dignissimos. Molestias explicabo corporis voluptatem?
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-      pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-      mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-      dignissimos. Molestias explicabo corporis voluptatem?
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-      pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-      mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-      dignissimos. Molestias explicabo corporis voluptatem?
-
-   </p>
+</div>
 </div>
 @endsection
