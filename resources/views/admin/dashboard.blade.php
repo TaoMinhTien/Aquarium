@@ -18,13 +18,14 @@
 
 <body>
    @include('header.header_admin')
-   <div class="container_dashboard" id="container_dashboard">
-      <div class="row g-0 text-center">
-         <div class="col-6 col-md-2">
+   <div class="container-quang">
+      <div class="grid grid-cols-1 lg:grid-cols-6">
+         <div class="">
             @include('layout.siderbar')
          </div>
-         <div class="col-sm-6 col-md-10 mt-5">
-            <h4>Admin Dashboard</h4>
+         <div class=" rounded-lg lg:col-span-5">
+            <span class="flex justify-center">Hello (name admin)</span>
+            <div class="flex py-3 justify-end border-t border-gray-500"></div>
             @yield('content')
          </div>
       </div>

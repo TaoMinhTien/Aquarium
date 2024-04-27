@@ -90,7 +90,6 @@
                 </button>
               </form>
             </div>
-            <div class="flex py-3 justify-end border-t border-gray-500"></div>
 
           </div>
         </div>
@@ -189,5 +188,8 @@
       </div>
     </div>
   </div>
-</div>
-@endsection
+  <div class="flex w-full items-center mt-10 justify-center ">
+    <button class="text-gray-800  hover:underline">Load more</button>
+  </div>
+
+  @endsection

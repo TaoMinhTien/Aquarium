@@ -18,7 +18,6 @@
                   <div class="flex">
                      <div class="w-full">
                         <div>
-                           <label for="Quantity" class="sr-only"> Quantity </label>
                            <div class="flex items-center gap-1">
                               <button type="button" class="size-9 leading-10 text-gray-600 transition hover:opacity-75">
                                  &minus;
