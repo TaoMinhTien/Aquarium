@@ -4,11 +4,10 @@
 <!-- start -->
 <div class="container-quang">
    <div>
-      @include('layout.slider_ticket')
-      <span class="flex py-4 items-center">
+      @include('layout.slider_ticket_02')
+      <span class="flex pt-4 items-center">
          <span class="h-px flex-1 "></span>
       </span>
-
    </div>
    <p class="text-xl flex justify-center font-bold text-gray-900 sm:text-3xl">Tickets</p>
    <div class="flex pb-4 justify-end border-t border-gray-500"></div>
@@ -117,7 +116,7 @@
          <ul>
             <li>
                <a href="" class="group block">
-                  <img src="{{ asset('images-quang/aqua1.jpg') }}" alt="" class="aspect-square w-full h-full rounded object-cover" />
+                  <img src="{{ asset('images-quang/aqua1.jpg') }}" alt="" class="aspect-square w-full h-full rounded  object-cover transition duration-500 group-hover:scale-105 " />
                   <div class="mt-3 ml-2">
                      <h3 class="font-medium text-gray-900 group-hover:underline group-hover:underline-offset-4">
                         Ticket name
@@ -133,8 +132,6 @@
             </li>
          </ul>
       </div>
-
-
    </div>
 </div>
 <div class="flex w-full items-center mt-10 justify-center ">
