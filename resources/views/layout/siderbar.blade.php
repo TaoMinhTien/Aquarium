@@ -4,7 +4,7 @@
          <li>
             <a href="#">Home</a>
          </li>
-         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle_quang">Animals</a>
+         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="components_quang dropdown-toggle_quang">Animals</a>
          <ul class="collapse list-unstyled_li" id="homeSubmenu">
             <li>
                <a href="">Information</a>
@@ -14,7 +14,7 @@
             </li>
          </ul>
          <div>
-            <a href="#eventSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle_quang">Tickets</a>
+            <a href="#eventSubmenu" data-toggle="collapse" aria-expanded="false" class=" dropdown-toggle_quang">Tickets</a>
             <ul class="collapse list-unstyled_li" id="eventSubmenu">
                <li>
                   <a href="">Upload</a>

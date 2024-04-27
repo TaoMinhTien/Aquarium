@@ -186,7 +186,6 @@ textarea {
 /* slider, news */
  .container-quang {
    margin-top: 100px;
-   padding: 0px 20px;
 }
 
 .head-news {
@@ -562,4 +561,15 @@ a {
    height: 750px;
    width: 150px;
    background: #7386D5;
+}
+/* cart  */
+._cartimg{
+   width: 100px;
+}
+._cartpricr{
+   font-size: 12px;
+}
+.bg_contact_quang{
+   background-image: url('../../images-quang/aqua1.jpg');
+
 }

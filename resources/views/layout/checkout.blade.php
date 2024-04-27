@@ -1,225 +1,84 @@
 @extends('welcome')
-@section('title', 'checkout')
+@section('title', 'Checkout')
 @section('content')
 
-<div class="checkout_body">
-   <div class="container">
-      <h1 class="">Check out</h1>
-      <div class="row">
-         <div class="col-xl-8">
-            <div class="card_checkout">
-               <div class="card-body">
-                  <ol class="activity-checkout mb-0 px-4 mt-3">
-                     <li class="checkout-item">
-                        <div class="feed-item-list">
-                           <div>
-                              <h5 class="font-size-16 mb-1">Billing Info</h5>
-                              <p class="text-muted text-truncate mb-4">Sed ut perspiciatis unde omnis iste</p>
-                              <div class="mb-3">
-                                 <form>
-                                    <div>
-                                       <div class="row">
-                                          <div class="col-lg-4">
-                                             <div class="mb-3">
-                                                <label class="form-label" for="billing-name">Name</label>
-                                                <input type="text" class="form-control" id="billing-name" placeholder="Enter name">
-                                             </div>
-                                          </div>
-                                          <div class="col-lg-4">
-                                             <div class="mb-3">
-                                                <label class="form-label" for="billing-email-address">Email Address</label>
-                                                <input type="email" class="form-control" id="billing-email-address" placeholder="Enter email">
-                                             </div>
-                                          </div>
-                                          <div class="col-lg-4">
-                                             <div class="mb-3">
-                                                <label class="form-label" for="billing-phone">Phone</label>
-                                                <input type="text" class="form-control" id="billing-phone" placeholder="Enter Phone no.">
-                                             </div>
-                                          </div>
-                                       </div>
-
-                                       <div class="mb-3">
-                                          <label class="form-label" for="billing-address">Address</label>
-                                          <textarea class="form-control" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
-                                       </div>
-
-                                       <div class="row">
-                                          <div class="col-lg-4">
-                                             <div class="mb-4 mb-lg-0">
-                                                <label class="form-label">Country</label>
-                                                <select class="form-control form-select" title="Country">
-                                                   <option value="0">Select Country</option>
-                                                   <option value="AF">Afghanistan</option>
-                                                   <option value="AL">Albania</option>
-                                                   <option value="DZ">Algeria</option>
-                                                   <option value="AS">American Samoa</option>
-                                                   <option value="AD">Andorra</option>
-                                                   <option value="AO">Angola</option>
-                                                   <option value="AI">Anguilla</option>
-                                                </select>
-                                             </div>
-                                          </div>
-
-                                          <div class="col-lg-4">
-                                             <div class="mb-4 mb-lg-0">
-                                                <label class="form-label" for="billing-city">City</label>
-                                                <input type="text" class="form-control" id="billing-city" placeholder="Enter City">
-                                             </div>
-                                          </div>
-
-                                          <div class="col-lg-4">
-                                             <div class="mb-0">
-                                                <label class="form-label" for="zip-code">Zip / Postal code</label>
-                                                <input type="text" class="form-control" id="zip-code" placeholder="Enter Postal code">
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </form>
-                              </div>
-                           </div>
-                        </div>
-                     </li>
-                     <li class="checkout-item">
-                        <div class="feed-item-list">
-                           <div>
-                              <h5 class="font-size-14 mb-3">Payment method :</h5>
-                              <div class="row">
-                                 <div class="col-lg-3 col-sm-6">
-                                    <div data-bs-toggle="collapse">
-                                       <label class="card-radio-label">
-                                          <input type="radio" name="pay-method" id="pay-methodoption1" class="card-radio-input">
-                                          <span class="card-radio py-3 text-center text-truncate">
-                                             Credit / Debit Card
-                                          </span>
-                                       </label>
-                                    </div>
-                                 </div>
-
-                                 <div class="col-lg-3 col-sm-6">
-                                    <div>
-                                       <label class="card-radio-label">
-                                          <input type="radio" name="pay-method" id="pay-methodoption2" class="card-radio-input">
-                                          <span class="card-radio py-3 text-center text-truncate">
-                                             Paypal
-                                          </span>
-                                       </label>
-                                    </div>
-                                 </div>
-
-                                 <div class="col-lg-3 col-sm-6">
-                                    <div>
-                                       <label class="card-radio-label">
-                                          <input type="radio" name="pay-method" id="pay-methodoption3" class="card-radio-input" checked="">
-
-                                          <span class="card-radio py-3 text-center text-truncate">
-                                             <span>Cash on Delivery</span>
-                                          </span>
-                                       </label>
-                                    </div>
-                                 </div>
-
-                              </div>
-                           </div>
-                        </div>
-                     </li>
-                  </ol>
-               </div>
-            </div>
-
-            <div class="row my-4">
-               <div class="col">
-                  <a href="ecommerce-products.html" class="btn btn-link text-muted">
-                     <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
-               </div> <!-- end col -->
-               <div class="col">
-                  <div class="text-end mt-2 mt-sm-0">
-                     <a href="#" class="btn btn-success">
-                        <i class="mdi mdi-cart-outline me-1"></i> Cart </a>
-                  </div>
-               </div> <!-- end col -->
-            </div> <!-- end row-->
+<div class="container-quang">
+   <div class=" px-4 w-screen py-8 sm:px-6 sm:py-12 lg:px-8">
+      <div class="">
+         <div class="text-center">
+            <h1 class="text-xl  font-bold text-gray-900 sm:text-3xl">Checkout</h1>
          </div>
-         <div class="col-xl-4">
-            <div class="card checkout-order-summary">
-               <div class="card-body">
-                  <div class="p-3 bg-light mb-3">
-                     <h5 class="font-size-16 mb-0">Order Summary <span class="float-end ms-2">#MN0124</span></h5>
+         <div class="flex py-3 justify-end border-t border-gray-300"></div>
+         <div class="grid grid-cols-1 gap-1 lg:grid-cols-3 lg:gap-1">
+            <div class="h-max	 rounded-lg  lg:col-span-2">
+               <form action="" method="post">
+                  @csrf
+                  <div class="h-full  border bg-white  border-slate-500 rounded-lg lg:col-span-2">
+                     <div class="flex justify-start">
+                        <span class=" mt-4 ml-6 mb-4 text-gray-700">Billing Details</span>
+                     </div>
+                     <div class="flex justify-end my-0 border-t border-gray-300"></div>
+                     <div class="rounded-lg  p-4  lg:col-span-3 lg:p-12">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                           <div>
+                              <input value="{{ old('name', session('userData.name')) }}" class="w-full border rounded-lg border-gray-700 p-3 lg:p-3 text-sm" placeholder="Name" name="name" type="name" id="name" />
+                              @error('name')
+                              <div class="mt-0 text-red-700 rounded-xl relative" role="alert">
+                                 <span class="block sm:inline text-[10px]">{{ $message }}</span>
+                              </div>
+                              @enderror
+                           </div>
+                           <div>
+                              <input value="{{ old('phone', session('userData.phone')) }}" class="w-full border rounded-lg border-gray-700 p-3 text-sm" placeholder="Phone Number" name="phone" type="tel" id="phone" />
+                              @error('phone')
+                              <div class="mt-0 text-red-700 rounded-xl relative" role="alert">
+                                 <span class="block sm:inline text-[10px]">{{ $message }}</span>
+                              </div>
+                              @enderror
+                           </div>
+                        </div>
+                        <div class="mt-2">
+                           <input value="{{ old('email', session('userData.email')) }}" class="w-full border rounded-lg border-gray-700 p-3 text-sm" placeholder="Email Address" name="email" type="email" id="email" />
+                           @error('email')
+                           <div class="mt-0 text-red-700 rounded-xl relative" role="alert">
+                              <span class="block sm:inline text-[10px]">{{ $message }}</span>
+                           </div>
+                           @enderror
+                        </div>
+                        <div class="mt-2">
+                           <input value="{{ old('address', session('userData.address')) }}" class="w-full border rounded-lg border-gray-700 p-3 text-sm" placeholder="Address" type="text" name="address" id="address" />
+                           @error('address')
+                           <div class="mt-0 text-red-700 rounded-xl relative" role="alert">
+                              <span class="block sm:inline text-[10px]">{{ $message }}</span>
+                           </div>
+                           @enderror
+                        </div>
+                        <div class="mt-2">
+                           <textarea class="w-full border rounded-lg border-gray-700 p-3 text-sm" placeholder="Ghi chú...." rows="3" lg:row='3' for="note" name="note" id="note"></textarea>
+                        </div>
+                     </div>
                   </div>
-                  <div class="table-responsive">
-                     <table class="table table-centered mb-0 table-nowrap">
-                        <thead>
-                           <tr>
-                              <th class="border-top-0" style="width: 110px;" scope="col">Product</th>
-                              <th class="border-top-0" scope="col">Product Desc</th>
-                              <th class="border-top-0" scope="col">Price</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <th scope="row"><img src="https://www.bootdey.com/image/280x280/FF00FF/000000" alt="product-img" title="product-img" class="avatar-lg rounded"></th>
-                              <td>
-                                 <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark">Waterproof Mobile Phone</a></h5>
+               </form>
+            </div>
+            <div class="h-max rounded-lg border bg-white  border-slate-300">
+               <div class="flex ml-4 mt-4 justify-start  ">
+                  <span class=" mb-4 text-gray-700">Your Order</span>
+               </div>
+               <div class="flex justify-end my-0 border-t border-gray-300"></div>
 
-                                 <p class="text-muted mb-0 mt-1">$ 260 x 2</p>
-                              </td>
-                              <td>$ 520</td>
-                           </tr>
-                           <tr>
-                              <th scope="row"><img src="https://www.bootdey.com/image/280x280/FF00FF/000000" alt="product-img" title="product-img" class="avatar-lg rounded"></th>
-                              <td>
-                                 <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark">Smartphone Dual Camera</a></h5>
 
-                                 <p class="text-muted mb-0 mt-1">$ 260 x 1</p>
-                              </td>
-                              <td>$ 260</td>
-                           </tr>
-                           <tr>
-                              <td colspan="2">
-                                 <h5 class="font-size-14 m-0">Sub Total :</h5>
-                              </td>
-                              <td>
-                                 $ 780
-                              </td>
-                           </tr>
-                           <tr>
-                              <td colspan="2">
-                                 <h5 class="font-size-14 m-0">Discount :</h5>
-                              </td>
-                              <td>
-                                 - $ 78
-                              </td>
-                           </tr>
-                           <tr>
-                              <td colspan="2">
-                                 <h5 class="font-size-14 m-0">Estimated Tax :</h5>
-                              </td>
-                              <td>
-                                 $ 18.20
-                              </td>
-                           </tr>
 
-                           <tr class="bg-light">
-                              <td colspan="2">
-                                 <h5 class="font-size-14 m-0">Total:</h5>
-                              </td>
-                              <td>
-                                 $ 745.2
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-                  <div class="text-end mt-2 mt-sm-0">
-                     <a href="#" class="btn btn-success">Next </a>
-                  </div>
+               <div class="flex py-5 justify-center">
+                  <a href="/cart" class="block mr-2 rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
+                     Back
+                  </a>
+                  <a href="/" class="block rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
+                     Next
+                  </a>
                </div>
             </div>
          </div>
       </div>
-      <!-- end row -->
    </div>
 </div>
-
 @endsection
