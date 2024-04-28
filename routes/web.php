@@ -26,15 +26,18 @@ Route::get('/cart', [CartController::class, 'cartView'])->name('cart.view');
 Route::get('/tickets/view', [TicketController::class, 'ticketview'])->name('ticket.view');
 Route::get('/tickets', [TicketController::class, 'ticket'])->name('ticket');
 Route::get('/contact', [ContactController::class, 'contactView'])->name('contact.view');
-Route::post('/news/read/', [ReadController::class, 'newsRead'])->name('news.read');
-Route::Post('/tickets', [TicketController::class, 'BuyTicket'])->name('tickets.buy');
-Route::Post('/tickets/', [TicketController::class, 'BuyTicket'])->name('tickets.buy');
+Route::post('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
+Route::Post('/tickets/buy', [TicketController::class, 'BuyTicket'])->name('tickets.buy');
 Route::Post('/handle/contact', [ContactController::class, 'HandleContact'])->name('handle.contact');
-
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/news/upload', [NewsController::class, 'uploadNews'])->name('news.upload');
-
+    Route::get('/news/update', [NewsController::class, 'updateNews'])->name('news.update');
+    Route::get('/news/edit/{id}', [NewsController::class, 'editNews'])->name('news.edit');
+    Route::delete('/news/delete/{id}', [NewsController::class, 'deleteNews'])->name('news.delete');
+    Route::post('/news/handle/upload', [NewsController::class, 'handleUploadNews'])->name('handle.upload.news');
+    Route::post('/news/handle', [NewsController::class, 'newsHandle'])->name('news.handle');
+    Route::post('/news-submit', [NewsController::class, 'handleEditNews'])->name('news.edit.submit');
 });
 ////////////

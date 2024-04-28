@@ -10,87 +10,40 @@
     </span>
     <div class="grid grid-cols-1 px-20 gap-1 lg:grid-cols-3 lg:gap-1">
       <div class="left-news rounded-lg  lg:col-span-2">
-        <h2 class="text-xl mb-4 font-bold text-gray-900 sm:text-3xl">Evens</h2>
+        <h2 class="text-xl mb-2 font-bold text-gray-900 sm:text-3xl">Evens</h2>
+        <div class="flex justify-end border-t border-gray-500"></div>
         <div class="_news_left">
           <div>
-            <img class=" _news_left_image" alt="" src="{{ asset('images-quang/aqua1.jpg') }}" />
+            @foreach ($formattedEvents as $event)
+
+            @if (isset($event['image_file_names']) && count($event['image_file_names']) > 0)
+            <img alt="" src="{{ asset('news_img/' . $event['image_file_names'][0]) }}" />
+            @else
+            <img alt="No image" src="" />
+            @endif
+            @if (isset($event['text']))
             <div class="_news_l">
-              <div class="_news_l_date">20.04.2024</div>
-              <span>
-                <h3 class="_news_l_h">How to position your furniture for positivity</h3>
-              </span>
+              <div class="_news_l_date">{{ $event['event']->start_date }}</div>
               <p class="_news_l_text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                dignissimos. Molestias explicabo corporis voluptatem?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque.....
+                {{ $event['text'] }}
               </p>
             </div>
-            <div class=" _news_l_b">
-              <form action="{{Route('news.read')}}" method="POST">
+            @else
+            <p class="_news_l_text">
+              No text
+            </p>
+            @endif
+            <div class="mt-2 mb-3">
+              <form action="{{ route('news.read', ['id' => isset($event['event']) ? $event['event']->id : null]) }}" method="POST">
                 @csrf
-                <button type="submit" class="block mr-2 rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
+                <button type="submit" class="block rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
                   Read More
                 </button>
               </form>
+
             </div>
             <div class="flex py-3 justify-end border-t border-gray-500"></div>
-
-          </div>
-          <div>
-            <img class=" _news_left_image" alt="" src="{{ asset('images-quang/aqua1.jpg') }}" />
-            <div class="_news_l">
-              <div class="_news_l_date">20.04.2024</div>
-              <span>
-                <h3 class="_news_l_h">How to position your furniture for positivity</h3>
-              </span>
-              <p class="_news_l_text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                dignissimos. Molestias explicabo corporis voluptatem?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque.....
-              </p>
-            </div>
-            <div class=" _news_l_b">
-              <form action="{{Route('news.read')}}" method="POST">
-                @csrf
-                <button type="submit" class="block mr-2 rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
-                  Read More
-                </button>
-              </form>
-            </div>
-            <div class="flex py-3 justify-end border-t border-gray-500"></div>
-
-          </div>
-          <div>
-            <img class=" _news_left_image" alt="" src="{{ asset('images-quang/aqua1.jpg') }}" />
-            <div class="_news_l">
-              <div class="_news_l_date">20.04.2024</div>
-              <span>
-                <h3 class="_news_l_h">How to position your furniture for positivity</h3>
-              </span>
-              <p class="_news_l_text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                dignissimos. Molestias explicabo corporis voluptatem.....
-              </p>
-            </div>
-            <div class=" _news_l_b">
-              <form action="{{Route('news.read')}}" method="POST">
-                @csrf
-                <button type="submit" class="block mr-2 rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
-                  Read More
-                </button>
-              </form>
-            </div>
-
+            @endforeach
           </div>
         </div>
       </div>
@@ -124,7 +77,7 @@
               </div>
               <div class="_new_r_form">
                 <div class="_btn_left">
-                  <form action="{{Route('news.read')}}" method="POST">
+                  <form method="POST">
                     @csrf
                     <button type="submit" class="block mr-0.5 rounded-xl bg-gray-800 px-3 py-2 text-sm text-white transition hover:bg-black">
                       Detail
@@ -166,7 +119,7 @@
               </div>
               <div class="_new_r_form">
                 <div class="_btn_left">
-                  <form action="{{Route('news.read')}}" method="POST">
+                  <form action="" method="POST">
                     @csrf
                     <button type="submit" class="block mr-0.5 rounded-xl bg-gray-800 px-3 py-2 text-sm text-white transition hover:bg-black">
                       Detail

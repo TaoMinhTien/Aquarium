@@ -222,16 +222,15 @@ textarea {
    border-radius: 0.5rem;
    height: 100%;
 }
+   ._newread img {
+   width: fit-content;
+   border-radius: 0.5rem;
+   object-fit: cover;
+   transition-duration: 500ms;
+}
 
 ._news_left {
    overflow: hidden;
-   filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
-   border-radius: 0.5rem;
-}
-
-._news_left_image {
-   width: 100%;
-   object-fit: cover;
 }
 
 ._news_l {

@@ -9,7 +9,7 @@
 
          <li>
             <details class="group [&_summary::-webkit-details-marker]:hidden">
-               <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-black">
+               <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-800 hover:bg-gray-300 hover:text-black">
                   <span class="text-sm font-medium">Animals </span>
                   <span class="shrink-0 transition duration-300 group-open:-rotate-180">
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -19,13 +19,13 @@
                </summary>
                <ul class="mt-2 space-y-1 px-4">
                   <li>
-                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100 hover:text-black">
+                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300 hover:text-black">
                         Information
                      </a>
                   </li>
 
                   <li>
-                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-100 hover:text-black">
+                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                         Habitat
                      </a>
                   </li>
@@ -35,7 +35,7 @@
          <!-- quang -->
          <li>
             <details class="group [&_summary::-webkit-details-marker]:hidden">
-               <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-black">
+               <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-800 hover:bg-gray-300 hover:text-black">
                   <span class="text-sm font-medium">News </span>
 
                   <span class="shrink-0 transition duration-300 group-open:-rotate-180">
@@ -44,29 +44,25 @@
                      </svg>
                   </span>
                </summary>
-
                <ul class="mt-2 space-y-1 px-4">
                   <li>
-                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100 hover:text-black">
-                        Update
+                     <a href="/news/upload" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300 hover:text-black">
+                        Upload
                      </a>
                   </li>
 
                   <li>
-                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-100 hover:text-black">
-                        Upload
+                     <a href="{{route('news.update')}}" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
+                     Update
                      </a>
                   </li>
                </ul>
             </details>
          </li>
          <!--  -->
-
-
-
          <li>
             <details class="group [&_summary::-webkit-details-marker]:hidden">
-               <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2  text-gray-800 hover:bg-gray-100 hover:text-black">
+               <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2  text-gray-800 hover:bg-gray-300 hover:text-black">
                   <span class="text-sm font-medium">Bill </span>
 
                   <span class="shrink-0 transition duration-300 group-open:-rotate-180">
@@ -78,7 +74,7 @@
 
                <ul class="mt-2 space-y-1 px-4">
                   <li>
-                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-100 hover:text-black">
+                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                         Details
                      </a>
                   </li>
@@ -87,7 +83,7 @@
          </li>
          <li>
             <details class="group [&_summary::-webkit-details-marker]:hidden">
-               <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2  text-gray-800 hover:bg-gray-100 hover:text-black">
+               <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2  text-gray-800 hover:bg-gray-300 hover:text-black">
                   <span class="text-sm font-medium"> Trang khác... </span>
                   <span class="shrink-0 transition duration-300 group-open:-rotate-180">
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -97,14 +93,14 @@
                </summary>
                <ul class="mt-2 space-y-1 px-4">
                   <li>
-                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-100 hover:text-black">
+                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                         Trang khác...
                      </a>
                   </li>
                </ul>
                <ul class="mt-2 space-y-1 px-4">
                   <li>
-                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-100 hover:text-black">
+                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                         Trang khác...
                      </a>
                   </li>
@@ -112,28 +108,28 @@
             </details>
          </li>
          <li>
-            <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-100 hover:text-black">
+            <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                Trang khác...
             </a>
          </li>
          <li>
-            <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-100 hover:text-black">
+            <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                Trang khác...
             </a>
          </li>
          <li>
-            <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-100 hover:text-black">
+            <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                Trang khác...
             </a>
          </li>
          <li>
-            <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-100 hover:text-black">
+            <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                Trang khác...
             </a>
          </li>
          <li>
             <details class="group [&_summary::-webkit-details-marker]:hidden">
-               <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2  text-gray-800 hover:bg-gray-100 hover:text-black">
+               <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2  hover:bg-gray-300 hover:text-black">
                   <span class="text-sm font-medium"> Account </span>
 
                   <span class="shrink-0 transition duration-300 group-open:-rotate-180">
@@ -145,7 +141,7 @@
 
                <ul class="mt-2 space-y-1 px-4">
                   <li>
-                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-100 hover:text-black">
+                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                         User
                      </a>
                   </li>

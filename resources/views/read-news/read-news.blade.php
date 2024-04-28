@@ -2,6 +2,9 @@
 @section('title', 'News')
 @section('content')
 <!-- start -->
+<style>
+
+</style>
 <div class="container-quang">
    <div>
       @include('layout.slider_ticket')
@@ -10,34 +13,14 @@
       </span>
       <div class="grid grid-cols-1 px-20 gap-1 lg:grid-cols-3 lg:gap-1">
          <div class="left-news rounded-lg  lg:col-span-2">
-            <h2 class="text-xl mb-4 font-bold text-gray-900 sm:text-3xl">Detail evens</h2>
+            <h2 class="text-xl mb-2 font-bold text-gray-900 sm:text-3xl">Detail evens</h2>
+            <div class="flex justify-end border-t border-gray-500"></div>
+
             <div class="_news_left">
                <div>
-                  <img class=" _news_left_image" alt="" src="{{ asset('images-quang/aqua1.jpg') }}" />
-                  <div class="_news_l">
-                     <div class="_news_l_date">20.04.2024</div>
-                     <span>
-                        <h3 class="_news_l_h">How to position your furniture for positivity</h3>
-                     </span>
-                     <p class="_news_l_text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                        pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                        mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                        dignissimos. Molestias explicabo corporis voluptatem?
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                        pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                        mollitia itaque minus soluta, voluptates neque explicabo tempora nisi cupariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                        mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                        dignissimos. Molestias explicabo corporis voluptatem?
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                        pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                        mollitia itaque minus soluta, voluptates neque explicabo tempora nisi cupariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                        mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                        dignissimos. Molestias explicabo corporis voluptatem?
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                        pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                        mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque.....
-                     </p>
+                  <div class="mb-2 text-sm text-gray-700 font-semibold">{{ $newsRead['newsRead'] -> start_date }}</div>
+                  <div class="_newread">
+                     {!! $newsRead['newsRead']->description !!}
                   </div>
                   <div class="flex py-3">
                      <div class="mr-1">
