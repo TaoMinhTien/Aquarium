@@ -11,11 +11,20 @@
                <label for="title_name" class="text-sm font-bold text-gray-700 tracking-wide">Title name</label>
                <input type="text" id="title_name" name="title_name" placeholder="Enter title name" class="w-full text-sm py-2 border-b border-gray-300 focus:outline-none focus:border-gray-800">
             </div>
-            <div class="mt-3">
+            <div class="mt-2">
                <label for="address" class="text-sm font-bold text-gray-700 tracking-wide">Address</label>
                <input type="text" id="address" name="address" placeholder="Enter address" class="w-full text-sm py-2 border-b border-gray-300 focus:outline-none focus:border-gray-800">
             </div>
-
+            <div class="mt-2 flex ">
+               <div class="w-1/2 mr-3">
+                  <label for="quantity" class="text-sm font-bold text-gray-700 tracking-wide">Ticket quantity</label>
+                  <input type="text" value="" id="quantity" name="quantity" placeholder="Ticket quantity" class="w-full text-sm py-2 border-b border-gray-300 focus:outline-none focus:border-gray-800" oninput="this.value = this.value.replace(/[^0-9]/g, '')" min="0">
+               </div>
+               <div class="w-1/2">
+                  <label for="price" class="text-sm font-bold text-gray-700 tracking-wide">Ticket price</label>
+                  <input type="text" id="price" name="price" placeholder="Ticket price" class="w-full text-sm py-2 border-b border-gray-300 focus:outline-none focus:border-gray-800" oninput="this.value = this.value.replace(/[^0-9]/g, '')" min="0">
+               </div>
+            </div>
             <div class="mt-2 flex ">
                <div class="w-1/2 mr-3">
                   <div class="">

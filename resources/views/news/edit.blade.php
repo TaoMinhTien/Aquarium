@@ -31,7 +31,24 @@
                <label for="address" class="text-sm font-bold text-gray-700 tracking-wide">Address</label>
                <input type="text" value="{{$eventEdit -> address}}" id="address" name="address" placeholder="Enter address" class="w-full text-sm py-2 border-b border-gray-300 focus:outline-none focus:border-gray-800">
             </div>
-
+            <div class="mt-2 flex ">
+               <div class="w-1/2 mr-3">
+                  <label for="quantity" class="text-sm font-bold text-gray-700 tracking-wide">Ticket quantity</label>
+                  @if ($ticketEdit->count() > 0 && isset($ticketEdit[0]->quantity))
+                  <input type="text" value="{{ $ticketEdit[0]->quantity }}" id="quantity" name="quantity" placeholder="Ticket quantity" class="w-full text-sm py-2 border-b border-gray-300 focus:outline-none focus:border-gray-800" oninput="this.value = this.value.replace(/[^0-9]/g, '')" min="0">
+                  @else
+                  <input type="text" id="quantity" name="quantity" placeholder="Ticket quantity" class="w-full text-sm py-2 border-b border-gray-300 focus:outline-none focus:border-gray-800" oninput="this.value = this.value.replace(/[^0-9]/g, '')" min="0">
+                  @endif
+               </div>
+               <div class="w-1/2">
+                  <label for="price" class="text-sm font-bold text-gray-700 tracking-wide">Ticket price</label>
+                  @if ($ticketEdit->count() > 0 && isset($ticketEdit[0]->price))
+                  <input type="text" value="{{ $ticketEdit[0]->price }}" id="price" name="price" placeholder="Ticket price" class="w-full text-sm py-2 border-b border-gray-300 focus:outline-none focus:border-gray-800" oninput="this.value = this.value.replace(/[^0-9]/g, '')" min="0">
+                  @else
+                  <input type="text" id="price" name="price" placeholder="Ticket price" class="w-full text-sm py-2 border-b border-gray-300 focus:outline-none focus:border-gray-800" oninput="this.value = this.value.replace(/[^0-9]/g, '')" min="0">
+                  @endif
+               </div>
+            </div>
             <div class="mt-2 flex ">
                <div class="w-1/2 mr-3">
                   <div class="">

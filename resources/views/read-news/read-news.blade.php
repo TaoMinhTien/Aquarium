@@ -24,63 +24,75 @@
                   </div>
                   <div class="flex py-3">
                      <div class="mr-1">
-                        <a href="{{Route('ticket.view')}}" class="block rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
-                           Buy Tickets
-                        </a>
+                        @if (isset($tickets))
+                        <form action="{{ route('ticket.view') }}" method="POST">
+                           <input type="hidden" name="ticket_id" value="{{$tickets[0]->id}}">
+                           <input type="hidden" name="event_id" value="{{ $tickets[0]->event_id }}">
+                           <button type="submit" class="block rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
+                              Buy Tickets
+                           </button>
+                        </form>
+                        @else
+                        {{ redirect()->route('error') }}
+                        @endif
                      </div>
                      <div class="">
-
                         <a href="{{Route('contact.view')}}" type="submit" class="block rounded-xl bg-gray-800 px-6 py-2 text-sm text-white transition hover:bg-black">
                            Receive contact
                         </a>
                      </div>
                   </div>
-
                   <div class="flex py-3 justify-end border-t border-gray-500"></div>
-
                </div>
             </div>
          </div>
          <div class="right-news h-fit rounded-lg ">
-            <div class="_news_r">
-               <span class="text-xl ml-2 mb-1 font-bold text-gray-900 sm:text-xl">Tickets</span>
+            <div class="mb-3">
+               <span class="text-xl ml-4 font-bold text-gray-900 sm:text-xl">Tickets</span>
             </div>
-            <div class="flex justify-end border-t border-gray-500"></div>
+            <div class="flex justify-end mb-2 border-t border-gray-500"></div>
             <div>
-               <ul>
+               <ul class="ml-3">
                   <li class="_new_r">
-                     <div class="d-flex">
-                        <a href="">
-                           <img src="{{ asset('images-quang/aqua1.jpg') }}" alt="" class="">
-                        </a>
-                        <div class="_name mt-2">
+                     @if (isset($tickets) && count($tickets) > 0)
+                     <form action="{{ route('ticket.view') }}" method="POST">
+                        <div class="d-flex">
                            <a href="">
-                              <h3 class="event_name"><strong>News name</strong></h3>
+                              <img src="{{ asset('news_img/' . $tickets[0]->image) }}" alt="" class="w-fit">
                            </a>
-                           <dl class="_news_r_ticket mt-1">
-                              <div class="d-flex">
-                                 <dt class="inline">Date:</dt>
-                                 <dd class="inline ms-1">20.04.2024</dd>
+                           <div>
+                              <div class="_name mt-2">
+                                 <a href="">
+                                    <h3 class="event_name mt-2"><strong>{{$tickets[0]->name}}</strong></h3>
+                                 </a>
+                                 <dl class="_news_r_ticket mt-1">
+                                    <div class="d-flex">
+                                       <dt class="inline">Ticket:</dt>
+                                       <dd class="inline"> {{ number_format($tickets[0]->price/ 1000, 3, ',', ',') }}đ</dd>
+                                    </div>
+                                 </dl>
                               </div>
-                              <div class="d-flex">
-                                 <dt class="inline">Ticket:</dt>
-                                 <dd class="inline ms-1">299.000đ</dd>
+                              <div class="flex justify-end">
+                                 <div class="ml-32 mt-2 ">
+                                    <input type="hidden" name="ticket_id" value="{{$tickets[0]->id}}">
+                                    <input type="hidden" name="event_id" value="{{ $tickets[0]->event_id }}">
+                                    <button type="submit" class="block rounded-xl bg-gray-800 px-4 mr-8 py-2 text-sm text-white transition hover:bg-black">
+                                       Buy now
+                                    </button>
+                                 </div>
                               </div>
-                           </dl>
+                           </div>
                         </div>
-                     </div>
-                     <div class="_new_r_form">
-                        <a href="{{Route('ticket.view')}}" class="block rounded-xl bg-gray-800 px-4 mr-8 py-2 text-sm text-white transition hover:bg-black">
-                           Buy now
-                        </a>
-                     </div>
+                     </form>
+                     @else
+                     <h1>No</h1>
+                     @endif
+                  </li>
+               </ul>
+               <div class="flex mt-2 justify-end mb-2 border-t border-gray-500"></div>
             </div>
-            </li>
-            </ul>
          </div>
-
       </div>
    </div>
-</div>
 </div>
 @endsection
