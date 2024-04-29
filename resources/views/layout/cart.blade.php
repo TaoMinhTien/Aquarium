@@ -13,7 +13,7 @@
         <ul class="">
           @if(!empty($cartItems))
           @foreach($cartItems as $item)
-          <li class="flex gap-2">
+          <li class="flex gap-2 mb-1">
             @if(isset($item['image']))
             <img src="{{ asset('news_img/' . $item['image']) }}" alt="" class="_cart_img mb-2 rounded object-cover">
             @else
@@ -59,7 +59,6 @@
               </form>
             </div>
           </li>
-          <div class="flex justify-end pt-1 pb-1 border-t border-gray-400"></div>
           @endforeach
           @else
           <div class="flex">
@@ -68,9 +67,8 @@
             <div class="flex  justify-end mb-2 border-t border-gray-800"></div>
           </div>
           @endif
-
         </ul>
-
+        <div class="flex  justify-end border-t border-gray-800"></div>
         <div class=" flex justify-end border-t border-gray-100 pt-8">
           <div class="w-screen max-w-lg space-y-4">
             <dl class="space-y-0.5 text-sm text-gray-700">
