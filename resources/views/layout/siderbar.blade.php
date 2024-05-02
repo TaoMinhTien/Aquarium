@@ -115,13 +115,6 @@
                <ul class="mt-2 space-y-1 px-4">
                   <li>
                      <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
-                        Gallery
-                     </a>
-                  </li>
-               </ul>
-               <ul class="mt-2 space-y-1 px-4">
-                  <li>
-                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                         AboutUs
                      </a>
                   </li>
