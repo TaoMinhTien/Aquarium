@@ -6,9 +6,9 @@
    <div class=" px-4 w-screen py-8 sm:px-6 sm:py-12 lg:px-8">
       <div class="">
          <div class="text-center">
-            <h1 class="text-xl  font-bold text-gray-900 sm:text-3xl">Checkout</h1>
+            <h1 class="text-xl  font-bold text-gray-900 sm:text-3xl">Check Out</h1>
          </div>
-         <div class="flex py-3 justify-end border-t border-gray-300"></div>
+         <div class="flex py-3 justify-end border-t border-gray-700 mt-3"></div>
          <form action="{{route('checkout.process')}}" method="post">
             @csrf
             <div class="grid grid-cols-1 gap-1 px-10 lg:grid-cols-3 lg:gap-1">
@@ -118,7 +118,7 @@
                         </button>
                      </div>
                      @else
-                     <div class="flex">
+                     <div class="flex mt-1 ml-2">
                         <p class="text-[15px] italic mr-3  text-gray-700">No ticket!</p>
                         <a class=" text-[15px] italic text-blue-600 hover:text-blue-800" href="{{ route('tickets') }}">Shopping Here</a>
                      </div>
