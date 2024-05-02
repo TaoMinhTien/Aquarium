@@ -249,7 +249,4 @@ class NewsController extends Controller
     }
 
     //
-    public function test(){
-        
-    }
 }

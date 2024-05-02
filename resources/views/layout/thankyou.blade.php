@@ -1,17 +1,18 @@
 @extends('welcome')
 @section('title', 'Thank you')
 @section('content')
-<div class="vh-100 d-flex justify-content-center align-items-center">
-   <div>
-      <div class="mb-4 text-center">
-         <svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="75" height="75" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-         </svg>
-      </div>
-      <div class="text-center">
-         <h1>Thank You !</h1>
-         <p>We've send the link to your inbox. Lorem ipsum dolor sit, </p>
-         <button class="btn btn-primary">Back Home</button>
+<div class="flex h-screen items-center mb-4 justify-center bg-white">
+   <div class="h-3/4">
+      <div class="rounded-3xl shadow-2xl">
+         <div class="p-8 text-center sm:p-12">
+            <p class="text-sm font-semibold uppercase tracking-widest text-red-600">
+               You have successfully purchased
+            </p>
+            <h2 class="mt-6 text-3xl font-bold">Thank you for your purchase. <br> we will ship upon successful order confirmation!</h2>
+            <a href="{{url('/')}}" class="mt-8 inline-block w-full rounded-full hover:cursor-pointer bg-red-600 py-4 text-sm font-bold text-white shadow-xl">
+               Go Back Home
+            </a>
+         </div>
       </div>
    </div>
 </div>

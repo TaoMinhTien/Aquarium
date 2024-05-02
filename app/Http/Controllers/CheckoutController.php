@@ -8,7 +8,10 @@ use App\Models\Event;
 use Illuminate\Support\Facades\Session;
 use App\Models\Ticket;
 use App\Models\Customer;
+use App\Models\Booking;
+use App\Models\OrderNumber;
 use App\Models\TicketVariant;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -111,8 +114,9 @@ class CheckoutController extends Controller
             'notes' => $request->input('note'),
             'phone' => $request->input('phone'),
             'cartCheckout' => $cartCheckout,
-
         ];
+        // dd($dataCheckout);
+        Session::put('dataCheckout', $dataCheckout);
         $paymentName = $request->input('paymentmethod');
         if ($paymentName) {
             return view("payment.$paymentName", $dataCheckout);
@@ -123,6 +127,51 @@ class CheckoutController extends Controller
     ///
     public function handleCheckout(Request $request)
     {
-        dd($request);
+        try {
+            DB::beginTransaction();
+            $dataCheckout = Session::get('dataCheckout');
+            $payment = new Payment();
+            $payment->name = $dataCheckout['payment'];
+            $payment->save();
+            $orderNumber = new OrderNumber();
+            $orderNumber->order_number = $dataCheckout['orderNumber'];
+            $orderNumber->save();
+            $customer = Customer::where('email', $dataCheckout['email'])->first();
+            if ($customer) {
+                $customer->increment('purchase_count');
+            } else {
+                $data = [
+                    'name' => $dataCheckout['name'],
+                    'email' =>  $dataCheckout['email'],
+                    'address' => $dataCheckout['address'],
+                    'phone' => $dataCheckout['phone'],
+                    'purchase_count' => 1,
+                ];
+                if (isset($dataCheckout['notes']) && !empty($dataCheckout['notes'])) {
+                    $data['notes'] = $dataCheckout['notes'];
+                }
+                $customer = Customer::create($data);
+            }
+            foreach ($dataCheckout['cartCheckout'] as $item) {
+                $booking = new Booking();
+                $booking->customer_id = $customer->id;
+                $booking->ticket_id = $item['ticket_id'];
+                $booking->event_id = $item['event_id'];
+                $booking->order_number_id = $orderNumber->id;
+                $booking->order_date = $dataCheckout['time'];
+                $booking->notes = $dataCheckout['notes'];
+                $booking->status =  $dataCheckout['notes'] ?? 'pending';
+                $booking->totalmount = $dataCheckout['total'];
+                $booking->save();
+            }
+            DB::commit();
+            Session::forget('cart');
+            Session::forget('dataCheckout');
+            Session::forget('orderNumber');
+            return view('layout.thankyou');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('error')->withErrors([$e->getMessage()])->withInput();
+        };
     }
 }

@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view) {
+            
             $randomDataSlider_02 = TicketVariant::inRandomOrder()
                 ->join('events', 'ticket_variant.event_id', '=', 'events.id')
                 ->join('tickets', 'ticket_variant.ticket_id', '=', 'tickets.id')
