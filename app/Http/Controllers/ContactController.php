@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
+
+    //
+    public function contactView(){
+        return view('layout.contact');
+    }
     //
     public function HandleContact(Request $request)
     {

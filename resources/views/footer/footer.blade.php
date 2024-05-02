@@ -81,10 +81,10 @@
         </ul>
         
         <div class="footer_legal">
-          <p>&copy; 2019 Something. All rights reserved.</p>
+          <p class = "mb-0">&copy; 2019 Something. All rights reserved.</p>
           
           <div class="footer_legal__links">
-            <span>Made with <span class="heart">♥</span> remotely from Anywhere</span>
+            <span> Made with <span class="heart">♥</span> remotely from Anywhere</span>
           </div>
         </div>
       </footer>
