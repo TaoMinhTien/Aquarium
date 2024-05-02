@@ -3,8 +3,10 @@
 CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
+    `STATUS` varchar(255) DEFAULT NULL,
+  `totalmount` decimal(10,2) DEFAULT NULL,
   `ticket_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) 
 -- 
 CREATE TABLE `feedback` (
   `id` bigint(20) UNSIGNED NOT NULL,
@@ -20,9 +22,8 @@ CREATE TABLE `customers` (
   `email` varchar(255) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
-  `STATUS` varchar(255) DEFAULT NULL,
-  `totalmount` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+) 
 -- 
 CREATE TABLE `event` (
   `id` int(11) NOT NULL,
@@ -32,20 +33,17 @@ CREATE TABLE `event` (
   `start_date` datetime DEFAULT NULL,
   `end_date` datetime DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+)
 -- 
 CREATE TABLE `event_images` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `event_id` int(11) DEFAULT NULL,
   `image_url` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
--- 
+) 
 CREATE TABLE `price` (
   `id` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) 
 -- 
 CREATE TABLE `ticket` (
   `id` int(11) NOT NULL,
@@ -54,8 +52,7 @@ CREATE TABLE `ticket` (
   `price_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `remaining` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) 
 ------------------------------------------------------------------------------------------------
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`id`),
