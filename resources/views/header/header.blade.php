@@ -20,9 +20,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{"/"}}">Home</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">About Us</a>
-                </li>
 
                 <li class="nav-item has-dropdown">
                   <a class="nav-link" href="#">Animals</a>
@@ -37,7 +34,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Ticket</a>
+                  <a class="nav-link" href="{{route('tickets')}}">Ticket</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{route('news.view')}}">Events</a>
