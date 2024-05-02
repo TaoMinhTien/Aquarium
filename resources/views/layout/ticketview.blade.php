@@ -35,9 +35,9 @@
                      </button>
                   </div>
                   <div class="">
-                     <a class="block rounded-xl bg-gray-800 px-10 py-2 text-sm text-white transition hover:bg-black">
-                        Buy now
-                     </a>
+                     <button id="buyNowBtn" class="block rounded-xl bg-gray-800 px-10 py-2 text-sm text-white transition hover:bg-black">
+                        Buy Now
+                     </button>
                   </div>
                </div>
             </div>
@@ -82,15 +82,21 @@
             _token: "{{ csrf_token() }}"
          }),
          success: function(response) {
-            // console.log(response);
-            showNotification('Tickets added to cart!');
+            if (response.success) {
+               console.log(response);
+               showNotification('Tickets added to cart!');
+            } else {
+               if (response.message === 'The quantity exceeds the remaining stock.') {
+                  showNotification(response.message);
+               }
+            }
          },
          error: function(xhr, status, error) {
             console.log('error add cart');
          }
       });
    }
-   //Thông báo khi thêm vào giỏ hàng thành công
+   //Thông báo 
    function showNotification(message) {
       const notification = document.createElement('div');
       notification.classList.add('notificationAddcart');
@@ -138,6 +144,35 @@
       var quantityInput = document.getElementById("quantity");
       var currentValue = parseInt(quantityInput.value);
       quantityInput.value = currentValue + 1;
+   }
+   ///
+   // buy now button 
+   document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('buyNowBtn').addEventListener('click', function() {
+         addToCartAndCheckout();
+      });
+   });
+
+   function addToCartAndCheckout() {
+      var form = $('form[action="' + "{{ route('cart.add') }}" + '"]');
+      var formData = new FormData(form[0]);
+      $.ajax({
+         url: form.attr('action'),
+         method: 'POST',
+         data: formData,
+         processData: false,
+         contentType: false,
+         success: function(response) {
+            if (response.success) {
+               window.location.href = "{{ route('checkout.view') }}";
+            } else {
+               alert(response.message);
+            }
+         },
+         error: function(xhr, status, error) {
+            console.error(error);
+         }
+      });
    }
 </script>
 @endsection

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
-    //
+    //view cart
     public function cartView()
     {
         // Session::flush(); 
@@ -21,7 +21,7 @@ class CartController extends Controller
         // dd($cart);
         return view('layout.cart', ['cartItems' => $cart]);
     }
-    ///
+    /// add cart
     function handleAddCart(Request $request)
     {
         $ticketId = $request->input('ticket_id');
@@ -32,6 +32,10 @@ class CartController extends Controller
                 'success' => false,
                 'message' => 'Vé không tồn tại.',
             ]);
+        }
+        $ticketQuantity = $ticket->quantity;
+        if ($quantity > $ticketQuantity) {
+            return response()->json(['success' => false, 'message' => 'The quantity exceeds the remaining stock.']);
         }
         $event = Event::find($ticket->event_id);
         if (!$event) {
@@ -47,6 +51,7 @@ class CartController extends Controller
         } else {
             $cartItem = [
                 'ticket_id' => $ticket->id,
+                'event_id' => $ticket->event_id,
                 'name' => $ticket->name,
                 'quantity' => $quantity,
                 'image' => $ticket->image,
@@ -62,10 +67,12 @@ class CartController extends Controller
         }
         Session::put('cart', $cart);
         return response()->json([
+            'success' => true,
             'success' => 'cart successfully.',
+            'test' => $cart,
         ]);
     }
-    /////
+    ///// remove form cart item
     public function cartRemove(Request $request)
     {
         $ticketId = $request->input('ticket_id');
@@ -73,25 +80,52 @@ class CartController extends Controller
         if (isset($cart[$ticketId])) {
             unset($cart[$ticketId]);
             session()->put('cart', $cart);
-            return response()->json(['success' => 'Product removed from cart.'], 200);
+            return response()->json(['success' => 'Product removed from cart.']);
         } else {
-            return response()->json(['error' => 'Product not found in cart.'], 404);
+            return response()->json(['error' => 'Product not found in cart.']);
         }
     }
-    ////
+    //// change quantity in cart
     public function uploadQuantity(Request $request)
     {
         $ticketId = $request->input('ticket_id');
         $quantity = $request->input('quantity');
         if (!is_numeric($quantity) || $quantity < 1) {
-            return response()->json(['success' => false, 'message' => 'Số lượng không hợp lệ.'], 400);
+            return response()->json(['success' => false, 'message' => 'Invalid quantity.']);
         }
         $cart = session()->get('cart', []);
+        $ticket = Ticket::find($ticketId);
+        $ticketQuantity = $ticket->quantity;
+        if ($quantity > $ticketQuantity) {
+            return response()->json(['success' => false, 'message' => 'The quantity exceeds the remaining stock.']);
+        }
+        $price = $cart[$ticketId]['price'];
+        $totalPrice = $quantity * $price;
+        $cart[$ticketId]['total_price'] = $totalPrice;
         if (!isset($cart[$ticketId])) {
-            return response()->json(['success' => false, 'message' => 'Sản phẩm không tồn tại trong giỏ hàng.'], 404);
+            return response()->json(['success' => false, 'message' => 'The product does not exist in the shopping cart.']);
         }
         $cart[$ticketId]['quantity'] = $quantity;
         session()->put('cart', $cart);
-        return response()->json(['success' => true, 'message' => 'Cập nhật số lượng thành công.']);
+        return response()->json(['success' => true, 'message' => 'Updated quantity successfully.']);
+    }
+    ///total, subtotal
+    public function updateTotalInCart()
+    {
+        $cart = Session::get('cart');
+        $total = 0;
+        $subtotal = 0;
+        $discount = 0;
+        foreach ($cart as $item) {
+            $subtotal += $item['total_price'];
+        }
+        $total = $subtotal - $discount;
+        $dataTotal = [
+            'total' => $total,
+            'discount' => $discount,
+            'subtotal' => $subtotal,
+        ];
+        Session::put('cart', $cart);
+        return response()->json(['dataTotal' => $dataTotal]);
     }
 }

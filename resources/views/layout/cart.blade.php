@@ -43,12 +43,12 @@
                 <button type="button" class="size-9 leading-10 text-gray-600 transition hover:opacity-75" onclick="decreaseQuantity({{ $item['ticket_id'] }})">
                   &minus;
                 </button>
-                <input type="number" name="quantity" value="{{ $item['quantity'] }}" id="quantity_{{ $item['ticket_id'] }}" class="h-8 w-12 border rounded border-gray-400 text-center sm:text-sm [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-                <button type="button" class="size-9 leading-10 text-gray-600 transition hover:opacity-75" onclick="increaseQuantity({{ $item['ticket_id'] }})">
+                <input type="number" name="quantity" value="{{ $item['quantity'] }}" id="quantity_{{ $item['ticket_id'] }}" class="h-6 w-10 border rounded border-gray-500 text-center sm:text-sm [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+                <button type="button" class=" text-gray-600 transition hover:opacity-75" onclick="increaseQuantity({{ $item['ticket_id'] }})">
                   &plus;
                 </button>
               </form>
-              <form method="POST" action="{{ route('cart.remove') }}" class="remove-from-cart">
+              <form method="POST" action="{{ route('cart.remove') }}" class="remove-from-cart mt-1">
                 @csrf
                 <input type="hidden" name="ticket_id" value="{{ $item['ticket_id'] }}">
                 <button class="text-gray-600 transition hover:text-red-600">
@@ -72,22 +72,21 @@
         <div class=" flex justify-end border-t border-gray-100 pt-8">
           <div class="w-screen max-w-lg space-y-4">
             <dl class="space-y-0.5 text-sm text-gray-700">
-              <div class="flex justify-between">
-                <dt>Subtotal</dt>
-                <dd>000</dd>
+              <div class="flex justify-between !text-base font-medium">
+                <dt>Total</dt>
+                <dd id="cartTotal"></dd>
               </div>
-
               <div class="flex justify-between">
                 <dt>VAT</dt>
-                <dd>00</dd>
+                <dd>0%</dd>
               </div>
               <div class="flex justify-between">
                 <dt>Discount</dt>
-                <dd>-00</dd>
+                <dd id="discountInCart"></dd>
               </div>
               <div class="flex justify-between !text-base font-medium">
-                <dt>Total</dt>
-                <dd>00</dd>
+                <dt>Subtotal</dt>
+                <dd id="cartSubtotal"></dd>
               </div>
             </dl>
             <div class="flex justify-end">
@@ -119,6 +118,7 @@
         })
         .done(function(response) {
           if (response.success) {
+            updateTotalInCart();
             // console.log(response);
             form.closest('li').remove();
           } else {
@@ -144,8 +144,13 @@
             var response = JSON.parse(xhr.responseText);
             if (response.success) {
               // console.log(response);
+              updateTotalInCart();
+
             } else {
-              // console.log( response.message);
+              if (response.message === 'The quantity exceeds the remaining stock.') {
+                showNotification(response.message);
+                // $('#notInStock').text(response.message);
+              }
             }
           }
         }
@@ -174,5 +179,42 @@
     quantityInput.value = currentQuantity + 1;
     updateQuantity(ticketId);
   }
+  ////
+  function updateTotalInCart() {
+    $.ajax({
+      url: "{{ route('update.total.cart') }}",
+      method: 'GET',
+    }).done(function(response) {
+      // console.log(response);
+      var totalVND = response.dataTotal.total.toLocaleString('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+      });
+      var subtotalVND = response.dataTotal.subtotal.toLocaleString('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+      });
+      var discountVND = response.dataTotal.discount.toLocaleString('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+      });
+      $('#cartTotal').text(totalVND);
+      $('#discountInCart').text(discountVND);
+      $('#cartSubtotal').text(subtotalVND);
+    }).fail(function(xhr, status, error) {
+      // 
+    });
+  }
+  updateTotalInCart();
+  ///
+  function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.classList.add('notificationAddcart');
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      setTimeout(() => {
+         notification.remove();
+      }, 3000);
+   }
 </script>
 @endsection
