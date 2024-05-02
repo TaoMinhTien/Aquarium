@@ -41,6 +41,7 @@ Route::post('/detail/read', [ReadController::class, 'readDetail'])->name('read.d
 Route::Post('/tickets/buy', [TicketController::class, 'BuyTicket'])->name('tickets.buy');
 Route::Post('/handle/contact', [ContactController::class, 'HandleContact'])->name('handle.contact');
 Route::get('/error', [DashboardController::class, 'errorPage'])->name('error');
+Route::get('/cart-quantity', [CartController::class, 'cartQuantity'])->name('cart.quantity');
 
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {

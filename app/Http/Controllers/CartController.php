@@ -128,4 +128,10 @@ class CartController extends Controller
         Session::put('cart', $cart);
         return response()->json(['dataTotal' => $dataTotal]);
     }
+    ///
+    public function cartQuantity()
+    {
+        $cartQuantity = count(session('cart', []));
+        return response()->json(['cartQuantity' => $cartQuantity]);
+    }
 }
