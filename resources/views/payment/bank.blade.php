@@ -7,7 +7,6 @@
       <div class=" rounded-lg bg-gray-200">
          <form action="{{Route('handlecheckout.checkout')}}" method="POST">
             @csrf
-
             <div class="ml-3 mr-3 mt-3">
                <div class="flex justify-start">
                   <span class="text-gray-800 text-sm italic">Thank you. Your order has been received!</span>
@@ -67,7 +66,6 @@
                   <button type="submit" class=" text-sm rounded-xl text-white px-10 py-2 font-medium bg-gray-800 hover:bg-black">
                      Confirm
                   </button>
-
                </div>
             </div>
          </form>
