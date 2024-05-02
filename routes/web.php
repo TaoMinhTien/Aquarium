@@ -22,10 +22,13 @@ Route::post('/register', [RegisterController::class, 'HandleRegister'])->name('r
 Route::get('/logout', [LoginController::class, 'HandleLogout'])->name('logout');
 Route::get('/news', [NewsController::class, 'news'])->name('news.view');
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout.view');
+Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
+Route::post('/handle-checkout', [CheckoutController::class, 'handleCheckout'])->name('handlecheckout.checkout');
 Route::get('/cart', [CartController::class, 'cartView'])->name('cart.view');
 Route::post('/cart/add', [CartController::class, 'handleAddCart'])->name('cart.add');
 Route::post('/cart/remove', [CartController::class, 'cartRemove'])->name('cart.remove');
 Route::post('/cart/upload-quantity', [CartController::class, 'uploadQuantity'])->name('cart.update.quantity');
+Route::get('/cart/update-total', [CartController::class, 'updateTotalInCart'])->name('update.total.cart');
 Route::post('/tickets/view', [TicketController::class, 'ticketview'])->name('ticket.view');
 Route::get('/tickets/stock', [TicketController::class, 'checkStock'])->name('checkStock');
 Route::get('/tickets', [TicketController::class, 'tickets'])->name('tickets');
