@@ -46,6 +46,21 @@
 }
 
 
+.header-cart-png svg{
+  position: absolute !important;
+  width: 58px;
+  height: 38.8px;
+  margin-top: -5px;
+}
+.Homepage-cart{
+  height: 50px;
+  overflow: hidden;
+  margin-right: 30px;
+  width: 80px;
+}
+
+
+
 
 .navbar {
   background-color: white;
