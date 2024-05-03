@@ -119,6 +119,7 @@
         .done(function(response) {
           if (response.success) {
             updateTotalInCart();
+            updateCartCount();
             // console.log(response);
             form.closest('li').remove();
           } else {
@@ -145,6 +146,7 @@
             if (response.success) {
               // console.log(response);
               updateTotalInCart();
+              updateCartCount();
 
             } else {
               if (response.message === 'The quantity exceeds the remaining stock.') {

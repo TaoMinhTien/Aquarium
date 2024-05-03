@@ -83,7 +83,8 @@
          }),
          success: function(response) {
             if (response.success) {
-               console.log(response);
+               // console.log(response);
+               updateCartCount();
                showNotification('Tickets added to cart!');
             } else {
                if (response.message === 'The quantity exceeds the remaining stock.') {
