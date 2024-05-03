@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ticket_id');
             $table->unsignedBigInteger('event_id');
             $table->unsignedBigInteger('order_number_id')->nullable();
+            $table->bigInteger('quantity');
             $table->timestamp('order_date')->useCurrent();
             $table->text('notes',2000)->nullable();
             $table->string('status')->default('Pedding');

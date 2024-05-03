@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Event;
 use App\Models\Ticket;
+use App\Models\Tickets;
 use App\Models\TicketVariant;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ class NewsController extends Controller
         $events = Event::with('ticketVariants.ticket')
             ->where('status', 'Active')
             ->get();
-        $tickets = Ticket::where('quantity', '>', 0)
+        $tickets = Tickets::where('quantity', '>', 0)
             ->orderBy('quantity')
             ->take(3)
             ->get();
@@ -49,14 +50,41 @@ class NewsController extends Controller
 
             $formattedEvents[] = $formattedEvent;
         }
-        $allTickets = Ticket::where('quantity', '>', 0)
+        $slider_tickets = Tickets::inRandomOrder()
+            ->whereHas('event', function ($query) {
+                $query->where('status', 'active');
+            })
+            ->limit(2)
+            ->get();
+        $allTickets = Tickets::where('quantity', '>', 0)
+            ->whereHas('event', function ($query) {
+                $query->where('status', 'active');
+            })
             ->orderBy('quantity')
             ->take(3)
             ->get();
+
         return view('news.news', [
             'formattedEvents' => $formattedEvents,
             'tickets' => $allTickets,
 
+        ]);
+        // return response()->json([
+        //     'formattedEvents' => $formattedEvents,
+        //     'tickets' => $allTickets,
+        //     'tickets' => 'ok',
+        // ]);
+        // return response()->json([
+        //     'ticket' => $formattedEvents,
+        //     'page' => $page
+        // ]);
+    }
+    //
+    public function newsGet(){
+         return response()->json([
+            // 'formattedEvents' => $formattedEvents,
+            // 'tickets' => $allTickets,
+            'tickets' => 'ok',
         ]);
     }
     //
@@ -170,6 +198,7 @@ class NewsController extends Controller
             'eventEdit' => $events,
             'ticketEdit' => $tickets
         ]);
+        
     }
     //
     public function handleUploadNews(Request $request)

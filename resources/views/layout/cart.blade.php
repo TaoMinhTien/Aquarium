@@ -1,8 +1,8 @@
 @extends('welcome')
 @section('title', 'Cart')
 @section('content')
-
 <div class="container-quang">
+  <div id="updateTotalCartUrl" data-url="{{ route('update.total.cart') }}"></div>
   <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
     <div class="mx-auto max-w-3xl">
       <div class="text-center">
@@ -40,11 +40,11 @@
               <form class="updateQuantityForm" data-ticket-id="{{ $item['ticket_id'] }}" method="post" action="{{ route('cart.update.quantity') }}">
                 @csrf
                 <input type="hidden" name="ticket_id" value="{{ $item['ticket_id'] }}">
-                <button type="button" class="size-9 leading-10 text-gray-600 transition hover:opacity-75" onclick="decreaseQuantity({{ $item['ticket_id'] }})">
+                <button type="button" class="size-9 leading-10 text-gray-600 transition hover:opacity-75" onclick="decreaseQuantityCart({{ $item['ticket_id'] }})">
                   &minus;
                 </button>
                 <input type="number" name="quantity" value="{{ $item['quantity'] }}" id="quantity_{{ $item['ticket_id'] }}" class="h-6 w-10 border rounded border-gray-500 text-center sm:text-sm [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-                <button type="button" class=" text-gray-600 transition hover:opacity-75" onclick="increaseQuantity({{ $item['ticket_id'] }})">
+                <button type="button" class=" text-gray-600 transition hover:opacity-75" onclick="increaseQuantityCart({{ $item['ticket_id'] }})">
                   &plus;
                 </button>
               </form>
@@ -104,35 +104,86 @@
   </div>
 </div>
 <script>
-  function deleteFormCart() {
-    $('form.remove-from-cart').on('submit', function(e) {
-      e.preventDefault();
-      var form = $(this);
-      var url = form.attr('action');
-      var method = form.attr('method');
-      var data = form.serialize();
-      $.ajax({
-          url: url,
-          type: method,
-          data: data,
-        })
-        .done(function(response) {
-          if (response.success) {
-            updateTotalInCart();
-            updateCartCount();
+  document.addEventListener("DOMContentLoaded", function() {
+    updateQuantity();
+    decreaseQuantityCart();
+    increaseQuantityCart();
+
+  });
+///
+function updateTotalInCart() {
+      var updateTotalCartUrlElement = document.getElementById('updateTotalCartUrl');
+      if (updateTotalCartUrlElement) {
+         var updateTotalCartUrl = document.getElementById('updateTotalCartUrl').getAttribute('data-url');
+            $.ajax({
+            url: updateTotalCartUrl,
+            method: 'GET',
+            }).done(function(response) {
             // console.log(response);
-            form.closest('li').remove();
-          } else {
-            // console.log(response.error);
-          }
-        })
-        .fail(function(xhr, status, error) {
-          // console.error("error:", error);
-        });
-    });
-  }
-  deleteFormCart();
-  //////
+            var totalVND = response.dataTotal.total.toLocaleString('vi-VN', {
+               style: 'currency',
+               currency: 'VND'
+            });
+            var subtotalVND = response.dataTotal.subtotal.toLocaleString('vi-VN', {
+               style: 'currency',
+               currency: 'VND'
+            });
+            var discountVND = response.dataTotal.discount.toLocaleString('vi-VN', {
+               style: 'currency',
+               currency: 'VND'
+            });
+            $('#cartTotal').text(totalVND);
+            $('#discountInCart').text(discountVND);
+            $('#cartSubtotal').text(subtotalVND);
+            }).fail(function(xhr, status, error) {
+            // 
+            });
+         }
+      } 
+      updateTotalInCart();
+    ////
+    function deleteFormCart() {
+      $('form.remove-from-cart').on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var url = form.attr('action');
+        var method = form.attr('method');
+        var data = form.serialize();
+        $.ajax({
+            url: url,
+            type: method,
+            data: data,
+          })
+          .done(function(response) {
+            if (response.success) {
+              updateTotalInCart();
+              updateCartCount();
+              updateTotalInCart()
+              // console.log(response);
+              form.closest('li').remove();
+            } else {
+              // console.log(response.error);
+            }
+          })
+          .fail(function(xhr, status, error) {
+            // console.error("error:", error);
+          });
+      });
+    }
+    deleteFormCart();
+    //////
+
+    ///
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.classList.add('notificationAddcart');
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+           notification.remove();
+        }, 3000);
+     }
+////
   function updateQuantity(ticketId) {
     var form = document.querySelector('.updateQuantityForm[data-ticket-id="' + ticketId + '"]');
     if (form) {
@@ -166,7 +217,7 @@
     }
   }
 
-  function decreaseQuantity(ticketId) {
+  function decreaseQuantityCart(ticketId) {
     var quantityInput = document.getElementById('quantity_' + ticketId);
     var currentQuantity = parseInt(quantityInput.value);
     if (currentQuantity > 1) {
@@ -175,48 +226,12 @@
     }
   }
 
-  function increaseQuantity(ticketId) {
+  function increaseQuantityCart(ticketId) {
     var quantityInput = document.getElementById('quantity_' + ticketId);
     var currentQuantity = parseInt(quantityInput.value);
     quantityInput.value = currentQuantity + 1;
     updateQuantity(ticketId);
   }
-  ////
-  function updateTotalInCart() {
-    $.ajax({
-      url: "{{ route('update.total.cart') }}",
-      method: 'GET',
-    }).done(function(response) {
-      // console.log(response);
-      var totalVND = response.dataTotal.total.toLocaleString('vi-VN', {
-        style: 'currency',
-        currency: 'VND'
-      });
-      var subtotalVND = response.dataTotal.subtotal.toLocaleString('vi-VN', {
-        style: 'currency',
-        currency: 'VND'
-      });
-      var discountVND = response.dataTotal.discount.toLocaleString('vi-VN', {
-        style: 'currency',
-        currency: 'VND'
-      });
-      $('#cartTotal').text(totalVND);
-      $('#discountInCart').text(discountVND);
-      $('#cartSubtotal').text(subtotalVND);
-    }).fail(function(xhr, status, error) {
-      // 
-    });
-  }
-  updateTotalInCart();
-  ///
-  function showNotification(message) {
-      const notification = document.createElement('div');
-      notification.classList.add('notificationAddcart');
-      notification.textContent = message;
-      document.body.appendChild(notification);
-      setTimeout(() => {
-         notification.remove();
-      }, 3000);
-   }
 </script>
+<!--  -->
 @endsection

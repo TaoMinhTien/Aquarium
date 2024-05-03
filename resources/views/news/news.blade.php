@@ -44,6 +44,8 @@
             @endforeach
           </div>
         </div>
+        <div id="eventsContainer">
+        </div>
       </div>
       <div class="right-news h-fit rounded-lg ">
         <div class="_news_r">
@@ -89,18 +91,11 @@
       </div>
     </div>
   </div>
-  <div class="flex w-full items-center mt-10 justify-center ">
-    <button class="text-gray-800  hover:underline">Load more</button>
+  <div class="flex w-full items-center mt-10 justify-center">
+    <button id="loadMoreBtn" class="text-gray-800 hover:underline">Load more</button>
   </div>
 
-  <script>
-    $('[id^="detailViewBtn"]').click(function(event) {
-      event.preventDefault();
-      var eventID = $(this).data('event-id');
-      var EventViewUrl = "/news/read/" + eventID;
-      window.location.href = EventViewUrl;
-    });
-  </script>
+
 
 
   @endsection

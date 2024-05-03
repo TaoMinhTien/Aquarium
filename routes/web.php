@@ -30,6 +30,7 @@ Route::post('/cart/remove', [CartController::class, 'cartRemove'])->name('cart.r
 Route::post('/cart/upload-quantity', [CartController::class, 'uploadQuantity'])->name('cart.update.quantity');
 Route::get('/cart/update-total', [CartController::class, 'updateTotalInCart'])->name('update.total.cart');
 Route::post('/tickets/view', [TicketController::class, 'ticketview'])->name('ticket.view');
+Route::get('/tickets/view', [TicketController::class, 'ticketview'])->name('ticket.view');
 Route::get('/tickets/stock', [TicketController::class, 'checkStock'])->name('checkStock');
 Route::get('/tickets', [TicketController::class, 'tickets'])->name('tickets');
 Route::get('/tickets/get', [TicketController::class, 'ticketsGet'])->name('tickets.get');

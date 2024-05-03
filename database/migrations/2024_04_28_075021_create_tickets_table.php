@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('image', 255);
             $table->bigInteger('price')->nullable();
             $table->timestamps();
-                        $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
-
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
 
