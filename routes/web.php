@@ -65,6 +65,9 @@ Route::post('/tickets/view', [TicketController::class, 'ticketview'])->name('tic
 Route::get('/tickets/view', [TicketController::class, 'ticketview'])->name('ticket.view');
 Route::get('/tickets/stock', [TicketController::class, 'checkStock'])->name('checkStock');
 Route::get('/tickets', [TicketController::class, 'tickets'])->name('tickets');
+
+
+
 Route::get('/tickets/get', [TicketController::class, 'ticketsGet'])->name('tickets.get');
 Route::get('/contact', [ContactController::class, 'contactView'])->name('contact.view');
 Route::post('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
