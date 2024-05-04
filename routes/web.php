@@ -12,6 +12,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FeedbackController;
 
+
 Route::get('/', function () {
     return view('layout/Homepage');
 });
