@@ -1,4 +1,6 @@
-
+.container-hieu{
+  max-width: 1920px;
+}
 .Hieu .swiper {
     width: 100%;
     height: 800px;
@@ -16,6 +18,46 @@
   height: auto;
 }
 
+.nav-dropdown {
+  opacity: 0;
+  position: absolute;
+  width: 100px;
+  z-index: 2;
+  align-items: center;
+  justify-content: space-around;
+  height: 6rem;
+  transform: translateX(-40%);
+  display: block;
+  margin-left: 30px;
+  margin-top: -8px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.5rem;
+  transition: opacity 0.15s ease-out 0s;
+}
+
+.nav-dropdown-item a {
+  width: 100%;
+  height: 100%;
+}
+
+.has-dropdown:focus-within .nav-dropdown{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.header-cart-png svg{
+  position: absolute !important;
+  width: 58px;
+  height: 38.8px;
+  margin-top: -5px;
+}
+.Homepage-cart{
+  height: 50px;
+  overflow: hidden;
+  margin-right: 30px;
+  width: 80px;
+}
 
 
 
@@ -227,8 +269,9 @@
     float: right;
     width: 268px;
     height: 268px;
-    background-color: rgb(54,181,196);
+    background-image: url('../Image/Homepage-youtube.png');
     margin-top: 20px;
+    background-size: contain;
 }
 
 

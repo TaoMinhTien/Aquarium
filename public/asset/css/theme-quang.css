@@ -1,12 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
 @import url(https://fonts.googleapis.com/css?family=Arimo:300,400,400italic,700,700italic);
 
-* {
-   margin: 0px;
-   padding: 0px;
-   list-style: none;
-}
-
 img {
    max-width: 100%;
 }
@@ -196,7 +190,6 @@ textarea {
 ._news_r{
    display: flex;
    justify-content: start;
-   margin-top: 10px;
 }
 ._news_r ._event{
    color: rgb(66, 66, 66);
@@ -222,16 +215,15 @@ textarea {
    border-radius: 0.5rem;
    height: 100%;
 }
+   ._newread img {
+   width: fit-content;
+   border-radius: 0.5rem;
+   object-fit: cover;
+   transition-duration: 500ms;
+}
 
 ._news_left {
    overflow: hidden;
-   filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
-   border-radius: 0.5rem;
-}
-
-._news_left_image {
-   width: 100%;
-   object-fit: cover;
 }
 
 ._news_l {
@@ -299,14 +291,11 @@ margin-bottom: 1.25rem;
 }
 ._new_r{
    display: flex;
-justify-content: space-between;
-gap: 1rem;
-padding-top: 0.75rem;
-padding-bottom: 0.75rem; 
+
 }
 ._new_r img{
-   width: 130px; 
-height: 120px;
+   width: 150px; 
+height: 90px;
 border-radius: 0.25rem; 
 object-fit: cover;
 
@@ -573,3 +562,35 @@ a {
    background-image: url('../../images-quang/aqua1.jpg');
 
 }
+._new_r a:hover{
+   cursor: pointer;
+}
+._ticektimg{
+   height: 202px;
+}
+.slide_02{
+   height: 230px;
+   width: 400px;
+}
+.notificationAddcart {
+   position: fixed;
+   top: 25%;
+   left: 50%;
+   height: 80px;
+   display: flex;
+   font-size: larger;
+   justify-content: center;
+   align-items: center;
+   width: fit-content;
+   z-index: 9999;
+   transform: translateX(-50%);
+   background-color: rgba(192, 192, 192, 0.6);
+   color: black;
+   padding: 10px 80px;
+   border-radius: 5px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+ }
+ ._cart_img{
+   width: 165px;
+   height: 95px;
+ }

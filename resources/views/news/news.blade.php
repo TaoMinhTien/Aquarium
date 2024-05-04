@@ -10,186 +10,139 @@
     </span>
     <div class="grid grid-cols-1 px-20 gap-1 lg:grid-cols-3 lg:gap-1">
       <div class="left-news rounded-lg  lg:col-span-2">
-        <h2 class="text-xl mb-4 font-bold text-gray-900 sm:text-3xl">Evens</h2>
+        <h2 class="text-xl mb-2 font-bold text-gray-900 sm:text-3xl">Evens</h2>
+        <div class="flex justify-end border-t border-gray-500"></div>
         <div class="_news_left">
-          <div>
-            <img class=" _news_left_image" alt="" src="{{ asset('images-quang/aqua1.jpg') }}" />
-            <div class="_news_l">
-              <div class="_news_l_date">20.04.2024</div>
-              <span>
-                <h3 class="_news_l_h">How to position your furniture for positivity</h3>
-              </span>
-              <p class="_news_l_text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                dignissimos. Molestias explicabo corporis voluptatem?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque.....
-              </p>
-            </div>
-            <div class=" _news_l_b">
-              <form action="{{Route('news.read')}}" method="POST">
-                @csrf
-                <button type="submit" class="block mr-2 rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
-                  Read More
-                </button>
-              </form>
-            </div>
-            <div class="flex py-3 justify-end border-t border-gray-500"></div>
-
-          </div>
-          <div>
-            <img class=" _news_left_image" alt="" src="{{ asset('images-quang/aqua1.jpg') }}" />
-            <div class="_news_l">
-              <div class="_news_l_date">20.04.2024</div>
-              <span>
-                <h3 class="_news_l_h">How to position your furniture for positivity</h3>
-              </span>
-              <p class="_news_l_text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                dignissimos. Molestias explicabo corporis voluptatem?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque.....
-              </p>
-            </div>
-            <div class=" _news_l_b">
-              <form action="{{Route('news.read')}}" method="POST">
-                @csrf
-                <button type="submit" class="block mr-2 rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
-                  Read More
-                </button>
-              </form>
-            </div>
-            <div class="flex py-3 justify-end border-t border-gray-500"></div>
-
-          </div>
-          <div>
-            <img class=" _news_left_image" alt="" src="{{ asset('images-quang/aqua1.jpg') }}" />
-            <div class="_news_l">
-              <div class="_news_l_date">20.04.2024</div>
-              <span>
-                <h3 class="_news_l_h">How to position your furniture for positivity</h3>
-              </span>
-              <p class="_news_l_text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                dignissimos. Molestias explicabo corporis voluptatem.....
-              </p>
-            </div>
-            <div class=" _news_l_b">
-              <form action="{{Route('news.read')}}" method="POST">
-                @csrf
-                <button type="submit" class="block mr-2 rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
-                  Read More
-                </button>
-              </form>
-            </div>
-
-          </div>
+          <div id="newsContainer"></div>
         </div>
       </div>
       <div class="right-news h-fit rounded-lg ">
         <div class="_news_r">
-          <span class="text-xl mb-1 font-bold text-gray-900 sm:text-xl">Related events</span>
+          <span class="text-xl ml-6 mb-3 font-bold text-gray-900 sm:text-xl">Related events</span>
         </div>
         <div class="flex justify-end border-t border-gray-500"></div>
         <div>
           <ul>
-            <li class="_new_r">
-              <div class="flex">
-                <a href="">
-                  <img src="{{ asset('images-quang/aqua1.jpg') }}" alt="" class="">
-                </a>
-                <div class="_name mt-2">
-                  <a href="">
-                    <h3 class="event_name"><strong>News name</strong></h3>
-                  </a>
-                  <dl class="_news_r_ticket mt-1">
-                    <div class="d-flex">
-                      <dt class="inline">Date:</dt>
-                      <dd class="inline ms-1">20.04.2024</dd>
+            @foreach ($tickets as $event)
+            <li class="_new_r ml-6 my-2">
+              <a data-event-id="{{ $event->event_id }}" id="detailViewBtn{{ $event->event_id}}">
+                <div class="flex">
+                  <span>
+                    <img src="{{ asset('news_img/' . $event->image) }}" alt="" class="w-fit">
+                  </span>
+                  <div>
+                    <div class="_name">
+                      <a data-event-id="{{ $event->event_id }}" id="detailViewBtn{{ $event->event_id}}">
+                        <h3 class="event_name mt-2"><strong>{{$event->name}}</strong></h3>
+                      </a>
+                      <a data-event-id="{{ $event->event_id }}" id="detailViewBtn{{ $event->event_id}}">
+                        <dl class="_news_r_ticket mt-1">
+                          <div class="d-flex">
+                            <dt class="inline">Ticket:</dt>
+                            <dd class="inline"> {{ number_format($event->price/ 1000, 3, ',', ',') }}đ</dd>
+                          </div>
+                        </dl>
+                      </a>
                     </div>
-                    <div class="d-flex">
-                      <dt class="inline">Ticket:</dt>
-                      <dd class="inline ms-1">299.000đ</dd>
-                    </div>
-                  </dl>
+                  </div>
                 </div>
-              </div>
-              <div class="_new_r_form">
-                <div class="_btn_left">
-                  <form action="{{Route('news.read')}}" method="POST">
-                    @csrf
-                    <button type="submit" class="block mr-0.5 rounded-xl bg-gray-800 px-3 py-2 text-sm text-white transition hover:bg-black">
-                      Detail
-                    </button>
-                  </form>
-                </div>
-                <div>
-                  <a href="{{Route('ticket.view')}}" class="block rounded-xl bg-gray-800 px-2 py-2 text-sm text-white transition hover:bg-black">
-                    Buy now
-                  </a>
-                </div>
-              </div>
+              </a>
             </li>
+            <div class="flex justify-end border-t border-gray-400"></div>
+            @endforeach
           </ul>
+          <div class="flex justify-start mt-3 ml-6">
+            <a href="/tickets" class="block rounded-xl bg-gray-900 px-8 py-2 text-sm text-white transition hover:bg-black">
+              Show all
+            </a>
+          </div>
         </div>
-        <div class="__line_2"></div>
-        <div>
-          <ul>
-            <li class="_new_r">
-              <div class="d-flex">
-                <a href="">
-                  <img src="{{ asset('images-quang/aqua1.jpg') }}" alt="" class="">
-                </a>
-                <div class="_name">
-                  <a href="">
-                    <h3 class="event_name mt-2"><strong>News name</strong></h3>
-                  </a>
-                  <dl class="_news_r_ticket mt-1">
-                    <div class="d-flex">
-                      <dt class="inline">Date:</dt>
-                      <dd class="inline">20.04.2024</dd>
-                    </div>
-                    <div class="d-flex">
-                      <dt class="inline">Ticket:</dt>
-                      <dd class="inline">299.000đ</dd>
-                    </div>
-                  </dl>
-                </div>
-              </div>
-              <div class="_new_r_form">
-                <div class="_btn_left">
-                  <form action="{{Route('news.read')}}" method="POST">
-                    @csrf
-                    <button type="submit" class="block mr-0.5 rounded-xl bg-gray-800 px-3 py-2 text-sm text-white transition hover:bg-black">
-                      Detail
-                    </button>
-                  </form>
-                </div>
-                <div>
-                  <a href="{{Route('ticket.view')}}" class="block rounded-xl bg-gray-800 px-2 py-2 text-sm text-white transition hover:bg-black">
-                    Buy now
-                  </a>
-                  </a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="__line_2"></div>
-
       </div>
     </div>
   </div>
-  <div class="flex w-full items-center mt-10 justify-center ">
-    <button class="text-gray-800  hover:underline">Load more</button>
+  <div class="flex w-full items-center mt-10 justify-center">
+    <button id="loadMoreBtn" class="text-gray-800 hover:underline">Load more</button>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      getNews(page);
+      $('[id^="detailViewBtn"]').click(function(event) {
+        event.preventDefault();
+        var eventID = $(this).data('event-id');
+        var EventViewUrl = "/news/read/" + eventID;
+        window.location.href = EventViewUrl;
+      });
+    });
+
+    var page = 1;
+    var newsPerPage = 5;
+    function getNews() {
+      $.ajax({
+          url: "{{ route('get.news') }}",
+          type: "GET",
+          data: {
+            page: page,
+            per_page: newsPerPage
+          },
+        })
+        .done(function(response) {
+          if (response) {
+            if (response && response.formattedEvents && response.formattedEvents.length > 0) {
+              var news = response.formattedEvents;
+              var tickets = response.tickets;
+              var newsItemsHtml = '';
+              news.forEach(function(newsItem) {
+                var newsItemId = (newsItem && newsItem.event && newsItem.event.id) ? newsItem.event.id : '';
+                var newsReadForm = `
+                  <form action="{{ route('news.read', ['id' => ':id']) }}" method="POST">
+                      @csrf
+                      <input type="hidden" name="id" value="${newsItemId}">
+                      <button type="submit" class="block rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
+                          Read More
+                      </button>
+                  </form>
+              `;
+                newsReadForm = newsReadForm.replace(':id', newsItemId);
+                var startDateHtml = '';
+                if (newsItem.event && newsItem.event.start_date) {
+                  startDateHtml = `<div class="_news_l_date">${newsItem.event.start_date}</div>`;
+                }
+                var imageSrc = (newsItem.image_file_names && newsItem.image_file_names.length > 0) ? `{{ asset('news_img/') }}/${newsItem.image_file_names[0]}` : '';
+                var newsItemHtml = `
+                  <div class="news-item">
+                      <img class="rounded-lg" alt="${imageSrc ? '' : 'No image'}" src="${imageSrc}" />
+                      <div class="_news_l">
+                      ${startDateHtml}
+                          <p class="_news_l_text">
+                              ${newsItem.text} .........
+                          </p>
+                      </div>
+                      <div class="mt-2 mb-3">
+                          ${newsReadForm}
+                      </div>
+                      <div class="flex py-3 justify-end border-t border-gray-500"></div>
+                  </div>
+              `;
+                newsItemsHtml += newsItemHtml;
+                $('#newsItemId').val(newsItemId);
+              });
+              $('#newsContainer').append(newsItemsHtml);
+              page++;
+            } else {
+              $('#loadMoreBtn').text('End').prop('disabled', true);
+            }
+
+          } else {
+
+          }
+        })
+        .fail(function(xhr, status, error) {});
+    }
+    $('#loadMoreBtn').click(function() {
+      getNews();
+    });
+  </script>
+
+
 
   @endsection

@@ -1,12 +1,18 @@
 
- 
-   window.addEventListener("load", (event) => {
-      function toggleSubMenu(subMenuId) {
-         var subMenu = document.getElementById(subMenuId);
-         if (subMenu.classList.contains('show')) {
-            subMenu.classList.remove('show');
-         } else {
-            subMenu.classList.add('show');
-         }
-      }
-    });
+function updateCartCount() {
+   var url = "/cart-quantity";
+   $.ajax({
+       url: url,
+       method: 'GET',
+   }).done(function(response) {
+       $('#cartCount').text(response.cartQuantity);
+   }).fail(function(xhr, status, error) {
+       console.error(error);
+   });
+}
+$(document).ready(function() {
+   updateCartCount();
+});
+
+
+
