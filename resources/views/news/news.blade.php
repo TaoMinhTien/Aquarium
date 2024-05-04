@@ -13,36 +13,7 @@
         <h2 class="text-xl mb-2 font-bold text-gray-900 sm:text-3xl">Evens</h2>
         <div class="flex justify-end border-t border-gray-500"></div>
         <div class="_news_left">
-          <div>
-            @foreach ($formattedEvents as $event)
-            @if (isset($event['image_file_names']) && count($event['image_file_names']) > 0)
-            <img class="rounded-lg" alt="" src="{{ asset('news_img/' . $event['image_file_names'][0]) }}" />
-            @else
-            <img alt="No image" src="" />
-            @endif
-            @if (isset($event['text']))
-            <div class="_news_l">
-              <div class="_news_l_date">{{ $event['event']->start_date }}</div>
-              <p class="_news_l_text">
-                {{ $event['text'] }} .........
-              </p>
-            </div>
-            @else
-            <p class="_news_l_text">
-              No text
-            </p>
-            @endif
-            <div class="mt-2 mb-3">
-              <form action="{{ route('news.read', ['id' => isset($event['event']) ? $event['event']->id : null]) }}" method="POST">
-                @csrf
-                <button type="submit" class="block rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
-                  Read More
-                </button>
-              </form>
-            </div>
-            <div class="flex py-3 justify-end border-t border-gray-500"></div>
-            @endforeach
-          </div>
+          <div id="newsContainer"></div>
         </div>
       </div>
       <div class="right-news h-fit rounded-lg ">
@@ -89,18 +60,89 @@
       </div>
     </div>
   </div>
-  <div class="flex w-full items-center mt-10 justify-center ">
-    <button class="text-gray-800  hover:underline">Load more</button>
+  <div class="flex w-full items-center mt-10 justify-center">
+    <button id="loadMoreBtn" class="text-gray-800 hover:underline">Load more</button>
   </div>
-
   <script>
-    $('[id^="detailViewBtn"]').click(function(event) {
-      event.preventDefault();
-      var eventID = $(this).data('event-id');
-      var EventViewUrl = "/news/read/" + eventID;
-      window.location.href = EventViewUrl;
+    document.addEventListener("DOMContentLoaded", function() {
+      getNews(page);
+      $('[id^="detailViewBtn"]').click(function(event) {
+        event.preventDefault();
+        var eventID = $(this).data('event-id');
+        var EventViewUrl = "/news/read/" + eventID;
+        window.location.href = EventViewUrl;
+      });
+    });
+
+    var page = 1;
+    var newsPerPage = 5;
+    function getNews() {
+      $.ajax({
+          url: "{{ route('get.news') }}",
+          type: "GET",
+          data: {
+            page: page,
+            per_page: newsPerPage
+          },
+        })
+        .done(function(response) {
+          if (response) {
+            if (response && response.formattedEvents && response.formattedEvents.length > 0) {
+              var news = response.formattedEvents;
+              var tickets = response.tickets;
+              var newsItemsHtml = '';
+              news.forEach(function(newsItem) {
+                var newsItemId = (newsItem && newsItem.event && newsItem.event.id) ? newsItem.event.id : '';
+                var newsReadForm = `
+                  <form action="{{ route('news.read', ['id' => ':id']) }}" method="POST">
+                      @csrf
+                      <input type="hidden" name="id" value="${newsItemId}">
+                      <button type="submit" class="block rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
+                          Read More
+                      </button>
+                  </form>
+              `;
+                newsReadForm = newsReadForm.replace(':id', newsItemId);
+                var startDateHtml = '';
+                if (newsItem.event && newsItem.event.start_date) {
+                  startDateHtml = `<div class="_news_l_date">${newsItem.event.start_date}</div>`;
+                }
+                var imageSrc = (newsItem.image_file_names && newsItem.image_file_names.length > 0) ? `{{ asset('news_img/') }}/${newsItem.image_file_names[0]}` : '';
+                var newsItemHtml = `
+                  <div class="news-item">
+                      <img class="rounded-lg" alt="${imageSrc ? '' : 'No image'}" src="${imageSrc}" />
+                      <div class="_news_l">
+                      ${startDateHtml}
+                          <p class="_news_l_text">
+                              ${newsItem.text} .........
+                          </p>
+                      </div>
+                      <div class="mt-2 mb-3">
+                          ${newsReadForm}
+                      </div>
+                      <div class="flex py-3 justify-end border-t border-gray-500"></div>
+                  </div>
+              `;
+                newsItemsHtml += newsItemHtml;
+                $('#newsItemId').val(newsItemId);
+              });
+              $('#newsContainer').append(newsItemsHtml);
+              page++;
+            } else {
+              $('#loadMoreBtn').text('End').prop('disabled', true);
+            }
+
+          } else {
+
+          }
+        })
+        .fail(function(xhr, status, error) {});
+    }
+    $('#loadMoreBtn').click(function() {
+      getNews();
     });
   </script>
+
 
 
   @endsection

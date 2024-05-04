@@ -9,7 +9,7 @@
                You have successfully purchased
             </p>
             <h2 class="mt-6 text-3xl font-bold">Thank you for your purchase. <br> we will ship upon successful order confirmation!</h2>
-            <a href="{{url('/')}}" class="mt-8 inline-block w-full rounded-full hover:cursor-pointer bg-red-600 py-4 text-sm font-bold text-white shadow-xl">
+            <a href="{{url('/')}}" class="mt-8 inline-block w-full rounded-full hover:cursor-pointer bg-black py-4 text-sm font-bold text-white shadow-xl">
                Go Back Home
             </a>
          </div>

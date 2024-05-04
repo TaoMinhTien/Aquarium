@@ -1,12 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
 @import url(https://fonts.googleapis.com/css?family=Arimo:300,400,400italic,700,700italic);
 
-* {
-   margin: 0px;
-   padding: 0px;
-   list-style: none;
-}
-
 img {
    max-width: 100%;
 }

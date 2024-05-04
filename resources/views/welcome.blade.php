@@ -15,24 +15,44 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('asset/css/theme-hieu.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/css/theme-quang.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-inforTable.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-overview.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-coralreef.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-dolphin.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-fishes.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-shark.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-seaturtle.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-octopus.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-kelpforest.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-openocean.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-mangroveswamp.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-guide1.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-guide2.css') }}">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <script src="{{ asset('asset/js/theme-hieu.js') }}"></script>
+<<<<<<< HEAD
+    <script src="{{ asset('asset/js/theme-thanh.js') }}"></script>
+
+=======
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.1/alpine.js"></script>
-
-
-
+    <script type="module" src="{{ asset('asset/js/ticketview.js') }}"></script>
+    <script src="{{ asset('asset/js/theme_quang.js') }}"></script>
+>>>>>>> 7e38fca07d97491cc791e61f7f83b0e8328cf0a2
 </head>
 
 <body>
+
     @include('header.header')
     @yield('content')
     @include('footer.footer')
+
 </body>
 
 <script>
-     
+
 </script>
+
 </html>

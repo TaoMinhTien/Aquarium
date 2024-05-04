@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Event;
 use App\Models\Ticket;
+use App\Models\Tickets;
 use App\Models\TicketVariant;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -15,12 +16,31 @@ use Carbon\Carbon;
 class NewsController extends Controller
 {
     //
-    public function news()
+    public function News()
     {
+        $tickets = Tickets::where('quantity', '>', 0)
+        ->whereHas('event', function ($query) {
+            $query->where('status', 'active');
+        })
+        ->inRandomOrder() 
+        ->orderBy('quantity')
+        ->take(3)
+        ->get();
+        return view('news.news', [
+            'tickets' => $tickets,
+        ]);
+    }
+    //
+    public function getNews(Request $request)
+    {
+        $perPage = $request->input('per_page', 5); 
+        $page = $request->input('page', 1);
         $events = Event::with('ticketVariants.ticket')
             ->where('status', 'Active')
+            ->skip(($page - 1) * $perPage)
+            ->take($perPage)
             ->get();
-        $tickets = Ticket::where('quantity', '>', 0)
+        $tickets = Tickets::where('quantity', '>', 0)
             ->orderBy('quantity')
             ->take(3)
             ->get();
@@ -49,17 +69,12 @@ class NewsController extends Controller
 
             $formattedEvents[] = $formattedEvent;
         }
-        $allTickets = Ticket::where('quantity', '>', 0)
-            ->orderBy('quantity')
-            ->take(3)
-            ->get();
-        return view('news.news', [
+        return response()->json([
             'formattedEvents' => $formattedEvents,
-            'tickets' => $allTickets,
-
         ]);
     }
-    //
+    ///
+
     public function handleEditNews(Request $request)
     {
         // dd($request);

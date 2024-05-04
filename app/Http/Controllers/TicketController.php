@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Event;
 use App\Models\Ticket;
+use App\Models\Tickets;
 use App\Models\TicketVariant;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -67,9 +68,12 @@ class TicketController extends Controller
     {
         $page = $request->input('page');
         $perPage = 12;
-        $totalTickets = Ticket::count();
+        $totalTickets = Tickets::count();
         $skip = ($page - 1) * $perPage;
-        $tickets = Ticket::skip($skip)
+        $tickets = Tickets::whereHas('event', function ($query) {
+            $query->where('status', 'Active');
+        })
+            ->skip($skip)
             ->take($perPage)
             ->get();
         if (($skip + $perPage) >= $totalTickets) {

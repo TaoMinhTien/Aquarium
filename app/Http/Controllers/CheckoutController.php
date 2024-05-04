@@ -129,41 +129,67 @@ class CheckoutController extends Controller
     {
         try {
             DB::beginTransaction();
+        $dataCheckout = Session::get('dataCheckout');
+        // dd($dataCheckout);
+        $payment = new Payment();
+        $payment->name = $dataCheckout['payment'];
+        $payment->save();
+        $orderNumber = new OrderNumber();
+        $orderNumber->order_number = $dataCheckout['orderNumber'];
+        $orderNumber->save();
+        $customer = Customer::where('email', $dataCheckout['email'])->first();
+        if ($customer) {
+            $customer->increment('purchase_count');
+        } else {
+            $data = [
+                'name' => $dataCheckout['name'],
+                'email' =>  $dataCheckout['email'],
+                'address' => $dataCheckout['address'],
+                'phone' => $dataCheckout['phone'],
+                'purchase_count' => 1,
+            ];
+            if (isset($dataCheckout['notes']) && !empty($dataCheckout['notes'])) {
+                $data['notes'] = $dataCheckout['notes'];
+            }
+            $customer = Customer::create($data);
+        }
+        foreach ($dataCheckout['cartCheckout'] as $item) {
+            $booking = new Booking();
+            $booking->customer_id = $customer->id;
+            $booking->ticket_id = $item['ticket_id'];
+            $booking->event_id = $item['event_id'];
+            $booking->order_number_id = $orderNumber->id;
+            $booking->quantity = $item['quantity'];
+            $booking->order_date = $dataCheckout['time'];
+            $booking->notes = $dataCheckout['notes'];
+            $booking->status =  $dataCheckout['status'] ?? 'pending';
+            $booking->totalmount = $dataCheckout['total'];
+            $booking->save();
+        }
+        function checkoutSuccess()
+        {
             $dataCheckout = Session::get('dataCheckout');
-            $payment = new Payment();
-            $payment->name = $dataCheckout['payment'];
-            $payment->save();
-            $orderNumber = new OrderNumber();
-            $orderNumber->order_number = $dataCheckout['orderNumber'];
-            $orderNumber->save();
-            $customer = Customer::where('email', $dataCheckout['email'])->first();
-            if ($customer) {
-                $customer->increment('purchase_count');
-            } else {
-                $data = [
-                    'name' => $dataCheckout['name'],
-                    'email' =>  $dataCheckout['email'],
-                    'address' => $dataCheckout['address'],
-                    'phone' => $dataCheckout['phone'],
-                    'purchase_count' => 1,
-                ];
-                if (isset($dataCheckout['notes']) && !empty($dataCheckout['notes'])) {
-                    $data['notes'] = $dataCheckout['notes'];
-                }
-                $customer = Customer::create($data);
-            }
             foreach ($dataCheckout['cartCheckout'] as $item) {
-                $booking = new Booking();
-                $booking->customer_id = $customer->id;
-                $booking->ticket_id = $item['ticket_id'];
-                $booking->event_id = $item['event_id'];
-                $booking->order_number_id = $orderNumber->id;
-                $booking->order_date = $dataCheckout['time'];
-                $booking->notes = $dataCheckout['notes'];
-                $booking->status =  $dataCheckout['notes'] ?? 'pending';
-                $booking->totalmount = $dataCheckout['total'];
-                $booking->save();
+                $ticket = Ticket::find($item['ticket_id']);
+                if ($ticket) {
+                    $oldQuantity = $ticket->quantity;
+                    $quantityBought = $item['quantity'];
+                    $newQuantity = $oldQuantity - $quantityBought;
+                    $ticket->update(['quantity' => $newQuantity]);
+                }
+
+                $eventsToUpdate = Event::whereHas('tickets', function ($query) {
+                    $query->where('quantity', 0);
+                })->get();
+                foreach ($eventsToUpdate as $event) {
+                    if ($event->status !== 'Cancelled') {
+                        $event->update(['status' => 'Cancelled']);
+                    }
+                }
             }
+        }
+
+        checkoutSuccess();
             DB::commit();
             Session::forget('cart');
             Session::forget('dataCheckout');

@@ -11,6 +11,7 @@ class Booking extends Model
     protected $table = 'bookings';
 
     protected $fillable = [
+        'quantity',
         'order_date	',
         'notes',
         'status',
