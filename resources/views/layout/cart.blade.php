@@ -117,7 +117,7 @@
     updateTotalInCart();
 
   });
-  ///
+  //////
   function updateTotalInCart() {
     var updateTotalCartUrlElement = document.getElementById('updateTotalCartUrl');
     if (updateTotalCartUrlElement) {
