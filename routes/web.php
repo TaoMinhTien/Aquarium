@@ -44,6 +44,7 @@ Route::Post('/tickets/buy', [TicketController::class, 'BuyTicket'])->name('ticke
 Route::Post('/handle/contact', [ContactController::class, 'HandleContact'])->name('handle.contact');
 Route::get('/error', [DashboardController::class, 'errorPage'])->name('error');
 Route::get('/cart-quantity', [CartController::class, 'cartQuantity'])->name('cart.quantity');
+Route::get('/cart-get-totalitems', [CartController::class, 'getTotalItems'])->name('gettotalitems');
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
 Route::post('/feedback-post', [FeedbackController::class, 'handleFeedback'])->name('feedback.post');
 

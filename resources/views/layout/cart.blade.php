@@ -69,6 +69,11 @@
           @endif
         </ul>
         <div class="flex  justify-end border-t border-gray-800"></div>
+        <div class="flex mt-1 justify-end">
+          <span class="text-gray-700 text-sm ">
+            <p id="totalItems"></p>
+          </span>
+        </div>
         <div class=" flex justify-end border-t border-gray-100 pt-8">
           <div class="w-screen max-w-lg space-y-4">
             <dl class="space-y-0.5 text-sm text-gray-700">
@@ -108,82 +113,102 @@
     updateQuantity();
     decreaseQuantityCart();
     increaseQuantityCart();
+    getTotalItems();
 
   });
-///
-function updateTotalInCart() {
-      var updateTotalCartUrlElement = document.getElementById('updateTotalCartUrl');
-      if (updateTotalCartUrlElement) {
-         var updateTotalCartUrl = document.getElementById('updateTotalCartUrl').getAttribute('data-url');
-            $.ajax({
-            url: updateTotalCartUrl,
-            method: 'GET',
-            }).done(function(response) {
-            // console.log(response);
-            var totalVND = response.dataTotal.total.toLocaleString('vi-VN', {
-               style: 'currency',
-               currency: 'VND'
-            });
-            var subtotalVND = response.dataTotal.subtotal.toLocaleString('vi-VN', {
-               style: 'currency',
-               currency: 'VND'
-            });
-            var discountVND = response.dataTotal.discount.toLocaleString('vi-VN', {
-               style: 'currency',
-               currency: 'VND'
-            });
-            $('#cartTotal').text(totalVND);
-            $('#discountInCart').text(discountVND);
-            $('#cartSubtotal').text(subtotalVND);
-            }).fail(function(xhr, status, error) {
-            // 
-            });
-         }
-      } 
-      updateTotalInCart();
-    ////
-    function deleteFormCart() {
-      $('form.remove-from-cart').on('submit', function(e) {
-        e.preventDefault();
-        var form = $(this);
-        var url = form.attr('action');
-        var method = form.attr('method');
-        var data = form.serialize();
-        $.ajax({
-            url: url,
-            type: method,
-            data: data,
-          })
-          .done(function(response) {
-            if (response.success) {
-              updateTotalInCart();
-              updateCartCount();
-              updateTotalInCart()
-              // console.log(response);
-              form.closest('li').remove();
-            } else {
-              // console.log(response.error);
-            }
-          })
-          .fail(function(xhr, status, error) {
-            // console.error("error:", error);
-          });
+  ///
+  function updateTotalInCart() {
+    var updateTotalCartUrlElement = document.getElementById('updateTotalCartUrl');
+    if (updateTotalCartUrlElement) {
+      var updateTotalCartUrl = document.getElementById('updateTotalCartUrl').getAttribute('data-url');
+      $.ajax({
+        url: updateTotalCartUrl,
+        method: 'GET',
+      }).done(function(response) {
+        // console.log(response);
+        var totalVND = response.dataTotal.total.toLocaleString('vi-VN', {
+          style: 'currency',
+          currency: 'VND'
+        });
+        var subtotalVND = response.dataTotal.subtotal.toLocaleString('vi-VN', {
+          style: 'currency',
+          currency: 'VND'
+        });
+        var discountVND = response.dataTotal.discount.toLocaleString('vi-VN', {
+          style: 'currency',
+          currency: 'VND'
+        });
+        $('#cartTotal').text(totalVND);
+        $('#discountInCart').text(discountVND);
+        $('#cartSubtotal').text(subtotalVND);
+      }).fail(function(xhr, status, error) {
+        // 
       });
     }
-    deleteFormCart();
-    //////
+  }
+  updateTotalInCart();
+  ////
+  function deleteFormCart() {
+    $('form.remove-from-cart').on('submit', function(e) {
+      e.preventDefault();
+      var form = $(this);
+      var url = form.attr('action');
+      var method = form.attr('method');
+      var data = form.serialize();
+      $.ajax({
+          url: url,
+          type: method,
+          data: data,
+        })
+        .done(function(response) {
+          if (response.success) {
+            updateTotalInCart();
+            updateCartCount();
+            getTotalItems();
+            updateTotalInCart();
+            showNotification('Removed from cart!')
+            form.closest('li').remove();
+          } else {
+            // console.log(response.error);
+          }
+        })
+        .fail(function(xhr, status, error) {
+          // console.error("error:", error);
+        });
+    });
+  }
+  deleteFormCart();
+  //////
+  function getTotalItems() {
+    $.ajax({
+        url: "{{route('gettotalitems')}}",
+        type: "GET",
+      })
+      .done(function(response) {
+        if (response.success) {
+          console.log(response);
+          $('#totalItems').text(response.totalItems + ' items');
+        }
+      })
+      .fail(function(xhr, status, error) {
+        // console.error("error:", error);
+      });
+  }
+  getTotalItems();
 
-    ///
-    function showNotification(message) {
-        const notification = document.createElement('div');
-        notification.classList.add('notificationAddcart');
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        setTimeout(() => {
-           notification.remove();
-        }, 3000);
-     }
-////
+
+
+  ///
+  function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.classList.add('notificationAddcart');
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    setTimeout(() => {
+      notification.remove();
+    }, 2100);
+  }
+  ////
   function updateQuantity(ticketId) {
     var form = document.querySelector('.updateQuantityForm[data-ticket-id="' + ticketId + '"]');
     if (form) {
@@ -198,7 +223,6 @@ function updateTotalInCart() {
               // console.log(response);
               updateTotalInCart();
               updateCartCount();
-
             } else {
               if (response.message === 'The quantity exceeds the remaining stock.') {
                 showNotification(response.message);

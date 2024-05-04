@@ -18,9 +18,24 @@ class CartController extends Controller
     {
         // Session::flush(); 
         $cart = Session::get('cart');
-        // dd($cart);
-        return view('layout.cart', ['cartItems' => $cart]);
+
+        return view('layout.cart', [
+            'cartItems' => $cart,
+            'totalItems' => count($cart),
+        ]);
     }
+    ///
+    public function getTotalItems()
+    {
+        // Session::flush(); 
+        $cart = Session::get('cart');
+
+        return response()->json([
+            'success' => TRUE,
+            'totalItems' => count($cart),
+        ]);
+    }
+
     /// add cart
     function handleAddCart(Request $request)
     {
