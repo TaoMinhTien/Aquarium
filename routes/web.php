@@ -12,6 +12,22 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\AnimalsController;
+use App\Http\Controllers\CoralReefController;
+use App\Http\Controllers\DolphinController;
+use App\Http\Controllers\OverviewController;
+use App\Http\Controllers\FishesController;
+use App\Http\Controllers\KelpForestController;
+use App\Http\Controllers\MangroveSwampController;
+use App\Http\Controllers\OctopusController;
+use App\Http\Controllers\OpenOceanController;
+use App\Http\Controllers\SeaTurtleController;
+use App\Http\Controllers\SharkController;
+use App\Http\Controllers\Guide1Controller;
+use App\Http\Controllers\Guide2Controller;
+use App\Http\Controllers\UserController;
+use App\Models\User;    
+
 
 Route::get('/', function () {
     return view('layout/Homepage');
