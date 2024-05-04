@@ -10,6 +10,7 @@ use App\Http\Controllers\ReadController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\InformationController;
 
 Route::get('/', function () {
     return view('layout/Homepage');
@@ -41,6 +42,7 @@ Route::post('/detail/read', [ReadController::class, 'readDetail'])->name('read.d
 Route::Post('/tickets/buy', [TicketController::class, 'BuyTicket'])->name('tickets.buy');
 Route::Post('/handle/contact', [ContactController::class, 'HandleContact'])->name('handle.contact');
 Route::get('/error', [DashboardController::class, 'errorPage'])->name('error');
+Route::get('/test', [InformationController::class, 'index'])->name('test');
 
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {

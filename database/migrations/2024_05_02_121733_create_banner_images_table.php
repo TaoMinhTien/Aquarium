@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('banner_id')->nullable();
             $table->string('image_url', 255);
             $table->timestamps();
-    
             $table->foreign('banner_id')->references('id')->on('banners')->onDelete('cascade');
         });
     }
