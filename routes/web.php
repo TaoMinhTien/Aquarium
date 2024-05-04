@@ -10,6 +10,7 @@ use App\Http\Controllers\ReadController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FeedbackController;
 
 Route::get('/', function () {
     return view('layout/Homepage');
@@ -43,6 +44,8 @@ Route::Post('/tickets/buy', [TicketController::class, 'BuyTicket'])->name('ticke
 Route::Post('/handle/contact', [ContactController::class, 'HandleContact'])->name('handle.contact');
 Route::get('/error', [DashboardController::class, 'errorPage'])->name('error');
 Route::get('/cart-quantity', [CartController::class, 'cartQuantity'])->name('cart.quantity');
+Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
+Route::post('/feedback-post', [FeedbackController::class, 'handleFeedback'])->name('feedback.post');
 
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {

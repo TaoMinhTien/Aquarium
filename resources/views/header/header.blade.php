@@ -42,6 +42,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#">Contact</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('feedback')}}">Feedback</a>
+                </li>
               </ul>
               <ul class="navbar-nav">
                 <li class="nav-item">
