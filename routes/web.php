@@ -25,12 +25,28 @@ use App\Http\Controllers\SharkController;
 use App\Http\Controllers\Guide1Controller;
 use App\Http\Controllers\Guide2Controller;
 use App\Http\Controllers\UserController;
-use App\Models\User;    
+use App\Models\User;
 
 
 Route::get('/', function () {
     return view('layout/Homepage');
 });
+
+///
+
+Route::get('/tickets/get', [TicketController::class, 'ticketsGet'])->name('tickets.get');
+Route::get('/contact', [ContactController::class, 'contactView'])->name('contact.view');
+Route::post('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
+Route::get('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
+Route::post('/news/detail/{id}', [ReadController::class, 'detailRead'])->name('detail.read');
+Route::post('/detail/read', [ReadController::class, 'readDetail'])->name('read.detail');
+Route::Post('/tickets/buy', [TicketController::class, 'BuyTicket'])->name('tickets.buy');
+Route::Post('/handle/contact', [ContactController::class, 'HandleContact'])->name('handle.contact');
+Route::get('/error', [DashboardController::class, 'errorPage'])->name('error');
+Route::get('/cart-quantity', [CartController::class, 'cartQuantity'])->name('cart.quantity');
+Route::get('/cart-get-totalitems', [CartController::class, 'getTotalItems'])->name('gettotalitems');
+Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
+Route::post('/feedback-post', [FeedbackController::class, 'handleFeedback'])->name('feedback.post');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/animals', [AnimalsController::class, 'index'])->name('animals');
@@ -67,20 +83,6 @@ Route::get('/tickets/stock', [TicketController::class, 'checkStock'])->name('che
 Route::get('/tickets', [TicketController::class, 'tickets'])->name('tickets');
 
 
-
-Route::get('/tickets/get', [TicketController::class, 'ticketsGet'])->name('tickets.get');
-Route::get('/contact', [ContactController::class, 'contactView'])->name('contact.view');
-Route::post('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
-Route::get('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
-Route::post('/news/detail/{id}', [ReadController::class, 'detailRead'])->name('detail.read');
-Route::post('/detail/read', [ReadController::class, 'readDetail'])->name('read.detail');
-Route::Post('/tickets/buy', [TicketController::class, 'BuyTicket'])->name('tickets.buy');
-Route::Post('/handle/contact', [ContactController::class, 'HandleContact'])->name('handle.contact');
-Route::get('/error', [DashboardController::class, 'errorPage'])->name('error');
-Route::get('/cart-quantity', [CartController::class, 'cartQuantity'])->name('cart.quantity');
-Route::get('/cart-get-totalitems', [CartController::class, 'getTotalItems'])->name('gettotalitems');
-Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
-Route::post('/feedback-post', [FeedbackController::class, 'handleFeedback'])->name('feedback.post');
 
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {
