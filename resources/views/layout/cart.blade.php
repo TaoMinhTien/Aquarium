@@ -114,6 +114,7 @@
     decreaseQuantityCart();
     increaseQuantityCart();
     getTotalItems();
+    updateTotalInCart();
 
   });
   ///
@@ -125,7 +126,6 @@
         url: updateTotalCartUrl,
         method: 'GET',
       }).done(function(response) {
-        // console.log(response);
         var totalVND = response.dataTotal.total.toLocaleString('vi-VN', {
           style: 'currency',
           currency: 'VND'
@@ -186,7 +186,6 @@
       })
       .done(function(response) {
         if (response.success) {
-          console.log(response);
           $('#totalItems').text(response.totalItems + ' items');
         }
       })

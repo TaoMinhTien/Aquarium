@@ -16,10 +16,29 @@ use Carbon\Carbon;
 class NewsController extends Controller
 {
     //
-    public function news()
+    public function News()
     {
+        $tickets = Tickets::where('quantity', '>', 0)
+        ->whereHas('event', function ($query) {
+            $query->where('status', 'active');
+        })
+        ->inRandomOrder() 
+        ->orderBy('quantity')
+        ->take(3)
+        ->get();
+        return view('news.news', [
+            'tickets' => $tickets,
+        ]);
+    }
+    //
+    public function getNews(Request $request)
+    {
+        $perPage = $request->input('per_page', 5); 
+        $page = $request->input('page', 1);
         $events = Event::with('ticketVariants.ticket')
             ->where('status', 'Active')
+            ->skip(($page - 1) * $perPage)
+            ->take($perPage)
             ->get();
         $tickets = Tickets::where('quantity', '>', 0)
             ->orderBy('quantity')
@@ -50,44 +69,12 @@ class NewsController extends Controller
 
             $formattedEvents[] = $formattedEvent;
         }
-        $slider_tickets = Tickets::inRandomOrder()
-            ->whereHas('event', function ($query) {
-                $query->where('status', 'active');
-            })
-            ->limit(2)
-            ->get();
-        $allTickets = Tickets::where('quantity', '>', 0)
-            ->whereHas('event', function ($query) {
-                $query->where('status', 'active');
-            })
-            ->orderBy('quantity')
-            ->take(3)
-            ->get();
-
-        return view('news.news', [
+        return response()->json([
             'formattedEvents' => $formattedEvents,
-            'tickets' => $allTickets,
+        ]);
+    }
+    ///
 
-        ]);
-        // return response()->json([
-        //     'formattedEvents' => $formattedEvents,
-        //     'tickets' => $allTickets,
-        //     'tickets' => 'ok',
-        // ]);
-        // return response()->json([
-        //     'ticket' => $formattedEvents,
-        //     'page' => $page
-        // ]);
-    }
-    //
-    public function newsGet(){
-         return response()->json([
-            // 'formattedEvents' => $formattedEvents,
-            // 'tickets' => $allTickets,
-            'tickets' => 'ok',
-        ]);
-    }
-    //
     public function handleEditNews(Request $request)
     {
         // dd($request);
@@ -198,7 +185,6 @@ class NewsController extends Controller
             'eventEdit' => $events,
             'ticketEdit' => $tickets
         ]);
-        
     }
     //
     public function handleUploadNews(Request $request)

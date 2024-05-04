@@ -24,6 +24,7 @@
     <script type="module" src="{{ asset('asset/js/ticketview.js') }}"></script>
     <script src="{{ asset('asset/js/theme_quang.js') }}"></script>
 </head>
+
 <body>
 
     @include('header.header')
@@ -32,5 +33,8 @@
 
 </body>
 
+<script>
+
+</script>
 
 </html>

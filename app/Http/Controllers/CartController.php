@@ -18,24 +18,37 @@ class CartController extends Controller
     {
         // Session::flush(); 
         $cart = Session::get('cart');
-
+        // if ($cart) {
+        //     $totalItems = count($cart);
+        // } else {
+        //     $totalItems = 0;
+        // }
         return view('layout.cart', [
             'cartItems' => $cart,
-            'totalItems' => count($cart),
+            // 'totalItems' => $totalItems,
         ]);
+    }
+    ///
+    public function cartQuantity()
+    {
+        $cartQuantity = count(session('cart', []));
+        return response()->json(['cartQuantity' => $cartQuantity]);
     }
     ///
     public function getTotalItems()
     {
-        // Session::flush(); 
         $cart = Session::get('cart');
+        if ($cart) {
+            $totalItems = count($cart);
+        } else {
+            $totalItems = 0;
+        }
 
         return response()->json([
             'success' => TRUE,
-            'totalItems' => count($cart),
+            'totalItems' => $totalItems,
         ]);
     }
-
     /// add cart
     function handleAddCart(Request $request)
     {
@@ -131,10 +144,17 @@ class CartController extends Controller
         $total = 0;
         $subtotal = 0;
         $discount = 0;
-        foreach ($cart as $item) {
-            $subtotal += $item['total_price'];
+        if (count($cart) >0) {
+            foreach ($cart as $item) {
+                $subtotal += $item['total_price'];
+            }
+            $total = $subtotal - $discount;
+        } else {
+            $total = 0;
+            $subtotal = 0;
+            $discount = 0;
         }
-        $total = $subtotal - $discount;
+
         $dataTotal = [
             'total' => $total,
             'discount' => $discount,
@@ -142,11 +162,5 @@ class CartController extends Controller
         ];
         Session::put('cart', $cart);
         return response()->json(['dataTotal' => $dataTotal]);
-    }
-    ///
-    public function cartQuantity()
-    {
-        $cartQuantity = count(session('cart', []));
-        return response()->json(['cartQuantity' => $cartQuantity]);
     }
 }

@@ -22,6 +22,7 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'HandleRegister'])->name('register.edit');
 Route::get('/logout', [LoginController::class, 'HandleLogout'])->name('logout');
 Route::get('/news', [NewsController::class, 'news'])->name('news.view');
+Route::get('/get-news', [NewsController::class, 'getNews'])->name('get.news');
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout.view');
 Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
 Route::post('/handle-checkout', [CheckoutController::class, 'handleCheckout'])->name('handlecheckout.checkout');
