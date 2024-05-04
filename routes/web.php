@@ -23,6 +23,7 @@ use App\Http\Controllers\SharkController;
 use App\Http\Controllers\Guide1Controller;
 use App\Http\Controllers\Guide2Controller;use App\Http\Controllers\UserController;use App\Models\User;    
 
+
 Route::get('/', function () {
     return view('layout/Homepage');
 });
