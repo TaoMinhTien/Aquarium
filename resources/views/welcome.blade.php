@@ -14,8 +14,22 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('asset/css/theme-hieu.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/css/theme-quang.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-inforTable.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-overview.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-coralreef.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-dolphin.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-fishes.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-shark.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-seaturtle.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-octopus.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-kelpforest.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-openocean.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-mangroveswamp.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-guide1.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/theme-thanh-guide2.css') }}">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <script src="{{ asset('asset/js/theme-hieu.js') }}"></script>
+    <script src="{{ asset('asset/js/theme-thanh.js') }}"></script>
 
 </head>
 

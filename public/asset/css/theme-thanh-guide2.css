@@ -1,0 +1,22 @@
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #060606;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    color: #c47e7e;
+}
+p {
+    line-height: 1.6;
+    color: #fffdfd;
+}
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: aliceblue;
+}
