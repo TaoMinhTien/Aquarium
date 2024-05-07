@@ -2,7 +2,7 @@
 @section('title', 'Animal')
 @section('content')
        
-    <div class="container">
+    <div class="thanh">
         <h1>Thông tin về nguồn gốc, kích thước, môi trường sống tự nhiên, yêu cầu về nước, và hành vi sinh học của từng loài cá</h1>
         <p>Dưới đây là thông tin về nguồn gốc, kích thước, môi trường sống tự nhiên, yêu cầu về nước, và hành vi sinh học của từng loài cá:</p>
         <ul>
