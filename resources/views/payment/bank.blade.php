@@ -60,6 +60,8 @@
                </div>
                <div class="my-4 flex justify-center ">
                   <input type="hidden" name="total" value="{{$total}}">
+                  <input type="hidden" name="ticketID" value="{{$total}}">
+                  <input type="hidden" name="eventID" value="{{$total}}">
                   <a href="javascript:void(0);" onclick="window.history.back()" class="mr-1 text-sm rounded-xl text-white px-12 py-2 font-medium bg-gray-800 hover:bg-black">
                      Back
                   </a>

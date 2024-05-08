@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view) {
+
             $randomDataSlider_02 = TicketVariant::inRandomOrder()
                 ->join('events', 'ticket_variant.event_id', '=', 'events.id')
                 ->join('tickets', 'ticket_variant.ticket_id', '=', 'tickets.id')
@@ -38,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
                     DB::raw('SUBSTRING(events.description, 1, 310) AS description'),
                     'tickets.image'
                 )
+                ->where('events.status', 'Active')
                 ->get();
             foreach ($randomDataSlider_02 as $data) {
                 $data->description = preg_replace('/<figure[^>]*>.*<\/figure>/s', '', $data->description);
@@ -46,7 +48,12 @@ class AppServiceProvider extends ServiceProvider
                 $data->description = preg_replace('/<img[^>]*>/', '', $data->description);
                 $data->description = preg_replace('/<\/?p[^>]*>/', '', $data->description);
             }
-            $slider_tickets = Tickets::inRandomOrder()->limit(2)->get();
+            $slider_tickets = Tickets::inRandomOrder()
+                ->whereHas('event', function ($query) {
+                    $query->where('status', 'active');
+                })
+                ->limit(2)
+                ->get();
             $view->with('dataSlider_02', $randomDataSlider_02);
             $view->with('slider_tickets', $slider_tickets);
         });
