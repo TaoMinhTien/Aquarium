@@ -11,6 +11,7 @@ use App\Http\Controllers\ReadController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\AnimalsController;
 use App\Http\Controllers\CoralReefController;
 use App\Http\Controllers\DolphinController;
@@ -82,6 +83,17 @@ Route::get('/tickets/stock', [TicketController::class, 'checkStock'])->name('che
 Route::get('/tickets', [TicketController::class, 'tickets'])->name('tickets');
 
 
+
+Route::get('/tickets/get', [TicketController::class, 'ticketsGet'])->name('tickets.get');
+Route::get('/contact', [ContactController::class, 'contactView'])->name('contact.view');
+Route::post('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
+Route::get('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
+Route::post('/news/detail/{id}', [ReadController::class, 'detailRead'])->name('detail.read');
+Route::post('/detail/read', [ReadController::class, 'readDetail'])->name('read.detail');
+Route::Post('/tickets/buy', [TicketController::class, 'BuyTicket'])->name('tickets.buy');
+Route::Post('/handle/contact', [ContactController::class, 'HandleContact'])->name('handle.contact');
+Route::get('/error', [DashboardController::class, 'errorPage'])->name('error');
+Route::get('/test', [InformationController::class, 'index'])->name('test');
 
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {
