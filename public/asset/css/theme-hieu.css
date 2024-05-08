@@ -51,6 +51,7 @@
   width: 58px;
   height: 38.8px;
   margin-top: -5px;
+  z-index: 9999 !important;
 }
 .Homepage-cart{
   height: 50px;
@@ -84,6 +85,7 @@
   display: flex;
   list-style: none;
   text-align: center;
+  margin-left: -110px;
   
 }
 
@@ -674,7 +676,7 @@
   font-family: 'Pacifico', cursive;
   font-weight: 400;
   text-transform: lowercase;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .footer__addr h2 {
