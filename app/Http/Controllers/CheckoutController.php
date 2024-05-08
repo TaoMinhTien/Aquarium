@@ -139,14 +139,12 @@ class CheckoutController extends Controller
             $event = Event::find($item['event_id']);
             if (
                 $ticket->quantity < $item['quantity']
-                || $event -> status != 'Active'
+                || $event->status != 'Active'
 
             ) {
                 return redirect()->route('error');
             }
         }
-        dd($cartCheckout);
-        // dd($dataCheckout);
         $payment = new Payment();
         $payment->name = $dataCheckout['payment'];
         $payment->save();
@@ -206,6 +204,24 @@ class CheckoutController extends Controller
         }
 
         checkoutSuccess();
+
+        $orderTime = $dataCheckout['time'];
+        $orderNumber = $dataCheckout['orderNumber'];
+        $payment = $dataCheckout['payment'];
+        $orderTotal = $dataCheckout['cartQuantity'];
+        $totalPrice = $dataCheckout['total'];
+        // dd($orderNumber, $dataCheckout);
+
+        $sendMail = new SendMailController();
+        $sendMail->sendMail(
+            $cartCheckout,
+            $dataCheckout,
+            $orderTime,
+            $orderNumber,
+            $payment,
+            $orderTotal,
+            $totalPrice,
+        );
         //     DB::commit();
         //     Session::forget('cart');
         //     Session::forget('dataCheckout');
