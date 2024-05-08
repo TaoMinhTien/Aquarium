@@ -27,6 +27,7 @@ use App\Http\Controllers\Guide2Controller;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 
+use App\Http\Controllers\UserController;  
 
 Route::get('/', function () {
     return view('layout/Homepage');
