@@ -25,7 +25,6 @@ class CartController extends Controller
         // }
         return view('layout.cart', [
             'cartItems' => $cart,
-            // 'totalItems' => $totalItems,
         ]);
     }
     ///
@@ -154,7 +153,7 @@ class CartController extends Controller
             $subtotal = 0;
             $discount = 0;
         }
-        
+
 
         $dataTotal = [
             'total' => $total,

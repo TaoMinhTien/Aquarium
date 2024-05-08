@@ -8,7 +8,7 @@
       <div class="text-center">
         <h1 class="text-xl py-3 font-bold text-gray-900 sm:text-3xl">Your Cart</h1>
       </div>
-      <div class="flex  justify-end mb-2 border-t border-gray-800"></div>
+      <div class="flex justify-end mb-2 border-t border-gray-800"></div>
       <div class="">
         <ul class="">
           @if(!empty($cartItems))
@@ -68,7 +68,6 @@
           </div>
           @endif
         </ul>
-        <div class="flex  justify-end border-t border-gray-800"></div>
         <div class="flex mt-1 justify-end">
           <span class="text-gray-700 text-sm ">
             <p id="totalItems"></p>
