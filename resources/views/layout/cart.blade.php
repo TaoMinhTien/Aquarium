@@ -61,11 +61,11 @@
           </li>
           @endforeach
           @else
-          <div class="flex">
+          <div class="flex mb-2">
             <p class="my-2 text-[15px] italic mr-3  text-gray-700">No ticket in cart!</p>
             <a class="my-2 text-[15px] italic text-blue-700 hover:text-blue-800" href="/tickets">Shopping Here</a>
-            <div class="flex  justify-end mb-2 border-t border-gray-800"></div>
           </div>
+          <div class="flex  justify-end mb-2 border-t border-gray-800"></div>
           @endif
         </ul>
         <div class="flex mt-1 justify-end">

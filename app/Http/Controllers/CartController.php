@@ -42,7 +42,6 @@ class CartController extends Controller
         } else {
             $totalItems = 0;
         }
-
         return response()->json([
             'success' => TRUE,
             'totalItems' => $totalItems,
@@ -143,7 +142,7 @@ class CartController extends Controller
         $total = 0;
         $subtotal = 0;
         $discount = 0;
-        if (count($cart) >0) {
+        if ($cart && count($cart) > 0) {
             foreach ($cart as $item) {
                 $subtotal += $item['total_price'];
             }
