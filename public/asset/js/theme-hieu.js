@@ -1,5 +1,4 @@
 window.addEventListener("load", (event) => {
-    console.log('loadd');
     var swiper = new Swiper(".mySwiper", {
         direction: "vertical",
         loop: true,

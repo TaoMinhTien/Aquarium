@@ -5,7 +5,7 @@
         <div class = "Homepage-title">
             <h1>Aquarium Installation and Maintenance</h1>
             <p>Fastest and easiest way to cycle your new aquarium</p>
-            <button>Buy Ticket Today!</button>
+            <a href="{{route('tickets')}}"><button>Buy Ticket Today!</button></a>
         </div>
         <div class = "Homepage-box">
             <div class = "box1">

@@ -3,10 +3,9 @@
 
   <div class="flex items-center justify-center mt-8">
     <div class="w-8/12">
-      <form method="post" action="{{ route('admin.information.update', $banner) }}" enctype="multipart/form-data">
+      <form method="post" action="{{ route('information.update', $information) }}" enctype="multipart/form-data">
         @csrf
         @method('put')
-
         <div class="mt-4">
           <label for="title" class="block mb-1 font-bold text-gray-700">Title</label>
 

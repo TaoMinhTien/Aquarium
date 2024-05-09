@@ -114,8 +114,6 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/animals/handle/upload', [AnimalsController::class, 'handleUploadAnimals'])->name('handle.upload.animals');
     Route::post('/animals/handle', [AnimalsController::class, 'animalsHandle'])->name('animals.handle');
     Route::post('/news-submit', [NewsController::class, 'handleEditNews'])->name('news.edit.submit');
-
-    Route::get('/', [BannerController::class, 'index'])->name('Homepage');
     
     Route::get('/banner/upload', [BannerController::class, 'create'])->name('banner.create');
     Route::post('/banner', [BannerController::class, 'store'])->name('banner.store');
