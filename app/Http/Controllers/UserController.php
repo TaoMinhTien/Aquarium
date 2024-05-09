@@ -3,55 +3,76 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Session;
+
 
 class UserController extends Controller
 {
-    // Hiển thị danh sách người dùng
-    public function index()
+    //
+    public function view()
     {
-        $users = User::all();
-        return view('user.index', compact('users'));
+        $user = User::all();
+        return view('user.user', ['user' => $user]);
     }
-
-    // Hiển thị form thêm người dùng
-    public function create()
+    ///
+    public function userDelete(Request $request)
     {
-        return view('user.create');
+        $user = User::find($request->input('user_id'));
+        if ($user) {
+            try {
+                DB::beginTransaction();
+                $user->delete();
+                DB::commit();
+                return redirect()->route('user.delete')->with('success', 'User deleted successfully!');
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return redirect()->route('error')->withErrors([$e->getMessage()])->withInput();
+            };
+        } else {
+            return redirect()->route('error');
+        }
     }
-
-    // Lưu người dùng mới
-    public function store(Request $request)
+    ///
+    public function userEdit(Request $request)
     {
-        $user = new User();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->save();
-        return redirect()->route('user.index');
+        $user = User::find($request->input('user_id'));
+        return view('user.edit', ['user' => $user]);
     }
-
-    // Hiển thị form chỉnh sửa người dùng
-    public function edit($id)
+    ///
+    public function userUpdate(Request $request)
     {
-        $user = User::find($id);
-        return view('user.edit', compact('user'));
-    }
-
-    // Cập nhật người dùng
-    public function update(Request $request, $id)
-    {
-        $user = User::find($id);
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->save();
-        return redirect()->route('user.index');
-    }
-
-    // Xóa người dùng
-    public function destroy($id)
-    {
-        $user = User::find($id);
-        $user->delete();
-        return redirect()->route('user.index');
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|max:100',
+            'email' => 'required|email',
+            'current_password' => 'required|string|min:8',
+            'new_password' => 'required|string|min:8|different:current_password',
+            'confirm_password' => 'required|string|same:new_password',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('register')->withErrors($validator)->withInput();
+        }
+        $user = Auth::user();
+        if (!Hash::check($request->current_password, $user->password)) {
+            throw ValidationException::withMessages(['current_password' => 'The provided password does not match your current password.']);
+        }
+        try {
+            DB::beginTransaction();
+            $user->name = $request->username;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+            Session::flash('success', 'Your password has been changed successfully!');
+            return redirect()->back();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors([$e->getMessage()]);
+        }
     }
 }

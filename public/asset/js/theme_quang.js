@@ -1,4 +1,6 @@
-
+$(document).ready(function() {
+    updateCartCount();
+ });
 function updateCartCount() {
    var url = "/cart-quantity";
    $.ajax({
@@ -10,9 +12,8 @@ function updateCartCount() {
        console.error(error);
    });
 }
-$(document).ready(function() {
-   updateCartCount();
-});
+updateCartCount();
+
 
 
 

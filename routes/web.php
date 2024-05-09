@@ -12,6 +12,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AnimalsController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\CoralReefController;
 use App\Http\Controllers\DolphinController;
 use App\Http\Controllers\OverviewController;
@@ -22,7 +23,6 @@ use App\Http\Controllers\OctopusController;
 use App\Http\Controllers\OpenOceanController;
 use App\Http\Controllers\SeaTurtleController;
 use App\Http\Controllers\SharkController;
-use App\Http\Controllers\Guide1Controller;
 use App\Http\Controllers\Guide2Controller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutUsController;
@@ -35,6 +35,7 @@ use App\Http\Controllers\HomeOverviewController;
 use App\Http\Controllers\HomeOverviewImageController;
 
 use App\Models\User;
+use Illuminate\Contracts\Auth\UserProvider;
 
 
 Route::get('/', function () {
@@ -45,6 +46,7 @@ Route::get('/', function () {
 
 Route::get('/tickets/get', [TicketController::class, 'ticketsGet'])->name('tickets.get');
 Route::get('/contact', [ContactController::class, 'contactView'])->name('contact.view');
+Route::post('/submit-form', [ContactController::class, 'submitForm'])->name('submit.form');
 Route::post('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
 Route::get('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
 Route::post('/news/detail/{id}', [ReadController::class, 'detailRead'])->name('detail.read');
@@ -60,18 +62,6 @@ Route::post('/feedback-post', [FeedbackController::class, 'handleFeedback'])->na
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/animals', [AnimalsController::class, 'index'])->name('animals');
 Route::get('/overview', [OverviewController::class, 'index'])->name('overview');
-Route::get('/fishes', [FishesController::class, 'index'])->name('fishes');
-Route::get('/openocean', [OpenOceanController::class, 'index'])->name('openocean');
-Route::get('/coralreef', [CoralReefController::class, 'index'])->name('coralreef');
-Route::get('/shark', [SharkController::class, 'index'])->name('shark');
-Route::get('/octopus', [OctopusController::class, 'index'])->name('octopus');
-Route::get('/mangroveswamp', [MangroveSwampController::class, 'index'])->name('mangroveswamp');
-Route::get('/seaturtle', [SeaTurtleController::class, 'index'])->name('seaturtle');
-Route::get('/kelpforest', [KelpForestController::class, 'index'])->name('kelpforest');
-Route::get('/dolphin', [DolphinController::class, 'index'])->name('dolphin');
-Route::get('/guide1', [Guide1Controller::class, 'index'])->name('guide1');
-Route::get('/guide2', [Guide2Controller::class, 'index'])->name('guide2');
-Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::post('/login', [LoginController::class, 'HandleLogin'])->name('login.edit');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'HandleRegister'])->name('register.edit');
@@ -90,11 +80,11 @@ Route::post('/tickets/view', [TicketController::class, 'ticketview'])->name('tic
 Route::get('/tickets/view', [TicketController::class, 'ticketview'])->name('ticket.view');
 Route::get('/tickets/stock', [TicketController::class, 'checkStock'])->name('checkStock');
 Route::get('/tickets', [TicketController::class, 'tickets'])->name('tickets');
+Route::post('/Animals/view', [AnimalsController::class, 'animalsView'])->name('animals.infor.view');
 
 
 
 Route::get('/tickets/get', [TicketController::class, 'ticketsGet'])->name('tickets.get');
-Route::get('/contact', [ContactController::class, 'contactView'])->name('contact.view');
 Route::post('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
 Route::get('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
 Route::post('/news/detail/{id}', [ReadController::class, 'detailRead'])->name('detail.read');
@@ -108,11 +98,21 @@ Route::get('/test', [InformationController::class, 'index'])->name('test');
 Route::middleware('auth.admin')->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/news/upload', [NewsController::class, 'uploadNews'])->name('news.upload');
+    Route::get('/contactAdmin', [ContactAdminController::class, 'index'])->name('contact.contactAdmin');
     Route::get('/news/update', [NewsController::class, 'updateNews'])->name('news.update');
     Route::get('/news/edit/{id}', [NewsController::class, 'editNews'])->name('news.edit');
+    Route::get('/bill', [BillController::class, 'view'])->name('bill.view');
+    Route::get('/bill/filter', [BillController::class, 'filter'])->name('bill.filter');
+    Route::get('/animals/upload', [AnimalsController::class, 'animalsUpload'])->name('animals.upload');
+    Route::get('/user', [UserController::class, 'view'])->name('user.view');
+    Route::post('/user/delete', [UserController::class, 'userDelete'])->name('user.delete');
+    Route::post('/user/edit', [UserController::class, 'userEdit'])->name('user.edit');
+    Route::post('/user/update', [UserController::class, 'userUpdate'])->name('user.handle.update');
     Route::delete('/news/delete/{id}', [NewsController::class, 'deleteNews'])->name('news.delete');
     Route::post('/news/handle/upload', [NewsController::class, 'handleUploadNews'])->name('handle.upload.news');
     Route::post('/news/handle', [NewsController::class, 'newsHandle'])->name('news.handle');
+    Route::post('/animals/handle/upload', [AnimalsController::class, 'handleUploadAnimals'])->name('handle.upload.animals');
+    Route::post('/animals/handle', [AnimalsController::class, 'animalsHandle'])->name('animals.handle');
     Route::post('/news-submit', [NewsController::class, 'handleEditNews'])->name('news.edit.submit');
 
     Route::get('/', [BannerController::class, 'index'])->name('Homepage');
