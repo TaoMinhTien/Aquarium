@@ -61,15 +61,18 @@
       </ul>
    </div>
    <div class="mt-2">
+      @if (session('success'))
+      <div class="alert bg-white text-blue-700 ">
+         <strong>{{ session('success') }} </strong>
+      </div>
+      @endif
       @if ($errors->has('status'))
       <div class="mt-0 text-red-700 rounded-xl relative" role="alert">
          <span class="block sm:inline text-xs">{{ $errors->first('status') }}</span>
       </div>
       @endif
-      <form action="{{route('detail.confirm')}}" method="POST">
+      <form action="{{route('detail.confirm',['id' => $booking ->id ])}}" method="get">
          @csrf
-         <input type="hidden" name="confirm" value="ok">
-         <input type="hidden" name="booking_id" value="{{ $booking ->id}}">
          <button type="submit" class="bg-gray-900 hover:bg-black text-white font-bold py-2 px-3 rounded-full">
             confirm
          </button>
