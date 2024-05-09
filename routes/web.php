@@ -104,6 +104,9 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/bill', [BillController::class, 'view'])->name('bill.view');
     Route::get('/bill/filter', [BillController::class, 'filter'])->name('bill.filter');
     Route::get('/animals/upload', [AnimalsController::class, 'animalsUpload'])->name('animals.upload');
+    Route::get('/animals/update', [AnimalsController::class, 'animalsUpdate'])->name('animals.update');
+    Route::get('/animals/delete', [AnimalsController::class, 'animalsDelete'])->name('animals.infor.delete');
+    Route::get('/animals/edit', [AnimalsController::class, 'animalsEdit'])->name('animal.infor.edit');
     Route::get('/user', [UserController::class, 'view'])->name('user.view');
     Route::post('/user/delete', [UserController::class, 'userDelete'])->name('user.delete');
     Route::post('/user/edit', [UserController::class, 'userEdit'])->name('user.edit');
@@ -115,7 +118,7 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/animals/handle', [AnimalsController::class, 'animalsHandle'])->name('animals.handle');
     Route::post('/news-submit', [NewsController::class, 'handleEditNews'])->name('news.edit.submit');
 
-    Route::get('/', [BannerController::class, 'index'])->name('Homepage');
+    // Route::get('/', [BannerController::class, 'index'])->name('Homepage');
     
     Route::get('/banner/upload', [BannerController::class, 'create'])->name('banner.create');
     Route::post('/banner', [BannerController::class, 'store'])->name('banner.store');
