@@ -50,7 +50,8 @@
                         </div>
                         <div class="form-success-message-tien text-success"></div>
                         <div class="text-center button-tien">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
+                            <input type="submit" class="btn btn-primary" value="Submit">
                         </div>
                         
                     </form>

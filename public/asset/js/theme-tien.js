@@ -1,12 +1,13 @@
 $(document).ready(function () {
-    $('form').on('submit', function (e) {
-        e.preventDefault(); // Ngăn chặn hành động mặc định của form
+    // Lắng nghe sự kiện click trên các nút submit trong form
+    $('form').find('input[type="submit"]').on('click', function (e) {
+        e.preventDefault(); // Ngăn chặn hành động mặc định của nút submit
 
-        var formData = $(this).serialize(); // Lấy dữ liệu từ form
+        var formData = $(this).closest('form').serialize(); // Lấy dữ liệu từ form chứa nút submit được click
 
         $.ajax({
             type: 'POST',
-            url: $(this).attr('action'), // URL được chỉ định trong thuộc tính action của form
+            url: $(this).closest('form').attr('action'), // URL được chỉ định trong thuộc tính action của form chứa nút submit được click
             data: formData,
             success: function (response) {
                 // Hiển thị thông báo khi gửi thành công

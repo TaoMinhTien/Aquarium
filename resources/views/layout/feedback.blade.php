@@ -50,7 +50,7 @@
                   <span class="block sm:inline text-xs">{{ $message }}</span>
                </div>
                @enderror
-               <button type="submit" class="block mt-3 mr-2 rounded-xl bg-black px-8 py-2 text-sm text-white transition">
+               <button class="block mt-3 mr-2 rounded-xl bg-black px-8 py-2 text-sm text-white transition">
                   Send
                </button>
             </form>
