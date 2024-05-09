@@ -68,9 +68,7 @@
       @endif
       <form action="{{route('detail.confirm')}}" method="POST">
          @csrf
-         <div class="relative py-3 w-3/12">
-            <input require type="text" id="status" name="status" placeholder="Status..." class="w-full rounded-md border border-gray-200 py-2 pe-10 shadow-sm sm:text-sm" />
-         </div>
+         <input type="hidden" name="confirm" value="ok">
          <input type="hidden" name="booking_id" value="{{ $booking ->id}}">
          <button type="submit" class="bg-gray-900 hover:bg-black text-white font-bold py-2 px-3 rounded-full">
             confirm

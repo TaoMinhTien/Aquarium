@@ -23,7 +23,7 @@
                      <img src="{{ asset('news_img/' . $dataSlider_02[0]['image']) }}" alt="" class="slide_02 aspect-square rounded object-cover" />
                   </button>
                   <div class="mt-3">
-                     <h3 class=" text-gray-700 group-hover:underline group-hover:underline-offset-4">
+                     <h3 class=" text-gray-700 text-sm group-hover:underline group-hover:underline-offset-4">
                         <p>{{$dataSlider_02[0]['description']}}.....</p>
                      </h3>
                   </div>
@@ -39,7 +39,7 @@
                      <img src="{{ asset('news_img/' . $dataSlider_02[1]['image']) }}" alt="" class="slide_02 aspect-square rounded object-cover" />
                   </button>
                   <div class="mt-3">
-                     <h3 class=" text-gray-700 group-hover:underline group-hover:underline-offset-4">
+                     <h3 class=" text-gray-700 text-sm group-hover:underline group-hover:underline-offset-4">
                         <p>{{$dataSlider_02[1]['description']}}.....</p>
                      </h3>
                   </div>

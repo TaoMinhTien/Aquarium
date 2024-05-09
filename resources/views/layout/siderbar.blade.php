@@ -19,13 +19,13 @@
                </summary>
                <ul class="mt-2 space-y-1 px-4">
                   <li>
-                     <a href="" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300 hover:text-black">
+                     <a href="{{route('animals.upload')}}" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300 hover:text-black">
                         Upload
                      </a>
                   </li>
 
                   <li>
-                     <a href="" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
+                     <a href="{{route('animals.update')}}" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                         Update
                      </a>
                   </li>
@@ -122,7 +122,7 @@
                </summary>
                <ul class="mt-2 space-y-1 px-4">
                   <li>
-                     <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
+                     <a href="{{route('user.view')}}" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                         User
                      </a>
                   </li>

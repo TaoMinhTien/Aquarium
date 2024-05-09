@@ -127,109 +127,109 @@ class CheckoutController extends Controller
     ///
     public function handleCheckout(Request $request)
     {
-        // try {
-        //     DB::beginTransaction();
-        $cartCheckout = Session::get('cart');
-        $dataCheckout = Session::get('dataCheckout');
-        if (!$dataCheckout || !$cartCheckout) {
-            return redirect()->route('error');
-        }
-        foreach ($cartCheckout as $item) {
-            $ticket =  Ticket::find($item['ticket_id']);
-            $event = Event::find($item['event_id']);
-            if (
-                $ticket->quantity < $item['quantity']
-                || $event->status != 'Active'
-
-            ) {
+        try {
+            DB::beginTransaction();
+            $cartCheckout = Session::get('cart');
+            $dataCheckout = Session::get('dataCheckout');
+            if (!$dataCheckout || !$cartCheckout) {
                 return redirect()->route('error');
             }
-        }
+            foreach ($cartCheckout as $item) {
+                $ticket =  Ticket::find($item['ticket_id']);
+                $event = Event::find($item['event_id']);
+                if (
+                    $ticket->quantity < $item['quantity']
+                    || $event->status != 'Active'
 
-        $payment = Payment::firstOrCreate(['name' => $dataCheckout['payment']]);
-        $orderNumber = new OrderNumber();
-        $orderNumber->order_number = $dataCheckout['orderNumber'];
-        $orderNumber->save();
-        $customer = Customer::where('email', $dataCheckout['email'])->first();
-        if ($customer) {
-            $customer->increment('purchase_count');
-        } else {
-            $data = [
-                'name' => $dataCheckout['name'],
-                'email' =>  $dataCheckout['email'],
-                'address' => $dataCheckout['address'],
-                'phone' => $dataCheckout['phone'],
-                'purchase_count' => 1,
-            ];
-            if (isset($dataCheckout['notes']) && !empty($dataCheckout['notes'])) {
-                $data['notes'] = $dataCheckout['notes'];
-            }
-            $customer = Customer::create($data);
-        }
-        foreach ($dataCheckout['cartCheckout'] as $item) {
-            $booking = new Booking();
-            $booking->customer_id = $customer->id;
-            $booking->ticket_id = $item['ticket_id'];
-            $booking->event_id = $item['event_id'];
-            $booking->payment_id = $payment->id;
-            $booking->order_number_id = $orderNumber->id;
-            $booking->quantity = $item['quantity'];
-            $booking->order_date = $dataCheckout['time'];
-            $booking->notes = $dataCheckout['notes'];
-            $booking->status =  $dataCheckout['status'] ?? 'pending';
-            $booking->totalmount = $dataCheckout['total'];
-            $booking->save();
-        }
-        function checkoutSuccess()
-        {
-            $dataCheckout = Session::get('dataCheckout');
-            foreach ($dataCheckout['cartCheckout'] as $item) {
-                $ticket = Ticket::find($item['ticket_id']);
-                if ($ticket) {
-                    $oldQuantity = $ticket->quantity;
-                    $quantityBought = $item['quantity'];
-                    $newQuantity = $oldQuantity - $quantityBought;
-                    $ticket->update(['quantity' => $newQuantity]);
+                ) {
+                    return redirect()->route('error');
                 }
+            }
 
-                $eventsToUpdate = Event::whereHas('tickets', function ($query) {
-                    $query->where('quantity', 0);
-                })->get();
-                foreach ($eventsToUpdate as $event) {
-                    if ($event->status !== 'Cancelled') {
-                        $event->update(['status' => 'Cancelled']);
+            $payment = Payment::firstOrCreate(['name' => $dataCheckout['payment']]);
+            $orderNumber = new OrderNumber();
+            $orderNumber->order_number = $dataCheckout['orderNumber'];
+            $orderNumber->save();
+            $customer = Customer::where('email', $dataCheckout['email'])->first();
+            if ($customer) {
+                $customer->increment('purchase_count');
+            } else {
+                $data = [
+                    'name' => $dataCheckout['name'],
+                    'email' =>  $dataCheckout['email'],
+                    'address' => $dataCheckout['address'],
+                    'phone' => $dataCheckout['phone'],
+                    'purchase_count' => 1,
+                ];
+                if (isset($dataCheckout['notes']) && !empty($dataCheckout['notes'])) {
+                    $data['notes'] = $dataCheckout['notes'];
+                }
+                $customer = Customer::create($data);
+            }
+            foreach ($dataCheckout['cartCheckout'] as $item) {
+                $booking = new Booking();
+                $booking->customer_id = $customer->id;
+                $booking->ticket_id = $item['ticket_id'];
+                $booking->event_id = $item['event_id'];
+                $booking->payment_id = $payment->id;
+                $booking->order_number_id = $orderNumber->id;
+                $booking->quantity = $item['quantity'];
+                $booking->order_date = $dataCheckout['time'];
+                $booking->notes = $dataCheckout['notes'];
+                $booking->status =  $dataCheckout['status'] ?? 'pending';
+                $booking->totalmount = $dataCheckout['total'];
+                $booking->save();
+            }
+            function checkoutSuccess()
+            {
+                $dataCheckout = Session::get('dataCheckout');
+                foreach ($dataCheckout['cartCheckout'] as $item) {
+                    $ticket = Ticket::find($item['ticket_id']);
+                    if ($ticket) {
+                        $oldQuantity = $ticket->quantity;
+                        $quantityBought = $item['quantity'];
+                        $newQuantity = $oldQuantity - $quantityBought;
+                        $ticket->update(['quantity' => $newQuantity]);
+                    }
+
+                    $eventsToUpdate = Event::whereHas('tickets', function ($query) {
+                        $query->where('quantity', 0);
+                    })->get();
+                    foreach ($eventsToUpdate as $event) {
+                        if ($event->status !== 'Cancelled') {
+                            $event->update(['status' => 'Cancelled']);
+                        }
                     }
                 }
             }
-        }
 
-        checkoutSuccess();
+            checkoutSuccess();
 
-        $orderTime = $dataCheckout['time'];
-        $orderNumber = $dataCheckout['orderNumber'];
-        $payment = $dataCheckout['payment'];
-        $orderTotal = $dataCheckout['cartQuantity'];
-        $totalPrice = $dataCheckout['total'];
-        // dd($orderNumber, $dataCheckout);
+            $orderTime = $dataCheckout['time'];
+            $orderNumber = $dataCheckout['orderNumber'];
+            $payment = $dataCheckout['payment'];
+            $orderTotal = $dataCheckout['cartQuantity'];
+            $totalPrice = $dataCheckout['total'];
+            // dd($orderNumber, $dataCheckout);
 
-        $sendMail = new SendMailController();
-        $sendMail->sendMail(
-            $cartCheckout,
-            $dataCheckout,
-            $orderTime,
-            $orderNumber,
-            $payment,
-            $orderTotal,
-            $totalPrice,
-        );
-        //     DB::commit();
-        //     Session::forget('cart');
-        //     Session::forget('dataCheckout');
-        //     Session::forget('orderNumber');
-        return view('layout.thankyou');
-        // } catch (\Exception $e) {
-        //     DB::rollBack();
-        //     return redirect()->route('error')->withErrors([$e->getMessage()])->withInput();
-        // };
+            $sendMail = new SendMailController();
+            $sendMail->sendMail(
+                $cartCheckout,
+                $dataCheckout,
+                $orderTime,
+                $orderNumber,
+                $payment,
+                $orderTotal,
+                $totalPrice,
+            );
+            DB::commit();
+            Session::forget('cart');
+            Session::forget('dataCheckout');
+            Session::forget('orderNumber');
+            return view('layout.thankyou');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('error')->withErrors([$e->getMessage()])->withInput();
+        };
     }
 }
