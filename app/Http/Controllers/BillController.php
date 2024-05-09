@@ -47,9 +47,8 @@ class BillController extends Controller
 
 
     ///
-    public function bookingDetail(Request $request)
+    public function bookingDetail($id)
     {
-        $id = $request->input('booking_id');
         $booking = Booking::with(['customer', 'ticket', 'event', 'orderNumber', 'payment'])
             ->where('id', $id)
             ->first();
@@ -57,18 +56,18 @@ class BillController extends Controller
         return view('bill.detail', ['booking' => $booking]);
     }
     ////
-    public function detailConfirm(Request $request)
+    public function detailConfirm($id, Request $request)
     {
+        // dd($request);
         try {
             DB::beginTransaction();
-            $id = $request->input('booking_id');
             $booking = Booking::with(['customer', 'ticket', 'event', 'orderNumber', 'payment'])
                 ->where('id', $id)
                 ->first();
             if ($booking && $request->input('confirm')) {
                 $booking->update(['status' => 'confirmed']);
                 DB::commit();
-                return redirect()->route('detail.confirm');
+                return redirect()->back();
             } else {
                 return redirect()->route('error');
             }

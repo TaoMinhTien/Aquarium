@@ -79,6 +79,7 @@ class NewsController extends Controller
     {
         // dd($request);
         try {
+            DB::beginTransaction();
             $validator = Validator::make($request->all(), [
                 'title_name' => 'required|string|max:255',
                 'audience' => 'required|string|max:255',

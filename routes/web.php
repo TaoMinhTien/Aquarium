@@ -107,7 +107,7 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/animals/handle/upload', [AnimalsController::class, 'handleUploadAnimals'])->name('handle.upload.animals');
     Route::post('/animals/handle', [AnimalsController::class, 'animalsHandle'])->name('animals.handle');
     Route::post('/news-submit', [NewsController::class, 'handleEditNews'])->name('news.edit.submit');
-    Route::post('/booking/detail', [BillController::class, 'bookingDetail'])->name('booking.detail');
+    Route::get('/booking/detail/{id}', [BillController::class, 'bookingDetail'])->name('booking.detail');
     Route::post('/detail-confirm', [BillController::class, 'detailConfirm'])->name('detail.confirm');
     Route::get('/animal/update', [AnimalsController::class, 'animalsUpdate'])->name('animals.update');
     Route::post('/animal/delete', [AnimalsController::class, 'animalsDelete'])->name('animals.infor.delete');
