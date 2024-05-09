@@ -89,6 +89,8 @@ Route::get('/test', [InformationController::class, 'index'])->name('test');
 
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {
+    Route::post('/animal-submit', [AnimalsController::class, 'handleAnimalEdit'])->name('news.edit.submit');
+
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/news/upload', [NewsController::class, 'uploadNews'])->name('news.upload');
     Route::get('/contactAdmin', [ContactAdminController::class, 'index'])->name('contact.contactAdmin');
@@ -111,8 +113,7 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/detail-confirm/{id}', [BillController::class, 'detailConfirm'])->name('detail.confirm');
     Route::get('/animal/update', [AnimalsController::class, 'animalsUpdate'])->name('animals.update');
     Route::post('/animal/delete', [AnimalsController::class, 'animalsDelete'])->name('animals.infor.delete');
-    Route::post('/animal/edit', [AnimalsController::class, 'animalsEdit'])->name('animal.infor.edit');
-    Route::post('/animal-submit', [AnimalsController::class, 'handleAnimalEdit'])->name('news.edit.submit');
+    Route::get('/animal/edit/{id}', [AnimalsController::class, 'animalsEdit'])->name('animal.infor.edit');
 
 
 });

@@ -19,13 +19,13 @@ class NewsController extends Controller
     public function News()
     {
         $tickets = Tickets::where('quantity', '>', 0)
-        ->whereHas('event', function ($query) {
-            $query->where('status', 'active');
-        })
-        ->inRandomOrder() 
-        ->orderBy('quantity')
-        ->take(3)
-        ->get();
+            ->whereHas('event', function ($query) {
+                $query->where('status', 'active');
+            })
+            ->inRandomOrder()
+            ->orderBy('quantity')
+            ->take(3)
+            ->get();
         return view('news.news', [
             'tickets' => $tickets,
         ]);
@@ -33,7 +33,7 @@ class NewsController extends Controller
     //
     public function getNews(Request $request)
     {
-        $perPage = $request->input('per_page', 5); 
+        $perPage = $request->input('per_page', 5);
         $page = $request->input('page', 1);
         $events = Event::with('ticketVariants.ticket')
             ->where('status', 'Active')
@@ -69,8 +69,15 @@ class NewsController extends Controller
 
             $formattedEvents[] = $formattedEvent;
         }
+        if (empty($formattedEvents)) {
+            return response()->json([
+                'formattedEvents' => [],
+                'has_more' => false,
+            ]);
+        }
         return response()->json([
             'formattedEvents' => $formattedEvents,
+            'has_more' => true,
         ]);
     }
     ///
