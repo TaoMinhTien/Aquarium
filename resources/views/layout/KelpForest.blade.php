@@ -1,19 +1,6 @@
 @extends('welcome')
 @section('title', 'Animal')
 @section('content')
-@endsection
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông Tin Động Vật - Thủy Cung</title>
-
-</head>
-
-<body>
 
     <!-- Banner -->
     <div class="banner">
@@ -48,3 +35,5 @@
         <script src="scripts.js"></script>
 </body>
 </html>
+@endsection
+

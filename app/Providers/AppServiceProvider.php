@@ -42,11 +42,14 @@ class AppServiceProvider extends ServiceProvider
                 ->where('events.status', 'Active')
                 ->get();
             foreach ($randomDataSlider_02 as $data) {
-                $data->description = preg_replace('/<figure[^>]*>.*<\/figure>/s', '', $data->description);
+                // $data->description = preg_replace('/<figure[^>]*>.*<\/figure>/s', '', $data->description);
                 $data->description = str_replace('&nbsp;', '', $data->description);
-                $data->description = preg_replace('/<p[^>]*>/', '', $data->description);
-                $data->description = preg_replace('/<img[^>]*>/', '', $data->description);
-                $data->description = preg_replace('/<\/?p[^>]*>/', '', $data->description);
+                $data->description = strip_tags($data->description);
+                // $data->description = preg_replace('/<p[^>]*>/', '', $data->description);
+                // $data->description = preg_replace('/<img[^>]*>/', '', $data->description);
+                // $data->description = preg_replace('/<\/?p[^>]*>/', '', $data->description);
+                // $data->description = preg_replace('/<\/?strong[^>]*>/', '', $data->description);
+
             }
             $slider_tickets = Tickets::inRandomOrder()
                 ->whereHas('event', function ($query) {

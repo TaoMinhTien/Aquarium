@@ -30,7 +30,7 @@ class CheckoutController extends Controller
         if ($cartCheckout) {
             $cartQuantity = count($cartCheckout);
         } else {
-            $cartQuantity = 0;
+            return redirect()->route('error');
         }
         foreach ($cartCheckout as $item) {
             $subtotal += $item['total_price'];
@@ -127,10 +127,24 @@ class CheckoutController extends Controller
     ///
     public function handleCheckout(Request $request)
     {
-        try {
-            DB::beginTransaction();
+        // try {
+        //     DB::beginTransaction();
+        $cartCheckout = Session::get('cart');
         $dataCheckout = Session::get('dataCheckout');
-        // dd($dataCheckout);
+        if (!$dataCheckout || !$cartCheckout) {
+            return redirect()->route('error');
+        }
+        foreach ($cartCheckout as $item) {
+            $ticket =  Ticket::find($item['ticket_id']);
+            $event = Event::find($item['event_id']);
+            if (
+                $ticket->quantity < $item['quantity']
+                || $event->status != 'Active'
+
+            ) {
+                return redirect()->route('error');
+            }
+        }
         $payment = new Payment();
         $payment->name = $dataCheckout['payment'];
         $payment->save();
@@ -190,14 +204,32 @@ class CheckoutController extends Controller
         }
 
         checkoutSuccess();
-            DB::commit();
-            Session::forget('cart');
-            Session::forget('dataCheckout');
-            Session::forget('orderNumber');
-            return view('layout.thankyou');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->route('error')->withErrors([$e->getMessage()])->withInput();
-        };
+
+        $orderTime = $dataCheckout['time'];
+        $orderNumber = $dataCheckout['orderNumber'];
+        $payment = $dataCheckout['payment'];
+        $orderTotal = $dataCheckout['cartQuantity'];
+        $totalPrice = $dataCheckout['total'];
+        // dd($orderNumber, $dataCheckout);
+
+        $sendMail = new SendMailController();
+        $sendMail->sendMail(
+            $cartCheckout,
+            $dataCheckout,
+            $orderTime,
+            $orderNumber,
+            $payment,
+            $orderTotal,
+            $totalPrice,
+        );
+        //     DB::commit();
+        //     Session::forget('cart');
+        //     Session::forget('dataCheckout');
+        //     Session::forget('orderNumber');
+        return view('layout.thankyou');
+        // } catch (\Exception $e) {
+        //     DB::rollBack();
+        //     return redirect()->route('error')->withErrors([$e->getMessage()])->withInput();
+        // };
     }
 }

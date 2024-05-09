@@ -63,7 +63,6 @@ Route::get('/kelpforest', [KelpForestController::class, 'index'])->name('kelpfor
 Route::get('/dolphin', [DolphinController::class, 'index'])->name('dolphin');
 Route::get('/guide1', [Guide1Controller::class, 'index'])->name('guide1');
 Route::get('/guide2', [Guide2Controller::class, 'index'])->name('guide2');
-Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::post('/login', [LoginController::class, 'HandleLogin'])->name('login.edit');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'HandleRegister'])->name('register.edit');

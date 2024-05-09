@@ -4,7 +4,7 @@
 <div class="container-quang">
    <div class="grid py-10 px-10 grid-cols-1 gap-2 lg:grid-cols-2 ">
       <div class=" rounded-lg bg-gray-200"></div>
-      <div class=" rounded-lg bg-gray-200">
+      <div class=" rounded-lg ">
          <form action="{{Route('handlecheckout.checkout')}}" method="POST">
             @csrf
             <div class="ml-3 mr-3 mt-3">
