@@ -16,7 +16,7 @@
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.1/alpine.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.1/alpine.js"></script>
    <script src="{{ asset('asset/js/theme_quang.js') }}"></script>
    <script src="{{ asset('asset/js/cart.js') }}"></script>
 
@@ -30,7 +30,9 @@
             @include('layout.siderbar')
          </div>
          <div class=" rounded-lg lg:col-span-5">
-            <span class="flex justify-center">Hello (name admin)</span>
+            @if (isset($adminData))
+            <strong class="flex justify-center">Hello {{$adminData['name']}}</strong>
+            @endif
             <div class="flex py-3 justify-end border-t border-gray-500"></div>
             @yield('content')
          </div>

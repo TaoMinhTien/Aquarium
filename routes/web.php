@@ -13,6 +13,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\AnimalsController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\CoralReefController;
 use App\Http\Controllers\DolphinController;
 use App\Http\Controllers\OverviewController;
@@ -100,9 +101,12 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/news/upload', [NewsController::class, 'uploadNews'])->name('news.upload');
     Route::get('/news/update', [NewsController::class, 'updateNews'])->name('news.update');
     Route::get('/news/edit/{id}', [NewsController::class, 'editNews'])->name('news.edit');
+    Route::get('/bill', [BillController::class, 'view'])->name('bill.view');
     Route::delete('/news/delete/{id}', [NewsController::class, 'deleteNews'])->name('news.delete');
     Route::post('/news/handle/upload', [NewsController::class, 'handleUploadNews'])->name('handle.upload.news');
     Route::post('/news/handle', [NewsController::class, 'newsHandle'])->name('news.handle');
     Route::post('/news-submit', [NewsController::class, 'handleEditNews'])->name('news.edit.submit');
+    Route::post('/booking/detail', [BillController::class, 'bookingDetail'])->name('booking.detail');
+    Route::post('/detail-confirm', [BillController::class, 'detailConfirm'])->name('detail.confirm');
 });
 ////////////
