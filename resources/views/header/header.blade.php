@@ -24,7 +24,7 @@
             </li>
 
             <li class="nav-item has-dropdown">
-              <a class="nav-link" href="#">Animals</a>
+              <a class="nav-link" href="{{route('animals')}}">Animals</a>
               <ul class="nav-dropdown">
                 <li class="nav-dropdown-item">
                   <a class="nav-link" href="#">Details</a>

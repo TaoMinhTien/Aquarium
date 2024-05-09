@@ -15,8 +15,7 @@ class BannerController extends Controller
     public function index()
     {
         $banners = Banner::with('bannerImages')->paginate();
-
-        return view('banner.index', compact('banners'));
+        return view('Homepage', compact('banners'));
     }
 
     public function create()
