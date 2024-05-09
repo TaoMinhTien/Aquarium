@@ -34,7 +34,7 @@ use App\Http\Controllers\InformationImageController;
 use App\Http\Controllers\HomeOverviewController;
 use App\Http\Controllers\HomeOverviewImageController;
 use App\Http\Controllers\ContactAdminController;
-
+use App\Http\Controllers\HomepageController;
 use App\Models\User;
 use Illuminate\Contracts\Auth\UserProvider;
 
@@ -42,6 +42,8 @@ use Illuminate\Contracts\Auth\UserProvider;
 Route::get('/', function () {
     return view('layout/Homepage');
 });
+//
+Route::get('/', [HomepageController::class, 'index']);
 
 ///
 
@@ -97,6 +99,9 @@ Route::get('/test', [InformationController::class, 'index'])->name('test');
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {
     Route::post('/animal-submit', [AnimalsController::class, 'handleAnimalEdit'])->name('news.edit.submit');
+    Route::get('/banner/upload', [BannerController::class, 'create'])->name('banner.create');
+    Route::get('/banner/edit', [BannerController::class, 'edit'])->name('banner.edit');
+    Route::post('/banner/store', [BannerController::class, 'bannerStore'])->name('banners.store');
 
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/news/upload', [NewsController::class, 'uploadNews'])->name('news.upload');

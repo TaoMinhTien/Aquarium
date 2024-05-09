@@ -96,32 +96,26 @@
 
         <!-- News/Posts -->
         <div class = "Homepage-news">
-            <h1>Lastest Posts</h1>
+            <h1>Animals Posts</h1>
             <div class = "Homepage-Events">
+                @if(isset($animalsHomepage))
+                @foreach($animalsHomepage as $value)
+                
                 <div class = "Homepage-top-events">
-                    <img src = "{{ asset('asset/Image/fish2.jpg')}}" class = "Homepage-EventPicture">
-                    <h3>Looking for aquarium specialists?</h3>
-                    <p>Celebrate the best of Easter in AquariumName with new activities at the AquariumName and get ready
-                        for an extraordinary adventure that will enchant the whole family!</p>
+                    <img src="{{ asset('news_img/' . $value->image) }}" class = "Homepage-EventPicture">
+                    <h3>{{$value -> title}}</h3>
+                    <p>{{$value -> description}}</p>
+                    <form method="post" action="{{route('animals.infor.view')}}" class="group block">
+               @csrf
+               <input type="hidden" name="animal_infor_id" value="{{$value->id}}">
                     <button>Read More</button>
+                </form>
+
                 </div>
-                <div class = "Homepage-top-events">
-                    <img src = "{{ asset('asset/Image/fish1.jpg')}}" class = "Homepage-EventPicture">
-                    <h3>Looking for aquarium specialists?</h3>
-                    <p>Celebrate the best of Easter in AquariumName with new activities at the AquariumName and get ready
-                        for an extraordinary adventure that will enchant the whole family!</p>
-                    <button>Read More</button>
-                </div>
-                <div class = "Homepage-top-events">
-                    <img src = "{{ asset('asset/Image/fish2.jpg')}}" class = "Homepage-EventPicture">
-                    <h3>Looking for aquarium specialists?</h3>
-                    <p>Celebrate the best of Easter in AquariumName with new activities at the AquariumName and get ready
-                        for an extraordinary adventure that will enchant the whole family!</p>
-                    <button>Read More</button>
-                </div>
+                @endforeach
+                @endif
             </div>
         </div>
-
         <!-- Gallary -->
         <div class = "Homepage_gallary">
             <h1>Gallery</h1>
