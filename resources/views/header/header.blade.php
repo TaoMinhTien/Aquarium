@@ -22,19 +22,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{{"/"}}">Home</a>
             </li>
-
             <li class="nav-item has-dropdown">
-              <a class="nav-link" href="#">Animals</a>
-              <ul class="nav-dropdown">
-                <li class="nav-dropdown-item">
-                  <a class="nav-link" href="#">Details</a>
-                </li>
-                <li class="nav-dropdown-item">
-                  <a class="nav-link" href="#">Places</a>
-                </li>
-              </ul>
+              <a class="nav-link" href="{{route('animals')}}">Animals</a>
             </li>
-
             <li class="nav-item">
               <a class="nav-link" href="{{route('tickets')}}">Ticket</a>
             </li>

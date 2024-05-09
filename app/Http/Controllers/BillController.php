@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\TicketVariant;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -19,6 +20,33 @@ class BillController extends Controller
         return view('bill.bill', ['bookings' => $bookings]);
     }
     ///
+    public function filter(Request $request)
+    {
+        $statuses = $request->input('status', []);
+        $orderNumber = $request->input('order_number');
+
+        $query = Booking::with(['customer', 'ticket', 'event', 'orderNumber', 'payment']);
+        if (!empty($statuses)) {
+            $query->whereIn('status', $statuses);
+        }
+        if (!empty($orderNumber)) {
+            $query->whereHas('orderNumber', function ($query) use ($orderNumber) {
+                $query->where('order_number', 'like', '%' . $orderNumber . '%');
+            });
+        }
+        // Retrieve paginated bookings
+        $bookings = $query->get();
+
+        return response()->json([
+            'success' => true,
+            'bookings' => $bookings,
+        ]);
+    }
+
+
+
+
+    ///
     public function bookingDetail(Request $request)
     {
         $id = $request->input('booking_id');
@@ -31,12 +59,22 @@ class BillController extends Controller
     ////
     public function detailConfirm(Request $request)
     {
-       
-        $id = $request->input('booking_id');
-        $status = $request->input('status');
-        $booking = Booking::with(['customer', 'ticket', 'event', 'orderNumber', 'payment'])
-            ->where('id', $id)
-            ->first();
-        dd($booking,$status);
+        try {
+            DB::beginTransaction();
+            $id = $request->input('booking_id');
+            $booking = Booking::with(['customer', 'ticket', 'event', 'orderNumber', 'payment'])
+                ->where('id', $id)
+                ->first();
+            if ($booking && $request->input('confirm')) {
+                $booking->update(['status' => 'confirmed']);
+                DB::commit();
+                return redirect()->route('detail.confirm');
+            } else {
+                return redirect()->route('error');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('error')->withErrors([$e->getMessage()])->withInput();
+        }
     }
 }
