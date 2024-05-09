@@ -11,7 +11,6 @@ use App\Http\Controllers\ReadController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\InformationController;
 use App\Http\Controllers\AnimalsController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CoralReefController;
@@ -26,7 +25,16 @@ use App\Http\Controllers\SeaTurtleController;
 use App\Http\Controllers\SharkController;
 use App\Http\Controllers\Guide2Controller;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AboutUsImageController;
+use App\Http\Controllers\BannerImageController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\InformationController;
+use App\Http\Controllers\InformationImageController;
+use App\Http\Controllers\HomeOverviewController;
+use App\Http\Controllers\HomeOverviewImageController;
 use App\Http\Controllers\ContactAdminController;
+
 use App\Models\User;
 use Illuminate\Contracts\Auth\UserProvider;
 
@@ -54,7 +62,6 @@ Route::post('/feedback-post', [FeedbackController::class, 'handleFeedback'])->na
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/animals', [AnimalsController::class, 'index'])->name('animals');
-Route::get('/overview', [OverviewController::class, 'index'])->name('overview');
 Route::post('/login', [LoginController::class, 'HandleLogin'])->name('login.edit');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'HandleRegister'])->name('register.edit');
@@ -107,13 +114,25 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/animals/handle/upload', [AnimalsController::class, 'handleUploadAnimals'])->name('handle.upload.animals');
     Route::post('/animals/handle', [AnimalsController::class, 'animalsHandle'])->name('animals.handle');
     Route::post('/news-submit', [NewsController::class, 'handleEditNews'])->name('news.edit.submit');
-    Route::get('/booking/detail/{id}', [BillController::class, 'bookingDetail'])->name('booking.detail');
-    Route::post('/detail-confirm', [BillController::class, 'detailConfirm'])->name('detail.confirm');
-    Route::get('/animal/update', [AnimalsController::class, 'animalsUpdate'])->name('animals.update');
-    Route::post('/animal/delete', [AnimalsController::class, 'animalsDelete'])->name('animals.infor.delete');
-    Route::post('/animal/edit', [AnimalsController::class, 'animalsEdit'])->name('animal.infor.edit');
-    Route::post('/animal-submit', [AnimalsController::class, 'handleAnimalEdit'])->name('news.edit.submit');
 
+    Route::get('/', [BannerController::class, 'index'])->name('Homepage');
+    
+    Route::get('/banner/upload', [BannerController::class, 'create'])->name('banner.create');
+    Route::post('/banner', [BannerController::class, 'store'])->name('banner.store');
+    Route::get('/banner/edit', [BannerController::class, 'edit'])->name('banner.edit');
+    Route::put('/banner/{banner}', [BannerController::class, 'update'])->name('banner.update');
+    Route::delete('/banner/{banner}', [BannerController::class, 'destroy'])->name('banner.destroy');
 
+    Route::get('/information/create', [InformationController::class, 'create'])->name('information.create');
+    Route::post('/information', [InformationController::class, 'store'])->name('information.store');
+    Route::get('/information/edit', [InformationController::class, 'edit'])->name('information.edit');
+    Route::put('/information/{information}', [InformationController::class, 'update'])->name('information.update');
+    Route::delete('/information/{information}', [InformationController::class, 'destroy'])->name('information.destroy');
+
+    Route::get('/overview/create', [HomeOverviewController::class, 'create'])->name('overview.create');
+    Route::post('/overview', [HomeOverviewController::class, 'store'])->name('overview.store');
+    Route::get('/overview/edit', [HomeOverviewController::class, 'edit'])->name('overview.edit');
+    Route::put('/overview/{overview}', [HomeOverviewController::class, 'update'])->name('overview.update');
+    Route::delete('/overview/{overview}', [HomeOverviewController::class, 'destroy'])->name('overview.destroy');
 });
 ////////////

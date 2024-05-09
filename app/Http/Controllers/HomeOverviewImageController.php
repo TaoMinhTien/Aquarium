@@ -6,7 +6,7 @@ use App\Models\Overview;
 use App\Models\OverviewImage;
 use Illuminate\Http\Request;
 
-class OverviewImageController extends Controller
+class HomeOverviewImageController extends Controller
 {
     public function __construct()
     {
