@@ -13,13 +13,13 @@ class FeedbackController extends Controller
     //
     public function index()
     {
-        $fb = Feedback::orderBy('created_at', 'desc')->get();
+        $fb = Feedback::orderBy('created_at', 'desc')->simplePaginate(20);
+
         return view('layout.feedback', ['fb' => $fb]);
     }
     ////
     public function handleFeedback(Request $request)
     {
-        // dd($request);
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:150',
             'feedback_text' => 'required|max:800',

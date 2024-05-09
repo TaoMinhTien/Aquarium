@@ -61,39 +61,53 @@
     </div>
   </div>
   <div class="flex w-full items-center mt-10 justify-center">
-    <button id="loadMoreBtn" class="text-gray-800 hover:underline">Load more</button>
+    <button id="loadMoreBtn" class="text-gray-800 "></button>
   </div>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      getNews(page);
-      $('[id^="detailViewBtn"]').click(function(event) {
-        event.preventDefault();
-        var eventID = $(this).data('event-id');
-        var EventViewUrl = "/news/read/" + eventID;
-        window.location.href = EventViewUrl;
-      });
+    $('[id^="detailViewBtn"]').click(function(event) {
+      event.preventDefault();
+      var eventID = $(this).data('event-id');
+      var EventViewUrl = "/news/read/" + eventID;
+      window.location.href = EventViewUrl;
     });
 
-    var page = 1;
+    document.addEventListener("DOMContentLoaded", function() {
+      getNews();
+
+    });
+
+
+
+    var currentPage = 1;
     var newsPerPage = 5;
+    var totalNewsLoaded = 0;
+
+    window.addEventListener('scroll', function() {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        if (totalNewsLoaded >= currentPage * newsPerPage) {
+          currentPage++;
+          getNews();
+        }
+      }
+    });
+
     function getNews() {
       $.ajax({
           url: "{{ route('get.news') }}",
           type: "GET",
           data: {
-            page: page,
+            page: currentPage,
             per_page: newsPerPage
           },
         })
         .done(function(response) {
-          if (response) {
-            if (response && response.formattedEvents && response.formattedEvents.length > 0) {
-              var news = response.formattedEvents;
-              var tickets = response.tickets;
-              var newsItemsHtml = '';
-              news.forEach(function(newsItem) {
-                var newsItemId = (newsItem && newsItem.event && newsItem.event.id) ? newsItem.event.id : '';
-                var newsReadForm = `
+          console.log(response);
+          if (response && response.formattedEvents && response.formattedEvents.length > 0) {
+            var news = response.formattedEvents;
+            var newsItemsHtml = '';
+            news.forEach(function(newsItem) {
+              var newsItemId = (newsItem && newsItem.event && newsItem.event.id) ? newsItem.event.id : '';
+              var newsReadForm = `
                   <form action="{{ route('news.read', ['id' => ':id']) }}" method="POST">
                       @csrf
                       <input type="hidden" name="id" value="${newsItemId}">
@@ -102,13 +116,13 @@
                       </button>
                   </form>
               `;
-                newsReadForm = newsReadForm.replace(':id', newsItemId);
-                var startDateHtml = '';
-                if (newsItem.event && newsItem.event.start_date) {
-                  startDateHtml = `<div class="_news_l_date">${newsItem.event.start_date}</div>`;
-                }
-                var imageSrc = (newsItem.image_file_names && newsItem.image_file_names.length > 0) ? `{{ asset('news_img/') }}/${newsItem.image_file_names[0]}` : '';
-                var newsItemHtml = `
+              newsReadForm = newsReadForm.replace(':id', newsItemId);
+              var startDateHtml = '';
+              if (newsItem.event && newsItem.event.start_date) {
+                startDateHtml = `<div class="_news_l_date">${newsItem.event.start_date}</div>`;
+              }
+              var imageSrc = (newsItem.image_file_names && newsItem.image_file_names.length > 0) ? `{{ asset('news_img/') }}/${newsItem.image_file_names[0]}` : '';
+              var newsItemHtml = `
                   <div class="news-item">
                       <img class="rounded-lg" alt="${imageSrc ? '' : 'No image'}" src="${imageSrc}" />
                       <div class="_news_l">
@@ -123,24 +137,19 @@
                       <div class="flex py-3 justify-end border-t border-gray-500"></div>
                   </div>
               `;
-                newsItemsHtml += newsItemHtml;
-                $('#newsItemId').val(newsItemId);
-              });
-              $('#newsContainer').append(newsItemsHtml);
-              page++;
-            } else {
-              $('#loadMoreBtn').text('End').prop('disabled', true);
-            }
-
+              newsItemsHtml += newsItemHtml;
+              $('#newsItemId').val(newsItemId);
+            });
+            $('#newsContainer').append(newsItemsHtml);
+            totalNewsLoaded += response.formattedEvents.length;
           } else {
-
+            $('#loadMoreBtn').text('End').prop('disabled', true);
           }
         })
-        .fail(function(xhr, status, error) {});
+        .fail(function(xhr, status, error) {
+          console.error(error);
+        });
     }
-    $('#loadMoreBtn').click(function() {
-      getNews();
-    });
   </script>
 
 

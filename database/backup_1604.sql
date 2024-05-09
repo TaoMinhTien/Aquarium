@@ -16,7 +16,7 @@
 
 
 -- Dumping database structure for aquarium
-CREATE DATABASE IF NOT EXISTS `aquarium` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `aquarium` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci	 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `aquarium`;
 
 -- Dumping structure for table aquarium.contact
@@ -27,13 +27,11 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `phone` varchar(20) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `gender` varchar(50) DEFAULT NULL,
-  `event_id` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `event_id` (`event_id`),
-  CONSTRAINT `contact_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 -- Dumping data for table aquarium.contact: ~0 rows (approximately)
 

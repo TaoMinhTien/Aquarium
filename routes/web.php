@@ -96,6 +96,8 @@ Route::get('/test', [InformationController::class, 'index'])->name('test');
 
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {
+    Route::post('/animal-submit', [AnimalsController::class, 'handleAnimalEdit'])->name('news.edit.submit');
+
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/news/upload', [NewsController::class, 'uploadNews'])->name('news.upload');
     Route::get('/contactAdmin', [ContactAdminController::class, 'index'])->name('contact.contactAdmin');
@@ -114,12 +116,11 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/animals/handle/upload', [AnimalsController::class, 'handleUploadAnimals'])->name('handle.upload.animals');
     Route::post('/animals/handle', [AnimalsController::class, 'animalsHandle'])->name('animals.handle');
     Route::post('/news-submit', [NewsController::class, 'handleEditNews'])->name('news.edit.submit');
-    
-    Route::get('/banner/upload', [BannerController::class, 'create'])->name('banner.create');
-    Route::post('/banner', [BannerController::class, 'store'])->name('banner.store');
-    Route::get('/banner/edit', [BannerController::class, 'edit'])->name('banner.edit');
-    Route::put('/banner/{banner}', [BannerController::class, 'update'])->name('banner.update');
-    Route::delete('/banner/{banner}', [BannerController::class, 'destroy'])->name('banner.destroy');
+    Route::get('/booking/detail/{id}', [BillController::class, 'bookingDetail'])->name('booking.detail');
+    Route::get('/detail-confirm/{id}', [BillController::class, 'detailConfirm'])->name('detail.confirm');
+    Route::get('/animal/update', [AnimalsController::class, 'animalsUpdate'])->name('animals.update');
+    Route::post('/animal/delete', [AnimalsController::class, 'animalsDelete'])->name('animals.infor.delete');
+    Route::get('/animal/edit/{id}', [AnimalsController::class, 'animalsEdit'])->name('animal.infor.edit');
 
     Route::get('/information/create', [InformationController::class, 'create'])->name('information.create');
     Route::post('/information', [InformationController::class, 'store'])->name('information.store');

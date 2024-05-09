@@ -8,14 +8,14 @@
          <h1 class="text-xl  font-bold text-gray-900 sm:text-3xl">Animals</h1>
       </div>
       <div class="flex justify-end border-t border-gray-500"></div>
-      <div class="grid px-5 mt-4 grid-cols-1 gap-2 lg:grid-cols-4 lg:gap-2">
+      <div class="grid px-5 mt-4 grid-cols-1 gap-4 lg:grid-cols-4">
          @if (isset($animals))
          @foreach ($animals as $event)
-         <div class="h-fit rounded-lg ">
+         <div class="h_view_animal justify-between items-center	flex flex-col	h-100vh rounded-lg ">
             <form method="post" action="{{route('animals.infor.view')}}" class="group block">
                @csrf
                <input type="hidden" name="animal_infor_id" value="{{$event->id}}">
-               <img src="{{ asset('news_img/' . $event->image) }}" alt="" class="aspect-square img_animals rounded object-cover" />
+               <img src="{{ asset('news_img/' . $event->image) }}" alt="" class="aspect-square  img_animals rounded object-cover" />
                <div class="mt-2 mb-3">
                   <h3 class="font-medium text-gray-900 ">
                      {{$event->title}}
@@ -31,6 +31,9 @@
          </div>
          @endforeach
          @endif
+      </div>
+      <div class="flex justify-center mt-4">
+         <div>{{ $animals->links() }}</div>
       </div>
    </div>
    @endsection
