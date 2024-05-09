@@ -143,8 +143,26 @@ class AnimalsController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $AnimalInfor = AnimalInfor::findOrFail($request->input('animal_infor_id', null)) ?? new AnimalInfor();
-        $AnimalInfor->title = $request->input('title_name');
-        $AnimalInfor->title = $request->input('title_name');
+        try {
+            DB::beginTransaction();
+            $descriptionrepai = $request->editor;
+            preg_match('/src="([^"]+)"/', $descriptionrepai, $matches);
+            $imageUrl = $matches[1] ?? null;
+            $imageFileName = basename($imageUrl);
+
+            $AnimalInfor = AnimalInfor::find($request->input('animal_infor_id'));
+            $AnimalInfor->title = $request->input('title_name');
+            $AnimalInfor->image = $imageFileName;
+            $AnimalInfor->description = $request->input('description');
+            $AnimalInfor->save();
+            $AnimalInforInfor = AnimalInforInfor::where('animal_id',  $AnimalInfor->id)->first();
+            $AnimalInforInfor->description = $descriptionrepai;
+            $AnimalInforInfor->save();
+            DB::commit();
+            return redirect()->back()->with('success', 'Animal update successfully!');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'An error occurred while update the news.');
+        }
     }
 }

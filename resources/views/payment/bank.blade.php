@@ -3,7 +3,40 @@
 @section('content')
 <div class="container-quang">
    <div class="grid py-10 px-10 grid-cols-1 gap-2 lg:grid-cols-2 ">
-      <div class=" rounded-lg bg-gray-200"></div>
+      <div class=" rounded-lg ">
+         @if ($payment == '')
+         <div>
+            <div class="flex items-center h-full w-full justify-center	">
+               <img class="w-2/5" src="{{ asset('images-quang/qrbank.png') }}" alt="QR Bank">
+            </div>
+            <div class="flex justify-center">
+               <table>
+                  <tr>
+                     <td class=" text-sm flex justify-end">Account name:</td>
+                     <td class="text-sm px-4 ml-4">Aquarium</td>
+                  </tr>
+                  <tr>
+                     <td class=" text-sm flex justify-end">Account number:</td>
+                     <td class="text-sm px-4 ml-4">12345678999</td>
+                  </tr>
+                  <tr>
+                     <td class="text-sm flex justify-end">Bank:</td>
+                     <td class="text-sm px-4 ml-4">Vietcombank</td>
+                  </tr>
+                  <tr>
+                     <td class="text-sm flex justify-end">Total:</td>
+                     <td class="text-sm px-4 ml-4"> {{ number_format($total/ 1000, 3, ',', ',') }}đ </td>
+                  </tr>
+                  <tr>
+                     <td class=" text-sm flex justify-end">Memo:</td>
+                     <td class="text-sm px-4 ml-4"><strong class="text-red-600">{{$orderNumber}}</strong></td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         @endif
+
+      </div>
       <div class=" rounded-lg ">
          <form action="{{Route('handlecheckout.checkout')}}" method="POST">
             @csrf
