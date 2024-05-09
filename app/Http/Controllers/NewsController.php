@@ -132,7 +132,7 @@ class NewsController extends Controller
     //
     public function uploadNews()
     {
-        return view('news.upload', []);
+        return view('news.upload');
     }
     //
     public function deleteNews($id)
@@ -212,7 +212,6 @@ class NewsController extends Controller
     //
     public function newsHandle(Request $request)
     {
-        // dd($request);
         try {
             $validator = Validator::make($request->all(), [
                 'title_name' => 'required|string|max:255',

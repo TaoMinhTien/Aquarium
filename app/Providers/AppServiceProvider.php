@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Tickets;
 use App\Models\TicketVariant;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +31,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view) {
-
+            if (Auth::check()) {
+                $user = Auth::user();
+                $adminData = [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ];
+            }else{
+                $adminData = NULL;
+            }
             $randomDataSlider_02 = TicketVariant::inRandomOrder()
                 ->join('events', 'ticket_variant.event_id', '=', 'events.id')
                 ->join('tickets', 'ticket_variant.ticket_id', '=', 'tickets.id')
@@ -57,6 +67,7 @@ class AppServiceProvider extends ServiceProvider
                 })
                 ->limit(2)
                 ->get();
+            $view->with('adminData', $adminData);
             $view->with('dataSlider_02', $randomDataSlider_02);
             $view->with('slider_tickets', $slider_tickets);
         });

@@ -16,6 +16,29 @@ class Booking extends Model
         'notes',
         'status',
         'totalmount',
-        
+
     ];
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
+    }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
+
+    public function orderNumber()
+    {
+        return $this->belongsTo(OrderNumber::class);
+    }
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
+    }
 }

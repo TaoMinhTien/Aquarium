@@ -145,9 +145,8 @@ class CheckoutController extends Controller
                 return redirect()->route('error');
             }
         }
-        $payment = new Payment();
-        $payment->name = $dataCheckout['payment'];
-        $payment->save();
+
+        $payment = Payment::firstOrCreate(['name' => $dataCheckout['payment']]);
         $orderNumber = new OrderNumber();
         $orderNumber->order_number = $dataCheckout['orderNumber'];
         $orderNumber->save();
@@ -172,6 +171,7 @@ class CheckoutController extends Controller
             $booking->customer_id = $customer->id;
             $booking->ticket_id = $item['ticket_id'];
             $booking->event_id = $item['event_id'];
+            $booking->payment_id = $payment->id;
             $booking->order_number_id = $orderNumber->id;
             $booking->quantity = $item['quantity'];
             $booking->order_date = $dataCheckout['time'];
