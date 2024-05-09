@@ -96,6 +96,8 @@ Route::get('/test', [InformationController::class, 'index'])->name('test');
 
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {
+    Route::post('/animal-submit', [AnimalsController::class, 'handleAnimalEdit'])->name('news.edit.submit');
+
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/news/upload', [NewsController::class, 'uploadNews'])->name('news.upload');
     Route::get('/contactAdmin', [ContactAdminController::class, 'index'])->name('contact.contactAdmin');
@@ -117,6 +119,11 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/animals/handle/upload', [AnimalsController::class, 'handleUploadAnimals'])->name('handle.upload.animals');
     Route::post('/animals/handle', [AnimalsController::class, 'animalsHandle'])->name('animals.handle');
     Route::post('/news-submit', [NewsController::class, 'handleEditNews'])->name('news.edit.submit');
+    Route::get('/booking/detail/{id}', [BillController::class, 'bookingDetail'])->name('booking.detail');
+    Route::get('/detail-confirm/{id}', [BillController::class, 'detailConfirm'])->name('detail.confirm');
+    Route::get('/animal/update', [AnimalsController::class, 'animalsUpdate'])->name('animals.update');
+    Route::post('/animal/delete', [AnimalsController::class, 'animalsDelete'])->name('animals.infor.delete');
+    Route::get('/animal/edit/{id}', [AnimalsController::class, 'animalsEdit'])->name('animal.infor.edit');
 
     // Route::get('/', [BannerController::class, 'index'])->name('Homepage');
     

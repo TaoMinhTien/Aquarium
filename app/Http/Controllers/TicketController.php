@@ -67,23 +67,29 @@ class TicketController extends Controller
     public function ticketsGet(Request $request)
     {
         $page = $request->input('page');
-        $perPage = 12;
-        $totalTickets = Tickets::count();
+        $perPage = 16; 
+        $totalTickets = Tickets::whereHas('event', function ($query) {
+            $query->where('status', 'Active');
+        })->count();
+
         $skip = ($page - 1) * $perPage;
+
         $tickets = Tickets::whereHas('event', function ($query) {
             $query->where('status', 'Active');
         })
             ->skip($skip)
             ->take($perPage)
             ->get();
-        if (($skip + $perPage) >= $totalTickets) {
-            $tickets = [];
-        }
+
+        $hasMore = ($skip + $perPage) < $totalTickets;
+
         return response()->json([
             'ticket' => $tickets,
-            'page' => $page
+            'page' => $page,
+            'has_more' => $hasMore
         ]);
     }
+
     //
     public function checkStock(Request $request)
     {

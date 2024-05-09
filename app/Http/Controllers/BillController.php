@@ -56,18 +56,18 @@ class BillController extends Controller
         return view('bill.detail', ['booking' => $booking]);
     }
     ////
-    public function detailConfirm($id, Request $request)
+    public function detailConfirm($id)
     {
-        // dd($request);
+        // dd($id);
         try {
             DB::beginTransaction();
             $booking = Booking::with(['customer', 'ticket', 'event', 'orderNumber', 'payment'])
                 ->where('id', $id)
                 ->first();
-            if ($booking && $request->input('confirm')) {
+            if ($booking) {
                 $booking->update(['status' => 'confirmed']);
                 DB::commit();
-                return redirect()->back();
+                return redirect()->back()->with('success', 'Confirm successfully!');
             } else {
                 return redirect()->route('error');
             }

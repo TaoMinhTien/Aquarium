@@ -101,16 +101,16 @@
                   style: 'currency',
                   currency: 'VND'
                });
-               var bookingDetailUrl = "{{ route('booking.detail') }}";
+               var bookingDetailUrl = "{{ route('booking.detail', ['id' => ':bookingId' ]) }}";
+               bookingDetailUrl = bookingDetailUrl.replace(':bookingId', booking.id);
                var bookingHtml = '<tr class="mt-2">' +
                   '<td class="px-4 py-2 font-medium text-gray-700">' + booking.customer.name + '</td>' +
-                  '<td class="px-4 py-2 font-medium text-gray-700">' + (booking.order_number ? booking.order_number.order_number : 'N/A') + '</td>' +
+                  '<td class="px-4 py-2 font-medium text-red-700">' + (booking.order_number ? booking.order_number.order_number : 'N/A') + '</td>' +
                   '<td class="px-4 py-2 font-medium text-red-700">' + booking.status + '</td>' +
                   '<td class="px-4 py-2 font-medium text-gray-700">' + VND + '</td>' +
                   '<td>' +
-                  '<form action="' + bookingDetailUrl + '" method="POST">' +
+                  '<form action="' + bookingDetailUrl + '" method="GET">' +
                   '@csrf' +
-                  '<input type="hidden" name="booking_id" value="' + booking.id + '">' +
                   '<button class="bg-blue-600 hover:bg-blue-700 mr-4 text-white font-bold py-2 px-4 rounded-full">' +
                   'Detail' +
                   '</button>' +
@@ -141,16 +141,16 @@
                   style: 'currency',
                   currency: 'VND'
                });
-               var bookingDetailUrl = "{{ route('booking.detail') }}";
+               var bookingDetailUrl = "{{ route('booking.detail', ['id' => ':bookingId' ]) }}";
+               bookingDetailUrl = bookingDetailUrl.replace(':bookingId', booking.id);
                var bookingHtml = '<tr class="mt-2">' +
                   '<td class="px-4 py-2 font-medium text-gray-700">' + booking.customer.name + '</td>' +
                   '<td class="px-4 py-2 font-medium text-gray-700">' + (booking.order_number ? booking.order_number.order_number : 'N/A') + '</td>' +
                   '<td class="px-4 py-2 font-medium text-red-700">' + booking.status + '</td>' +
                   '<td class="px-4 py-2 font-medium text-gray-700">' + VND + '</td>' +
                   '<td>' +
-                  '<form action="' + bookingDetailUrl + '" method="POST">' +
+                  '<form action="' + bookingDetailUrl + '" method="GET">' +
                   '@csrf' +
-                  '<input type="hidden" name="booking_id" value="' + booking.id + '">' +
                   '<button class="bg-blue-600 hover:bg-blue-700 mr-4 text-white font-bold py-2 px-4 rounded-full">' +
                   'Detail' +
                   '</button>' +

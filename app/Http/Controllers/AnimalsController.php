@@ -25,7 +25,7 @@ class AnimalsController extends Controller
     //
     public function index()
     {
-        $animals = AnimalInfor::all();
+        $animals = AnimalInfor::simplePaginate(16);
         return view('animals.view', ['animals' => $animals]);
     }
     ///
@@ -122,11 +122,10 @@ class AnimalsController extends Controller
         };
     }
     ///
-    public function animalsEdit(Request $request)
+    public function animalsEdit($id)
     {
-        $animalInforId = $request->input('animals_infor_id');
-        $animals = AnimalInfor::find($animalInforId);
-        $animalInforInfor = AnimalInforInfor::where('animal_id', $animalInforId)->first();
+        $animals = AnimalInfor::find($id);
+        $animalInforInfor = AnimalInforInfor::where('animal_id', $id)->first();
 
         return view('animals.edit', [
             'animals' => $animals,
