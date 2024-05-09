@@ -33,6 +33,7 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\InformationImageController;
 use App\Http\Controllers\HomeOverviewController;
 use App\Http\Controllers\HomeOverviewImageController;
+use App\Http\Controllers\ContactAdminController;
 
 use App\Models\User;
 use Illuminate\Contracts\Auth\UserProvider;
@@ -61,7 +62,6 @@ Route::post('/feedback-post', [FeedbackController::class, 'handleFeedback'])->na
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/animals', [AnimalsController::class, 'index'])->name('animals');
-Route::get('/overview', [OverviewController::class, 'index'])->name('overview');
 Route::post('/login', [LoginController::class, 'HandleLogin'])->name('login.edit');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'HandleRegister'])->name('register.edit');
