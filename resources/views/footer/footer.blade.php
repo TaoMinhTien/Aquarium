@@ -81,7 +81,7 @@
         </ul>
         
         <div class="footer_legal">
-          <p class = "mb-0">&copy; 2019 Something. All rights reserved.</p>
+          <p class = "mb-0" style="color: #999">&copy; 2019 Something. All rights reserved.</p>
           
           <div class="footer_legal__links">
             <span> Made with <span class="heart">♥</span> remotely from Anywhere</span>

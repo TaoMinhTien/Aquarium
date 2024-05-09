@@ -25,10 +25,5 @@ class ContactController extends Controller
             'notes' => 'string|max:500',
 
         ]);
-        if ($validator->fails()) {
-            return redirect()->route('register')->withErrors($validator)->withInput();
-        }
-        dd($validator);
-        return 'handle contact';
     }
 }

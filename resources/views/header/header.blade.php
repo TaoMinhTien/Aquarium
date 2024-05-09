@@ -11,8 +11,8 @@
   <div class="container-hieu">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{{"/"}}">
-          <img src="{{ asset('asset/Image/logo.jpg') }}" alt="Logo" width="100" height="89" class="d-inline-block align-text-top">
+        <a class="navbar-brand m-0 p-0" href="{{"/"}}">
+          <img src="{{ asset('asset/Image/logo.jpg') }}" alt="Logo" width="90" class="d-inline-block align-text-top m-0 p-0">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,7 @@
               <a class="nav-link" href="{{route('news.view')}}">Events</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="{{route('contact.view')}}">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{route('feedback')}}">Feedback</a>
@@ -68,5 +68,4 @@
         </div>
       </div>
     </nav>
-
   </div>

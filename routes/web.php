@@ -86,7 +86,6 @@ Route::get('/tickets', [TicketController::class, 'tickets'])->name('tickets');
 
 
 Route::get('/tickets/get', [TicketController::class, 'ticketsGet'])->name('tickets.get');
-Route::get('/contact', [ContactController::class, 'contactView'])->name('contact.view');
 Route::post('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
 Route::get('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
 Route::post('/news/detail/{id}', [ReadController::class, 'detailRead'])->name('detail.read');
