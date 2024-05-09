@@ -26,8 +26,10 @@ use App\Http\Controllers\SeaTurtleController;
 use App\Http\Controllers\SharkController;
 use App\Http\Controllers\Guide2Controller;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactAdminController;
 use App\Models\User;
 use Illuminate\Contracts\Auth\UserProvider;
+
 
 Route::get('/', function () {
     return view('layout/Homepage');
@@ -37,6 +39,7 @@ Route::get('/', function () {
 
 Route::get('/tickets/get', [TicketController::class, 'ticketsGet'])->name('tickets.get');
 Route::get('/contact', [ContactController::class, 'contactView'])->name('contact.view');
+Route::post('/submit-form', [ContactController::class, 'submitForm'])->name('submit.form');
 Route::post('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
 Route::get('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
 Route::post('/news/detail/{id}', [ReadController::class, 'detailRead'])->name('detail.read');
@@ -75,7 +78,6 @@ Route::post('/Animals/view', [AnimalsController::class, 'animalsView'])->name('a
 
 
 Route::get('/tickets/get', [TicketController::class, 'ticketsGet'])->name('tickets.get');
-Route::get('/contact', [ContactController::class, 'contactView'])->name('contact.view');
 Route::post('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
 Route::get('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
 Route::post('/news/detail/{id}', [ReadController::class, 'detailRead'])->name('detail.read');
@@ -89,6 +91,7 @@ Route::get('/test', [InformationController::class, 'index'])->name('test');
 Route::middleware('auth.admin')->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/news/upload', [NewsController::class, 'uploadNews'])->name('news.upload');
+    Route::get('/contactAdmin', [ContactAdminController::class, 'index'])->name('contact.contactAdmin');
     Route::get('/news/update', [NewsController::class, 'updateNews'])->name('news.update');
     Route::get('/news/edit/{id}', [NewsController::class, 'editNews'])->name('news.edit');
     Route::get('/bill', [BillController::class, 'view'])->name('bill.view');

@@ -106,7 +106,7 @@
             </details>
          </li>
          <li>
-            <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
+            <a href="{{route('contact.contactAdmin')}}" class="block rounded-lg px-4 py-2 text-sm font-medium  text-gray-800 hover:bg-gray-300 hover:text-black">
                Contact
             </a>
          </li>

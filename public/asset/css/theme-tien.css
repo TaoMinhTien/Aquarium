@@ -1,0 +1,117 @@
+.container-tien {
+    max-width: 1920px;
+    margin-top: 95px;
+}
+
+.container-tien .banner_contact-tien {
+    background: url('../Image/aqua3.jpg');
+    background-size: cover;
+    width: 100%;
+}
+
+.container-tien .banner_contact-tien .title-banner-tien {
+    text-align: center;
+    padding: 150px 0;
+}
+
+.container-tien .banner_contact-tien .title-banner-tien h1 {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 50px;
+    color: white;
+}
+
+.container-tien .banner_contact-tien .title-banner-tien a {
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+
+}
+
+.container-tien .row .content-contact-tien {
+    padding: 50px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.text-description-tien {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.button-tien {
+    padding-left: 12px;
+    padding-right: 12px;
+    margin: 30px 0px 50px 0px;
+}
+
+.contact-gender-tien {
+    letter-spacing: 0.9px;
+    margin-top: 57px;
+    text-align: center;
+}
+
+.contact-gender-tien .male {
+    margin-right: 30px;
+}
+
+.form-contact-tien .row label {
+    font-weight: bold;
+}
+
+.text-description-tien label {
+    font-weight: bold;
+}
+
+.address-map-tien iframe {
+    width: 100%;
+    position: relative;
+}
+
+.address-map-tien .box-address-map-tien {
+    border: 2px groove #2aa2b0dd;
+    padding: 20px;
+    position: absolute;
+    z-index: 2;
+    margin-top: -290px;
+    margin-left: 1060px;
+    background-color: #2aa2b0dd;
+    filter: drop-shadow(0 0 0.75rem #2aa2b0dd);
+    border-radius: 10px;
+}
+
+.box-address-map-tien .address-tien {
+    position: relative;
+    margin-left: 25px;
+}
+
+.box-address-map-tien .icon-point-tien {
+    position: absolute;
+    z-index: 3;
+    height: 23px;
+}
+
+.box-address-map-tien .phone-tien {
+    position: relative;
+    margin-left: 25px;
+}
+
+.box-address-map-tien .icon-phone-tien {
+    position: absolute;
+    z-index: 3;
+    height: 23px;
+}
+
+.address-map-tien p {
+    color: white;
+}
+
+.form-success-message-tien{
+    padding: 15px;
+    font-size: 20px;
+    margin: 12px;
+    border: 1px groove;
+    background: palegreen;
+    border-radius: 15px;
+    display: none;
+}
