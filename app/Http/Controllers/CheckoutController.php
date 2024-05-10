@@ -102,12 +102,17 @@ class CheckoutController extends Controller
             $subtotal += $item['total_price'];
         }
         $total = $subtotal - $discount;
+        $paymentName = $request->input('paymentmethod');
+        if (!$paymentName) {
+            return redirect()->back()->withErrors(['message' => 'Invalid payment method'])->withInput();
+        }
         $dataCheckout = [
             'payment' => $payment,
             'time' => $time,
             'total' => $total,
             'cartQuantity' => $cartQuantity,
             'orderNumber' => $orderNumber,
+            'paymentName' => $paymentName,
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'address' => $request->input('address'),
@@ -117,12 +122,7 @@ class CheckoutController extends Controller
         ];
         // dd($dataCheckout);
         Session::put('dataCheckout', $dataCheckout);
-        $paymentName = $request->input('paymentmethod');
-        if ($paymentName) {
-            return view( 'payment.bank', $dataCheckout);
-        } else {
-            return redirect()->back()->withErrors(['message' => 'Invalid payment method'])->withInput();
-        }
+        return view('payment.bank', $dataCheckout);
     }
     ///
     public function handleCheckout(Request $request)

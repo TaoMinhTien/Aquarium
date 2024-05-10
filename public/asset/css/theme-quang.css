@@ -121,7 +121,6 @@ textarea {
 /* register */
 
 .body-quang {
-   font-family: "Open Sans";
    background-image: url("https://cdn-imgix.headout.com/microbrands-content-image/image/8fedc7b7c9c8a6724c20095403281854-sea%20life%20london.jpg");
    height: 100%;
    width: 100%;
@@ -647,4 +646,18 @@ a {
 .rate>input:checked~label:hover~label,
 .rate>label:hover~input:checked~label {
    color: #c59b08;
+}
+.form_login{
+   width: 600px;
+}
+.img_animals2{
+   width: 200px;
+   min-width: 200px; 
+} 
+.content_animals{
+   display: flex;
+   justify-content: start;
+   
+   width: fit-content;
+
 }

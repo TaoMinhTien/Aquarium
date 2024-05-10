@@ -133,7 +133,7 @@ class AnimalsController extends Controller
         ]);
     }
     ///
-    public function handleAnimalEdit(Request $request)
+    public function animalsEditSubmit(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'title_name' => 'required|string|max:255',
@@ -149,7 +149,7 @@ class AnimalsController extends Controller
             $imageUrl = $matches[1] ?? null;
             $imageFileName = basename($imageUrl);
 
-            $AnimalInfor = AnimalInfor::find($request->input('animal_infor_id'));
+            $AnimalInfor = AnimalInfor::find($id);
             $AnimalInfor->title = $request->input('title_name');
             $AnimalInfor->image = $imageFileName;
             $AnimalInfor->description = $request->input('description');

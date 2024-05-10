@@ -29,7 +29,7 @@
                      </form>
                   </td>
                   <td>
-                     <form action="{{ route('user.edit') }}" method="POST">
+                     <form action="{{ route('user.edit') }}" method="get">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ $value -> id }}">
                         <button type="submit" class="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-3 rounded-full">
