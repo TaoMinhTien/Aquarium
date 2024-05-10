@@ -2,7 +2,7 @@
   <h2 class="text-2xl flex font-bold text-dark"> Upload news</h2>
   <div class="flex items-center justify-center">
     <div class="w-8/12">
-      <form method="post" action="{{ route('admin.banners.create') }}" enctype="multipart/form-data">
+      <form method="post" action="{{ route('about_us.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="mt-4">
           <label for="title" class="form-label">Title</label>

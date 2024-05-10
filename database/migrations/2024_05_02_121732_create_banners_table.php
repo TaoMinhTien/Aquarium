@@ -14,6 +14,7 @@ return new class extends Migration
     Schema::create('banners', function (Blueprint $table) {
         $table->id();
         $table->string('title', 50);
+        $table->enum('status', ['Active', 'Expired'])->nullable();
         $table->text('description')->nullable();
         $table->timestamps();
     });

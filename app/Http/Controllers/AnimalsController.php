@@ -42,6 +42,7 @@ class AnimalsController extends Controller
         $animals = AnimalInfor::inRandomOrder()
             ->take(3)
             ->get();
+            
         $animalInforInfor = AnimalInforInfor::where('animal_id', $animalInforId)->first();
         return view('animals.animals_infor', [
             'animals' => $animals,

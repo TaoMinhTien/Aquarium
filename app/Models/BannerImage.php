@@ -5,7 +5,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BannerImage extends Model
 {
-    protected $fillable = ['image_url'];
+    protected $table = 'banner_images';
+
+    protected $fillable = [
+        'banner_id',
+
+        'image_url',
+    ];
 
     public function banner(): BelongsTo
     {
