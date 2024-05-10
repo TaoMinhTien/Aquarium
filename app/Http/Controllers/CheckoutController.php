@@ -212,20 +212,20 @@ class CheckoutController extends Controller
             $totalPrice = $dataCheckout['total'];
             // dd($orderNumber, $dataCheckout);
 
-            // $sendMail = new SendMailController();
-            // $sendMail->sendMail(
-            //     $cartCheckout,
-            //     $dataCheckout,
-            //     $orderTime,
-            //     $orderNumber,
-            //     $payment,
-            //     $orderTotal,
-            //     $totalPrice,
-            // );
-            // DB::commit();
-            // Session::forget('cart');
-            // Session::forget('dataCheckout');
-            // Session::forget('orderNumber');
+            $sendMail = new SendMailController();
+            $sendMail->sendMail(
+                $cartCheckout,
+                $dataCheckout,
+                $orderTime,
+                $orderNumber,
+                $payment,
+                $orderTotal,
+                $totalPrice,
+            );
+            DB::commit();
+            Session::forget('cart');
+            Session::forget('dataCheckout');
+            Session::forget('orderNumber');
             return view('layout.thankyou');
         } catch (\Exception $e) {
             DB::rollBack();

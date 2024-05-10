@@ -48,7 +48,7 @@
             </div>
          </div>
          <div class=" rounded-lg lg:col-span-3">
-            <table class="w-full divide-y-2 divide-gray-400 bg-white text-sm">
+            <table class="w-full mb-5 divide-y-2 divide-gray-400 bg-white text-sm">
                <thead class="ltr:text-left rtl:text-right">
                   <tr>
                      <th class=" px-4 py-2  font-medium text-gray-900">Name</th>
