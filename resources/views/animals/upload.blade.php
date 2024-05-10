@@ -3,6 +3,11 @@
 @section('content')
 <div class="px-5">
    <h2 class="text-2xl flex font-bold text-gray-900 ">Animals upload</h2>
+   @if (session('success'))
+   <div class="alert flex justify-center mt-2 bg-white text-blue-700 ">
+      <strong>{{ session('success') }} </strong>
+   </div>
+   @endif
    <div class="flex items-center justify-center">
       <div class="w-8/12">
          <form method="post" action="{{Route('animals.handle')}}" enctype="multipart/form-data">
@@ -18,11 +23,6 @@
             <div class="mt-3">
                <textarea class="w-full" name="editor" id="editor"></textarea>
             </div>
-            @if (session('success'))
-            <div class="alert mt-2 bg-white text-blue-700 ">
-               <strong>{{ session('success') }} </strong>
-            </div>
-            @endif
             @if ($errors->any())
             <div class="alert mt-2 bg-white ">
                <ul class="mb-1">
@@ -56,7 +56,7 @@
                   evt.preventDefault();
                   var responseData = evt.data.responseData;
                   var imageUrl = responseData.url;
-                  console.log(imageUrl,responseData);
+                  console.log(imageUrl, responseData);
                   $.ajax({
                      url: "{{ route('animals.handle') }}",
                      method: 'POST',
