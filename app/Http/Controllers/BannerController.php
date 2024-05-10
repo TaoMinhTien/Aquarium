@@ -47,14 +47,11 @@ class BannerController extends Controller
                 $image->move(public_path('news_img'), $fileName); 
                 $url = asset('news_img/' . $fileName);
                  $BannerImage = new BannerImage ();
-                 $BannerImage -> banner_id = $banner->id;
                  $BannerImage -> image_url = $fileName;
                  $BannerImage ->save();
             }
         }
         
         return 'ok';
-
-
     }
 }

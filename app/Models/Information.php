@@ -7,8 +7,5 @@ class Information extends Model
 {
     protected $fillable = ['title', 'description'];
 
-    public function images(): HasMany
-    {
-        return $this->hasMany(InformationImage::class);
-    }
+    protected $table = 'informations';
 }
