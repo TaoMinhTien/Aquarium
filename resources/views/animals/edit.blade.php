@@ -2,10 +2,15 @@
 @section('title', 'Animals - Edit')
 @section('content')
 <div class="px-5">
-   <h2 class="text-2xl flex font-bold text-gray-900 ">Animals eidt</h2>
+   <h2 class="text-2xl flex font-bold text-gray-900 ">Animals edit</h2>
+   @if (session('success'))
+   <div class="alert flex justify-center mt-2 bg-white text-blue-700 ">
+      <strong>{{ session('success') }} </strong>
+   </div>
+   @endif
    <div class="flex items-center justify-center">
       <div class="w-8/12">
-         <form method="post" action="{{Route('news.edit.submit')}}" enctype="multipart/form-data">
+         <form method="get" action="{{Route('animals.edit.submit',['id' => $animals -> id])}}" enctype="multipart/form-data">
             @csrf
             <div class="mt-3">
                <label for="title_name" class="text-sm font-bold text-gray-700 tracking-wide">Title name</label>
@@ -18,11 +23,7 @@
             <div class="mt-3">
                <textarea class="w-full" name="editor" id="editor">{{$animalInforInfor -> description}}</textarea>
             </div>
-            @if (session('success'))
-            <div class="alert mt-2 bg-white text-blue-700 ">
-               <strong>{{ session('success') }} </strong>
-            </div>
-            @endif
+
             @if ($errors->any())
             <div class="alert mt-2 bg-white ">
                <ul class="mb-1">
@@ -34,7 +35,6 @@
                </ul>
             </div>
             @endif
-            <input type="hidden" value="{{$animals -> id}}" name="animal_infor_id">
             <button type="submit" class="block my-4 mr-2 rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
                Upload
             </button>

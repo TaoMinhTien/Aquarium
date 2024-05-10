@@ -46,7 +46,6 @@ Route::get('/', function () {
 Route::get('/', [HomepageController::class, 'index']);
 
 ///
-
 Route::get('/tickets/get', [TicketController::class, 'ticketsGet'])->name('tickets.get');
 Route::get('/contact', [ContactController::class, 'contactView'])->name('contact.view');
 Route::post('/submit-form', [ContactController::class, 'submitForm'])->name('submit.form');
@@ -61,7 +60,6 @@ Route::get('/cart-quantity', [CartController::class, 'cartQuantity'])->name('car
 Route::get('/cart-get-totalitems', [CartController::class, 'getTotalItems'])->name('gettotalitems');
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
 Route::post('/feedback-post', [FeedbackController::class, 'handleFeedback'])->name('feedback.post');
-
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/animals', [AnimalsController::class, 'index'])->name('animals');
 Route::post('/login', [LoginController::class, 'HandleLogin'])->name('login.edit');
@@ -83,9 +81,6 @@ Route::get('/tickets/view', [TicketController::class, 'ticketview'])->name('tick
 Route::get('/tickets/stock', [TicketController::class, 'checkStock'])->name('checkStock');
 Route::get('/tickets', [TicketController::class, 'tickets'])->name('tickets');
 Route::post('/Animals/view', [AnimalsController::class, 'animalsView'])->name('animals.infor.view');
-
-
-
 Route::get('/tickets/get', [TicketController::class, 'ticketsGet'])->name('tickets.get');
 Route::post('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
 Route::get('/news/read/{id}', [ReadController::class, 'newsRead'])->name('news.read');
@@ -98,11 +93,6 @@ Route::get('/test', [InformationController::class, 'index'])->name('test');
 
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {
-    Route::post('/animal-submit', [AnimalsController::class, 'handleAnimalEdit'])->name('news.edit.submit');
-    Route::get('/banner/upload', [BannerController::class, 'create'])->name('banner.create');
-    Route::get('/banner/edit', [BannerController::class, 'edit'])->name('banner.edit');
-    Route::post('/banner/store', [BannerController::class, 'bannerStore'])->name('banners.store');
-
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/news/upload', [NewsController::class, 'uploadNews'])->name('news.upload');
     Route::get('/contactAdmin', [ContactAdminController::class, 'index'])->name('contact.contactAdmin');
@@ -113,13 +103,14 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/animals/upload', [AnimalsController::class, 'animalsUpload'])->name('animals.upload');
     Route::get('/user', [UserController::class, 'view'])->name('user.view');
     Route::post('/user/delete', [UserController::class, 'userDelete'])->name('user.delete');
-    Route::post('/user/edit', [UserController::class, 'userEdit'])->name('user.edit');
+    Route::get('/user/edit', [UserController::class, 'userEdit'])->name('user.edit');
     Route::post('/user/update', [UserController::class, 'userUpdate'])->name('user.handle.update');
     Route::delete('/news/delete/{id}', [NewsController::class, 'deleteNews'])->name('news.delete');
     Route::post('/news/handle/upload', [NewsController::class, 'handleUploadNews'])->name('handle.upload.news');
     Route::post('/news/handle', [NewsController::class, 'newsHandle'])->name('news.handle');
     Route::post('/animals/handle/upload', [AnimalsController::class, 'handleUploadAnimals'])->name('handle.upload.animals');
     Route::post('/animals/handle', [AnimalsController::class, 'animalsHandle'])->name('animals.handle');
+    Route::get('/animals-edit/{id}', [AnimalsController::class, 'animalsEditSubmit'])->name('animals.edit.submit');
     Route::post('/news-submit', [NewsController::class, 'handleEditNews'])->name('news.edit.submit');
     Route::get('/booking/detail/{id}', [BillController::class, 'bookingDetail'])->name('booking.detail');
     Route::get('/detail-confirm/{id}', [BillController::class, 'detailConfirm'])->name('detail.confirm');

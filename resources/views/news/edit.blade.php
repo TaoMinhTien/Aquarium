@@ -3,24 +3,14 @@
 @section('content')
 <div class="px-5">
    <h2 class="text-2xl flex font-bold text-gray-900 "> Edit news</h2>
+   @if (session('success'))
+   <div class="alert my-2 flex justify-center bg-white text-blue-700">
+      <strong>{{ session('success') }} </strong>
+   </div>
+   @endif
    <div class="flex mt-2 items-center justify-center">
       <div class="w-8/12">
-         @if (session('success'))
-         <div class="alert my-2 bg-white text-blue-700">
-            <strong>{{ session('success') }} </strong>
-         </div>
-         @endif
-         @if ($errors->any())
-         <div class="alert my-2 bg-white ">
-            <ul class="mb-1">
-               @foreach ($errors->all() as $error)
-               <div class="mt-0  text-red-700 rounded-xl relative" role="alert">
-                  <li class="block sm:inline text-xs">{{ $error }}</li>
-               </div>
-               @endforeach
-            </ul>
-         </div>
-         @endif
+
          <form method="post" action="{{Route('news.edit.submit')}}" enctype="multipart/form-data">
             @csrf
             <div class="mt-3">
@@ -81,7 +71,17 @@
             <div class="mt-3">
                <textarea class="w-full" name="editor" id="editor">{{ $eventEdit -> description }}</textarea>
             </div>
-
+            @if ($errors->any())
+            <div class="alert my-2 bg-white ">
+               <ul class="mb-1">
+                  @foreach ($errors->all() as $error)
+                  <div class="mt-0  text-red-700 rounded-xl relative" role="alert">
+                     <li class="block sm:inline text-xs">{{ $error }}</li>
+                  </div>
+                  @endforeach
+               </ul>
+            </div>
+            @endif
             <input type="hidden" name="id" value="{{ $eventEdit -> id }}">
             <button type="submit" class="block my-4 mr-2 rounded-xl bg-gray-800 px-8 py-2 text-sm text-white transition hover:bg-black">
                Update

@@ -29,7 +29,7 @@
                         <input type="hidden" name="animal_infor_id" value="{{$event->id}}">
                         <button type="submit">
                            <div class="flex">
-                              <span>
+                              <span class="img_animals2">
                                  <img src="{{ asset('news_img/' . $event->image) }}" alt="" class="w-fit">
                               </span>
                               <div>
