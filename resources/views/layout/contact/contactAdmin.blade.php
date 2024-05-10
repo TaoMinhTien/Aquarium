@@ -1,13 +1,10 @@
 @extends('admin.dashboard')
 @section('title', 'Contact')
 @section('content')
-@extends('admin.dashboard')
-@section('title', 'News - All')
-@section('content')
 <div class="px-5">
-   <h2 class="text-2xl flex font-bold text-gray-900 "> Update news</h2>
+   <h2 class="text-2xl mb-4 flex justify-center font-bold text-gray-900 ">Contact</h2>
    <div class="flex justify-center mt-3 w-full">
-      <div class="w-full mr-5 rounded-lg border border-gray-200">
+      <div class="border border-gray-200">
          <table class=" divide-y-2 divide-gray-200 bg-white text-sm">
             <thead class="ltr:text-left rtl:text-right">
                <tr>
@@ -16,6 +13,8 @@
                   <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Email</th>
                   <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Gender</th>
                   <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Description</th>
+                  <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date</th>
+
                </tr>
             </thead>
             
@@ -38,5 +37,4 @@
       <div>{{ $contact->links() }}</div>
    </div>
 </div>
-@endsection
 @endsection
