@@ -69,22 +69,16 @@ class NewsController extends Controller
 
             $formattedEvents[] = $formattedEvent;
         }
-        if (empty($formattedEvents)) {
-            return response()->json([
-                'formattedEvents' => [],
-                'has_more' => false,
-            ]);
-        }
+        $hasMore = $events->count() >= $perPage;
         return response()->json([
             'formattedEvents' => $formattedEvents,
-            'has_more' => true,
+            'has_more' => $hasMore,
         ]);
     }
     ///
 
     public function handleEditNews(Request $request)
     {
-        // dd($request);
         try {
             DB::beginTransaction();
             $validator = Validator::make($request->all(), [
@@ -155,7 +149,7 @@ class NewsController extends Controller
     //
     public function updateNews()
     {
-        $events = Event::all();
+        $events = Event::simplePaginate(16);
         foreach ($events as $event) {
             $description = $event->description;
             $imageUrls = [];
@@ -168,7 +162,6 @@ class NewsController extends Controller
             }
             $event->image_file_names = $imageFileNames;
         }
-        // dd($event);
         return view('news.news_all', [
             'events' => $events,
         ]);

@@ -9,16 +9,5 @@ window.addEventListener("load", (event) => {
         autoplay: {
             delay: 5000,
         },
-        // zoom: {
-        //     maxRatio: 2,
-        //     minRation: 1
-        // },
     });
   });
-
-
-
-/*
-swiper.on("slideChangeTransitionStart", swiper.zoom.out);
-swiper.on("slideChangeTransitionEnd", swiper.zoom.in);
-*/

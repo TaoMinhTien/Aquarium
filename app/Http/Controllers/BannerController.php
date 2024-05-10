@@ -1,24 +1,29 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Validator;
 use App\Models\Banner;
 use App\Models\BannerImage;
+use Illuminate\Support\Facades\DB;
+
 
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
     //
-    public function create(){
+    public function create()
+    {
         return view('banner.create');
     }
-    //
-    public function bannerStore(Request $request){
+    // upload banner
+    public function bannerStore(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:100',
             'description' => 'required|max:150',
-            'images.*' => 'required|image|max:2048', 
+            'images.*' => 'required|image|max:2048',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -47,11 +52,14 @@ class BannerController extends Controller
                 $image->move(public_path('news_img'), $fileName); 
                 $url = asset('news_img/' . $fileName);
                  $BannerImage = new BannerImage ();
+                 $BannerImage -> banner_id = $banner->id;
                  $BannerImage -> image_url = $fileName;
                  $BannerImage ->save();
             }
         }
         
         return 'ok';
+
+
     }
 }

@@ -75,9 +75,6 @@
       getNews();
 
     });
-
-
-
     var currentPage = 1;
     var newsPerPage = 5;
     var totalNewsLoaded = 0;
@@ -142,8 +139,9 @@
             });
             $('#newsContainer').append(newsItemsHtml);
             totalNewsLoaded += response.formattedEvents.length;
-          } else {
-            $('#loadMoreBtn').text('End').prop('disabled', true);
+            if (response.has_more == false) {
+              $('#loadMoreBtn').text('End').prop('disabled', true);
+            }
           }
         })
         .fail(function(xhr, status, error) {
