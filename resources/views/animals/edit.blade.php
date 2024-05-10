@@ -2,7 +2,7 @@
 @section('title', 'Animals - Edit')
 @section('content')
 <div class="px-5">
-   <h2 class="text-2xl flex font-bold text-gray-900 ">Animals eidt</h2>
+   <h2 class="text-2xl flex font-bold text-gray-900 ">Animals edit</h2>
    <div class="flex items-center justify-center">
       <div class="w-8/12">
          <form method="post" action="{{Route('news.edit.submit')}}" enctype="multipart/form-data">
