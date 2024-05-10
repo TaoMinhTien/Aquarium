@@ -98,7 +98,6 @@
           },
         })
         .done(function(response) {
-          console.log(response);
           if (response && response.formattedEvents && response.formattedEvents.length > 0) {
             var news = response.formattedEvents;
             var newsItemsHtml = '';

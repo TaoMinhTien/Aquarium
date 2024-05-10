@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 10, 2024 at 08:31 AM
+-- Generation Time: May 10, 2024 at 10:11 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -130,6 +130,14 @@ CREATE TABLE `banners` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `banners`
+--
+
+INSERT INTO `banners` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES
+(3, 'ee', 'dqq', '2024-05-10 00:18:00', '2024-05-10 00:18:00'),
+(4, 'ee', 'qqd', '2024-05-10 00:27:26', '2024-05-10 00:27:26');
+
 -- --------------------------------------------------------
 
 --
@@ -143,6 +151,19 @@ CREATE TABLE `banner_images` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `banner_images`
+--
+
+INSERT INTO `banner_images` (`id`, `banner_id`, `image_url`, `created_at`, `updated_at`) VALUES
+(1, 3, 'aqua1_1715325480.jpg', '2024-05-10 00:18:00', '2024-05-10 00:18:00'),
+(2, 4, 'Ảnh màn hình 2024-01-25 lúc 21.17.54_1715326046.png', '2024-05-10 00:27:26', '2024-05-10 00:27:26'),
+(3, 4, 'Ảnh màn hình 2024-03-20 lúc 12.22.11_1715326046.png', '2024-05-10 00:27:26', '2024-05-10 00:27:26'),
+(4, 4, 'Ảnh màn hình 2024-03-20 lúc 14.57.19_1715326046.png', '2024-05-10 00:27:26', '2024-05-10 00:27:26'),
+(5, 5, 'Ảnh màn hình 2024-04-12 lúc 10.40.28_1715326230.png', '2024-05-10 00:30:30', '2024-05-10 00:30:30'),
+(6, 5, 'Ảnh màn hình 2024-03-30 lúc 13.40.47_1715326230.png', '2024-05-10 00:30:30', '2024-05-10 00:30:30'),
+(7, 5, 'Ảnh màn hình 2024-03-30 lúc 13.40.33_1715326230.png', '2024-05-10 00:30:30', '2024-05-10 00:30:30');
 
 -- --------------------------------------------------------
 
@@ -553,7 +574,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('UefXgkieCa8urU7Uyiuy4j8Lhwr7Z3f8lXLtEyU5', 4, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNzNPZERFR1FmQkt6ZGJuRHhWd3IxaEtnclZWcm1aTFNOTWVpc0E2ZyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hbmltYWxzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1715322680);
+('cGVbYEONUUk3wKVeoOpCzdGUCQpMrLrhXRSdMJNQ', 1, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUllDTHJVTUd4d0lDbzhDRkNRV2tUd0d6M05HQzRNWkwzb3p5THpXRCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9uZXdzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjQ6ImNhcnQiO047fQ==', 1715328659),
+('KFI2VnjWCkPPCjubMEe6QErqG8Et3GTy4aWizDs6', 1, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiM1VXU2txSms1SHdIQ3dLMjFpUFpRNlE1eno4b1BpRGxWR09zS3JoSSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9iYW5uZXIvdXBsb2FkIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1715325709);
 
 -- --------------------------------------------------------
 
@@ -883,13 +905,13 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `banners`
 --
 ALTER TABLE `banners`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `banner_images`
 --
 ALTER TABLE `banner_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `bookings`
