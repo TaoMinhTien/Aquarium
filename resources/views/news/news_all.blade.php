@@ -55,5 +55,8 @@
       </table>
     </div>
   </div>
+  <div class="flex mb-10 justify-center mt-2">
+    <div>{{ $events->links() }}</div>
+  </div>
 </div>
 @endsection

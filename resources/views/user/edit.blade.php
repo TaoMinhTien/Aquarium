@@ -24,7 +24,7 @@
          </div>
          <div class="mt-2">
             <label for="confirm_password" class="text-sm font-bold text-gray-700 tracking-wide">Confirm Password</label>
-            <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" class="w-full text-sm py-2 border-b border-gray-300 focus:outline-none focus:border-gray-800">
+            <input type="text" id="confirm_password" name="confirm_password" placeholder="••••••••" class="w-full text-sm py-2 border-b border-gray-300 focus:outline-none focus:border-gray-800">
          </div>
          @if (session('success'))
          <div class="alert mt-2 bg-white text-blue-700 ">

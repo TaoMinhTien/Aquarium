@@ -30,7 +30,12 @@ class CartController extends Controller
     ///
     public function cartQuantity()
     {
-        $cartQuantity = count(session('cart', []));
+        $cart = Session::get('cart');
+        if($cart ) {
+            $cartQuantity = count($cart);
+        }else{
+            $cartQuantity = 0;
+        }
         return response()->json(['cartQuantity' => $cartQuantity]);
     }
     ///

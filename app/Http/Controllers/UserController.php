@@ -47,6 +47,7 @@ class UserController extends Controller
     ///
     public function userUpdate(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'username' => 'required|string|max:100',
             'email' => 'required|email',
@@ -55,7 +56,7 @@ class UserController extends Controller
             'confirm_password' => 'required|string|same:new_password',
         ]);
         if ($validator->fails()) {
-            return redirect()->route('register')->withErrors($validator)->withInput();
+            return redirect()->back()->withErrors($validator)->withInput();
         }
         $user = Auth::user();
         if (!Hash::check($request->current_password, $user->password)) {
@@ -67,9 +68,8 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->password = Hash::make($request->new_password);
             $user->save();
-            Session::flash('success', 'Your password has been changed successfully!');
-            return redirect()->back();
             DB::commit();
+            return redirect()->back()->with('success', 'user update successfully!');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->withErrors([$e->getMessage()]);

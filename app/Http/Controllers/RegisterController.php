@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
 
 
 
@@ -24,16 +26,21 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), [
             'fullname' => 'required|string|max:255',
             'email' => 'required|email',
-            'password' => 'required|string|min:8',
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|same:password',
         ]);
         if ($validator->fails()) {
-            return redirect()->route('register')->withErrors($validator)->withInput();
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        if ($request->password != $request->confirm_password) {
+            Session::flash('error', 'Password and confirm password are not the same.');
+            return redirect()->back()->withInput();
         }
         $existingUser = User::where('email', $request->email)->first();
         if ($existingUser) {
             $data = [
                 'email' => $request->email,
-                'message' => 'This email has already been taken. Please use or click forgot password!',
+                'message' => 'This email has already been taken.',
             ];
             return redirect()->route('login')->with('existingUser', $data);
         }
