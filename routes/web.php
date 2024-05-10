@@ -90,9 +90,15 @@ Route::Post('/tickets/buy', [TicketController::class, 'BuyTicket'])->name('ticke
 Route::Post('/handle/contact', [ContactController::class, 'HandleContact'])->name('handle.contact');
 Route::get('/error', [DashboardController::class, 'errorPage'])->name('error');
 Route::get('/test', [InformationController::class, 'index'])->name('test');
-
 // Các route của trang admin viết ở trong đây//////
 Route::middleware('auth.admin')->group(function () {
+    Route::get('/banner/upload', [BannerController::class, 'create'])->name('banner.create');
+    Route::get('/banner/edit', [BannerController::class, 'edit'])->name('banner.edit');
+    Route::get('/banner/update', [BannerController::class, 'update'])->name('admin.banners.update');
+    Route::get('/banner/update/{id}', [BannerController::class, 'handleUpdate'])->name('banner.update.submit');
+    Route::post('/banner/store', [BannerController::class, 'bannerStore'])->name('banners.store');
+    Route::delete('/banner/delete/{id}', [BannerController::class, 'deleteBanner'])->name('banner.delete');
+
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/news/upload', [NewsController::class, 'uploadNews'])->name('news.upload');
     Route::get('/contactAdmin', [ContactAdminController::class, 'index'])->name('contact.contactAdmin');
@@ -117,13 +123,11 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/animal/update', [AnimalsController::class, 'animalsUpdate'])->name('animals.update');
     Route::post('/animal/delete', [AnimalsController::class, 'animalsDelete'])->name('animals.infor.delete');
     Route::get('/animal/edit/{id}', [AnimalsController::class, 'animalsEdit'])->name('animal.infor.edit');
-
     Route::get('/information/create', [InformationController::class, 'create'])->name('information.create');
     Route::post('/information', [InformationController::class, 'store'])->name('information.store');
     Route::get('/information/edit', [InformationController::class, 'edit'])->name('information.edit');
     Route::put('/information/{information}', [InformationController::class, 'update'])->name('information.update');
     Route::delete('/information/{information}', [InformationController::class, 'destroy'])->name('information.destroy');
-
     Route::get('/overview/create', [HomeOverviewController::class, 'create'])->name('overview.create');
     Route::post('/overview', [HomeOverviewController::class, 'store'])->name('overview.store');
     Route::get('/overview/edit', [HomeOverviewController::class, 'edit'])->name('overview.edit');
