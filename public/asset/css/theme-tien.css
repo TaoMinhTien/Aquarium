@@ -115,3 +115,9 @@
     border-radius: 15px;
     display: none;
 }
+
+@media screen and (max-width: 1366px) {
+    .address-map-tien .box-address-map-tien{
+        margin-left: 800px;
+    }
+}
