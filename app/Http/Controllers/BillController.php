@@ -16,9 +16,12 @@ class BillController extends Controller
     //
     public function view()
     {
-        $bookings = Booking::with(['customer', 'ticket', 'event', 'orderNumber', 'payment'])->paginate(10);;
+        $bookings = Booking::with(['customer', 'ticket', 'event', 'orderNumber', 'payment'])
+            ->orderByDesc('created_at')
+            ->get();
         return view('bill.bill', ['bookings' => $bookings]);
     }
+
     ///
     public function filter(Request $request)
     {
