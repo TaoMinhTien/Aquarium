@@ -15,7 +15,6 @@
          <div class="left-news rounded-lg  lg:col-span-2">
             <h2 class="text-xl mb-2 font-bold text-gray-900 sm:text-3xl">Detail evens</h2>
             <div class="flex justify-end border-t border-gray-500"></div>
-
             <div class="_news_left">
                <div>
                   <div class="mb-2 text-sm text-gray-700 font-semibold">{{ $newsRead['newsRead'] -> start_date }}</div>
