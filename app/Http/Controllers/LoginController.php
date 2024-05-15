@@ -29,8 +29,7 @@ class LoginController extends Controller
         if( !$user){
             return back()->withInput()->with('error', 'User does not exist!');
         }
-        $remember = $request->has('remember'); 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
+        if ( $user == $request -> email || $user->password == $request -> password) {
             return redirect()->intended('admin/')->with('success', 'Logged in successfully!');
         } else {
             return back()->withInput()->with('error', 'Incorrect email or password!');

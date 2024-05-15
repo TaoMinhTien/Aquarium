@@ -63,8 +63,6 @@ Route::post('/feedback-post', [FeedbackController::class, 'handleFeedback'])->na
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/animals', [AnimalsController::class, 'index'])->name('animals');
 Route::post('/login', [LoginController::class, 'HandleLogin'])->name('login.edit');
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'HandleRegister'])->name('register.edit');
 Route::get('/logout', [LoginController::class, 'HandleLogout'])->name('logout');
 Route::get('/news', [NewsController::class, 'news'])->name('news.view');
 Route::get('/get-news', [NewsController::class, 'getNews'])->name('get.news');
@@ -98,7 +96,6 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/banner/update/{id}', [BannerController::class, 'handleUpdate'])->name('banner.update.submit');
     Route::post('/banner/store', [BannerController::class, 'bannerStore'])->name('banners.store');
     Route::delete('/banner/delete/{id}', [BannerController::class, 'deleteBanner'])->name('banner.delete');
-
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/news/upload', [NewsController::class, 'uploadNews'])->name('news.upload');
     Route::get('/contactAdmin', [ContactAdminController::class, 'index'])->name('contact.contactAdmin');

@@ -66,10 +66,6 @@
                   <button type="submit" class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white">
                      Sign in
                   </button>
-                  <p class="text-center text-sm text-gray-500">
-                     No account?
-                     <a class="underline" href="{{Route('register')}}">Sign up</a>
-                  </p>
                </form>
             </div>
          </div>
