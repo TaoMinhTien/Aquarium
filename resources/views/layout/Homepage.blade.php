@@ -1,12 +1,19 @@
 @extends('welcome')
 @section('title', 'Trang Chủ')
 @section('content')
+
+
+@if(isset($Banners))
+@foreach($Banners as $value)
 <div>
     <div class="Homepage-title">
-        <h1>Aquarium Installation and Maintenance</h1>
-        <p>Fastest and easiest way to cycle your new aquarium</p>
+        <h1>{{$value->title}}</h1>
+        <p>{{$value->description}}</p>
         <a href="{{route('tickets')}}"><button>Buy Ticket Today!</button></a>
     </div>
+@endforeach
+@endif
+
     <div class="Homepage-box">
         <div class="box1">
             <div class=box1-picture>
@@ -35,50 +42,49 @@
         </a>
     </div>
 
-
+@if( $getImageBanner[0]&& $getImageBanner[1]&& $getImageBanner[2]  )
     <!-- Swiper -->
     <div class="Hieu">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" data-swiper-autoplay="4000">
-                    <img class="slider-picture" src="{{ asset('asset/Image/aqua1.jpg') }}">
+                    <img class="slider-picture" src="{{asset('banner_image/' .$getImageBanner[0]->image_url )}}">
                 </div>
-                <div class="swiper-slide" data-swiper-autoplay="4000"><img class="slider-picture" src="{{ asset('asset/Image/aqua2.jpg') }}"></div>
-                <div class="swiper-slide" data-swiper-autoplay="4000"><img class="slider-picture" src="{{ asset('asset/Image/aqua3.jpg') }}"></div>
+                <div class="swiper-slide" data-swiper-autoplay="4000"><img class="slider-picture" src="{{asset('banner_image/' .$getImageBanner[1]->image_url )}}"></div>
+                <div class="swiper-slide" data-swiper-autoplay="4000"><img class="slider-picture" src="{{asset('banner_image/' .$getImageBanner[2]->image_url )}}"></div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
     </div>
+@endif
+
 
 
     <!-- Fourblock Information -->
     <div class="Homepage-information">
         <div class="Homepage-information-picture">
-            <img src="{{ asset('asset/Image/image-info.jpg') }}">
+            <img src="{{asset('information_image/' .$getImageInformation[1][0]->image_url )}}">
         </div>
+@if( $Information[0]&& $Information[1]&&$getImageInformation[0]&&$getImageInformation[1])
         <div class="Homepage-information-text">
             <div class="Homepage-Info">
-                <h1>Aquarium Design,<br> Manufacture,<br> Installation</h1>
-                <p>The AquaPro have created some of the most stylish and luxury bespoke built aquariums and fish tanks
-                    in the country. We draw on over 25 years of expertise in designing, manufacturing and installing
-                    aquariums.</p>
+                <h1>{{$Information[0]->title}}</h1>
+                <p>{{$Information[0]->description}}</p>
                 <button>MORE INFO</button>
             </div>
         </div>
         <div class="Homepage-information-picture2">
-            <img src="{{ asset('asset/Image/image-info.jpg')}}">
+            <img src="{{asset('information_image/' .$getImageInformation[0][0]->image_url )}}">
         </div>
         <div class="Homepage-information-text2">
             <div class="Homepage-Info">
-                <h1>Aquarium Design,<br> Manufacture,<br> Installation</h1>
-                <p>The AquaPro have created some of the most stylish and luxury bespoke built aquariums and fish tanks
-                    in the country. We draw on over 25 years of expertise in designing, manufacturing and installing
-                    aquariums.</p>
+                <h1>{{$Information[1]->title}}</h1>
+                <p>{{$Information[1]->description}}</p>
                 <button>MORE INFO</button>
             </div>
         </div>
     </div>
-
+@endif
     <!-- Overview banner -->
     <div class="Homepage_overview_banner">
         <div class="Homepage_overview_banner_text">

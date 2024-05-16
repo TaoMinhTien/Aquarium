@@ -1,11 +1,17 @@
 <?php
+
 namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Information extends Model
 {
-    protected $fillable = ['title', 'description'];
+    protected $table = 'Informations';
 
-    protected $table = 'informations';
+    protected $fillable = ['title', 'description','status'];
+    public function InformationImage()
+    {
+        return $this->belongsTo(InformationImage::class);
+    }
 }

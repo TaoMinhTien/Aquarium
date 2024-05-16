@@ -5,7 +5,7 @@
   <h2 class="text-2xl flex font-bold text-dark"> Upload Banners</h2>
   <div class="flex items-center justify-center">
     <div class="w-8/12">
-      <form method="POST" action="{{ route('banners.store') }}" enctype="multipart/form-data">
+      <form method="post" action="{{ route('banners.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="mt-4">
           <label for="title" class="form-label">Title</label>
