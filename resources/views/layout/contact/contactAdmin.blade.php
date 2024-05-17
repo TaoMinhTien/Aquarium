@@ -2,7 +2,7 @@
 @section('title', 'Contact')
 @section('content')
 <div class="px-5">
-   <h2 class="text-2xl mb-4 flex justify-center font-bold text-gray-900 ">Contact</h2>
+   <h2 class="text-2xl flex font-bold text-gray-900 ">Contact</h2>
    <div class="flex justify-center mt-3 w-full">
       <div class="border border-gray-200">
          <table class=" divide-y-2 divide-gray-200 bg-white text-sm">

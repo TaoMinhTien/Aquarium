@@ -101,30 +101,6 @@
                'X-CSRF-TOKEN': csrfToken
             }
          },
-         on: {
-            fileUploadRequest: function(evt) {
-               evt.preventDefault();
-               var responseData = evt.data.responseData;
-               var imageUrl = responseData.url;
-               $.ajax({
-                  url: "{{ route('news.handle') }}",
-                  method: 'POST',
-                  data: {
-                     editor: editor.getData(),
-                     url: imageUrl
-                  },
-                  headers: {
-                     'X-CSRF-TOKEN': csrfToken
-                  },
-                  success: function(response) {
-                     console.log(response);
-                  },
-                  error: function(xhr, status, error) {
-                     console.error(xhr.responseText);
-                  }
-               });
-            }
-         }
       })
       .catch(error => {
          console.error(error);
