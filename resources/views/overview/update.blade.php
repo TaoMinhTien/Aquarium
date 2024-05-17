@@ -9,23 +9,23 @@
             @if (isset($imgOverview) )
             <div class="flex ">
             @foreach ($imgOverview as $value )
-            <img class="w-2/12 ml-3" src="{{ asset('information_image/' . $value->image_url) }}" alt="">
+            <img class="w-2/12 ml-3" src="{{ asset('overview_image/' . $value->image_url) }}" alt="">
             @endforeach
             </div>
             @endif
          </div>
 
 
-            @if (isset($information) )
-         <form method="POST" action="{{ route('admin.information.update', ['id' =>  $information -> id])}}" enctype="multipart/form-data">
+            @if (isset($overview) )
+         <form method="POST" action="{{ route('admin.overview.update', ['id' =>  $overview -> id])}}" enctype="multipart/form-data">
             @csrf
             <div class="mt-4">
                <label for="title" class="form-label">Title</label>
-               <input type="text" value="{{$information-> title}}" id="title" name="title" placeholder="Enter title" class="form-control" value="{{ old('title') }}" required autofocus>
+               <input type="text" value="{{$overview-> title}}" id="title" name="title" placeholder="Enter title" class="form-control" value="{{ old('title') }}" required autofocus>
             </div>
             <div class="mt-4">
                <label for="description" class="form-label">Description</label>
-               <textarea id="description" name="description" class="form-control" required>{{$information->description }}</textarea>
+               <textarea id="description" name="description" class="form-control" required>{{$overview->description }}</textarea>
             </div>
             <div class="mt-4">
                <label for="images" class="form-label">Images</label>
@@ -33,8 +33,8 @@
             </div>
             <div class="mt-4">
                <select name="status" class="border rounded px-2 py-1">
-                  <option value="active" {{ $information->status == 'Active' ? 'selected' : '' }} >Active</option>
-                  <option value="inactive" {{ $information->status == 'Expired' ? 'selected' : '' }}>Inactive</option>
+                  <option value="active" {{ $overview->status == 'Active' ? 'selected' : '' }} >Active</option>
+                  <option value="inactive" {{ $overview->status == 'Expired' ? 'selected' : '' }}>Inactive</option>
                </select>
             </div>
             @endif

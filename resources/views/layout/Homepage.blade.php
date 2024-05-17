@@ -85,17 +85,30 @@
         </div>
     </div>
 @endif
+
     <!-- Overview banner -->
+    @if(isset($getImageOverview))
+
+<style>
+    .Homepage_overview_banner{
+    background-image: url(' {{asset('overview_image/' . $getImageOverview[0]->image_url )}} ');
+    background-repeat: no-repeat;
+    background-size: 117%;
+    width: 100%;
+    height: 750px;
+    margin-top: 150px;
+}
+</style>
+@endif
+@if(isset($Overview))
     <div class="Homepage_overview_banner">
         <div class="Homepage_overview_banner_text">
-            <h1> Specialists In Custom Fish <br>Tanks, Luxury Aquarium Design, Installation And Maintenance.</h1>
-            <p>AquaPro prides itself on their depth of knowledge, quality of service and a tailored approach to luxury
-                aquarium design. We work closely with interior designers, architects and engineers to provide the
-                highest standard in design. Providing an extensive variety of services, AquaPro has cemented its
-                position as the industry leader in custom fish tank design.</p>
+            <h1>{{$Overview->title}}</h1>
+            <p>{{$Overview->description}}</p>
             <button>View our Portfolio</button>
         </div>
     </div>
+@endif
 
 
     <!-- News/Posts -->
@@ -108,7 +121,7 @@
             <div class="Homepage-top-events">
                 <img src="{{ asset('news_img/' . $value->image) }}" class="Homepage-EventPicture">
                 <h3>{{$value -> title}}</h3>
-                <p>{{$value -> description}}</p>
+                <p class = "Homepage-Description">{{$value -> description}}</p>
                 <form method="post" action="{{route('animals.infor.view')}}" class="group block">
                     @csrf
                     <input type="hidden" name="animal_infor_id" value="{{$value->id}}">

@@ -62,7 +62,10 @@
 
 
 
-
+.Homepage-Description{
+  overflow-wrap: break-word;
+  width: 100%;
+}
 .navbar {
   background-color: white;
   position: fixed;
@@ -361,14 +364,7 @@
 
 
 
-.Homepage_overview_banner{
-    background-image: url('../Image/Homepage_overview_banner.jpg');
-    background-repeat: no-repeat;
-    background-size: 117%;
-    width: 100%;
-    height: 750px;
-    margin-top: 150px;
-}
+
 .Homepage_overview_banner_text{
     width: 670px;
     height: 400px;

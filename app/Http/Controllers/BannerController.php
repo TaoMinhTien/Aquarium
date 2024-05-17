@@ -28,8 +28,18 @@ class BannerController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        // try {
-        //     DB::beginTransaction();
+        $uploadedImages = $request->file('images');
+        if ($uploadedImages === null) {
+            return redirect()->back()->with('error', 'No images were uploaded.');
+        }
+        else{
+        $uploadedImagesCount = count($request->file('images'));
+        if ($uploadedImagesCount < 3 || $uploadedImagesCount > 3) {
+            return redirect()->back()->with('error', 'You can only upload 3 pictures');
+
+        }}
+        try {
+            DB::beginTransaction();
             $banner = new Banner();
             $banner->title = $request->input('title');
             $banner->description  = $request->input('description');
@@ -51,12 +61,12 @@ class BannerController extends Controller
                 }
             }
            
-        //     DB::commit();
-        //     return redirect()->back()->with('success', 'Banner uploaded successfully!');
-        // } catch (\Exception $e) {
-        //     DB::rollback();
-        //     return redirect()->back()->with('error', 'An error occurred while uploading the Banner.');
-        // }
+            DB::commit();
+            return redirect()->back()->with('success', 'Banner uploaded successfully!');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'An error occurred while uploading the Banner.');
+        }
     }
     //
     public function deleteBanner($id)
@@ -103,11 +113,16 @@ class BannerController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        $uploadedImages = $request->file('images');
+        if ($uploadedImages === null) {
+            return redirect()->back()->with('error', 'No images were uploaded.');
+        }
+        else{
         $uploadedImagesCount = count($request->file('images'));
         if ($uploadedImagesCount < 3 || $uploadedImagesCount > 3) {
             return redirect()->back()->with('error', 'You can only upload 3 pictures');
 
-        }
+        }}
         try {
             DB::beginTransaction();
            

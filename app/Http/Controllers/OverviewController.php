@@ -28,6 +28,16 @@ class OverviewController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        $uploadedImages = $request->file('images');
+
+        if ($uploadedImages === null) {
+            return redirect()->back()->with('error', 'No images were uploaded.');
+        }else{
+        $uploadedImagesCount = count($request->file('images'));
+        if ($uploadedImagesCount < 1 || $uploadedImagesCount > 1) {
+            return redirect()->back()->with('error', 'You can only upload 1 pictures');
+
+        }}
         try {
             DB::beginTransaction();
             $overview = new Overview();
@@ -85,7 +95,7 @@ class OverviewController extends Controller
     public function handleUpdate($id)
     {
         $overview = Overview::find($id);
-        $imgOverview = OverviewImage::where('banner_id', $overview -> id)->get();
+        $imgOverview = OverviewImage::where('overview_id', $overview -> id)->get();
         return view('overview.update', [
             'overview' => $overview,
             'imgOverview' => $imgOverview,
@@ -103,11 +113,16 @@ class OverviewController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        $uploadedImages = $request->file('images');
+
+        if ($uploadedImages === null) {
+            return redirect()->back()->with('error', 'No images were uploaded.');
+        }else{
         $uploadedImagesCount = count($request->file('images'));
         if ($uploadedImagesCount < 1 || $uploadedImagesCount > 1) {
             return redirect()->back()->with('error', 'You can only upload 1 pictures');
 
-        }
+        }}
         try {
             DB::beginTransaction();
            

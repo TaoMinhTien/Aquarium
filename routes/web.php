@@ -137,10 +137,5 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/animal/update', [AnimalsController::class, 'animalsUpdate'])->name('animals.update');
     Route::post('/animal/delete', [AnimalsController::class, 'animalsDelete'])->name('animals.infor.delete');
     Route::get('/animal/edit/{id}', [AnimalsController::class, 'animalsEdit'])->name('animal.infor.edit');
-    Route::get('/overview/create', [HomeOverviewController::class, 'create'])->name('overview.create');
-    Route::post('/overview', [HomeOverviewController::class, 'store'])->name('overview.store');
-    Route::get('/overview/edit', [HomeOverviewController::class, 'edit'])->name('overview.edit');
-    Route::put('/overview/{overview}', [HomeOverviewController::class, 'update'])->name('overview.update');
-    Route::delete('/overview/{overview}', [HomeOverviewController::class, 'destroy'])->name('overview.destroy');
 });
 ////////////

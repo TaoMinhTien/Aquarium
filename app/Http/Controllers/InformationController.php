@@ -27,11 +27,16 @@ class InformationController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        $uploadedImages = $request->file('images');
+
+        if ($uploadedImages === null) {
+            return redirect()->back()->with('error', 'No images were uploaded.');
+        }else{
         $uploadedImagesCount = count($request->file('images'));
         if ($uploadedImagesCount < 1 || $uploadedImagesCount > 1) {
             return redirect()->back()->with('error', 'You can only upload 3 pictures');
 
-        }
+        }}
         try {
             DB::beginTransaction();
             $information = new Information();
@@ -107,11 +112,17 @@ class InformationController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        $uploadedImages = $request->file('images');
+
+        if ($uploadedImages === null) {
+            return redirect()->back()->with('error', 'No images were uploaded.');
+        }else{
         $uploadedImagesCount = count($request->file('images'));
         if ($uploadedImagesCount < 1 || $uploadedImagesCount > 1) {
             return redirect()->back()->with('error', 'You can only upload 3 pictures');
 
-        }
+        }}
+        
         try {
             DB::beginTransaction();
            
