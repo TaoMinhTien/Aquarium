@@ -5,9 +5,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class OverviewImage extends Model
 {
-    protected $fillable = ['image_url'];
+    protected $table = 'overview_images';
 
-    public function overview(): BelongsTo
+    protected $fillable = [
+        'overview_id',
+        'image_url',
+    ];
+
+    public function banner(): BelongsTo
     {
         return $this->belongsTo(Overview::class);
     }

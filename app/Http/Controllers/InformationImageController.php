@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Information;
-use App\Models\InformationImage;
+use app\Models\InformationImage;
+use app\Models\Information;
 use Illuminate\Http\Request;
 
-class InformationImageController extends Controller
+class BannerImageController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(InformationImage::class, 'informationImage');
+        $this->authorizeResource(InformationImage::class, 'bannerImage');
     }
 
     public function addImages(Information $information, Request $request)
@@ -19,15 +19,15 @@ class InformationImageController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $imagePath = $image->store('information_images');
+                $imagePath = $image->store('banner_images');
                 InformationImage::create([
-                    'information_id' => $information->id,
+                    'banner_id' => $information->id,
                     'image_url' => $imagePath,
                 ]);
             }
         }
 
-        return redirect()->route('admin.informations.index')->with('success', 'Information images added successfully.');
+        return redirect()->route('admin.information.index')->with('success', 'Information images added successfully.');
     }
 
     public function deleteImages(InformationImage $informationImage)

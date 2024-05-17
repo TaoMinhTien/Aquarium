@@ -14,7 +14,10 @@
             </div>
             @endif
          </div>
-         <form method="post" action="{{ route('admin.banners.update') }}" enctype="multipart/form-data">
+
+
+            @if (isset($banner) )
+         <form method="POST" action="{{ route('admin.banners.update', ['id' =>  $banner -> id])}}" enctype="multipart/form-data">
             @csrf
             <div class="mt-4">
                <label for="title" class="form-label">Title</label>
@@ -28,6 +31,13 @@
                <label for="images" class="form-label">Images</label>
                <input type="file" id="images" name="images[]" multiple>
             </div>
+            <div class="mt-4">
+               <select name="status" class="border rounded px-2 py-1">
+                  <option value="active" {{ $banner->status == 'Active' ? 'selected' : '' }} >Active</option>
+                  <option value="inactive" {{ $banner->status == 'Expired' ? 'selected' : '' }}>Inactive</option>
+               </select>
+            </div>
+            @endif
             @if (session('success'))
             <div class="alert text-blue-600 alert-success">
                <strong>{{ session('success') }} </strong>
