@@ -31,9 +31,9 @@ class CartController extends Controller
     public function cartQuantity()
     {
         $cart = Session::get('cart');
-        if($cart ) {
+        if ($cart) {
             $cartQuantity = count($cart);
-        }else{
+        } else {
             $cartQuantity = 0;
         }
         return response()->json(['cartQuantity' => $cartQuantity]);
@@ -57,6 +57,7 @@ class CartController extends Controller
     {
         $ticketId = $request->input('ticket_id');
         $quantity = $request->input('quantity');
+
         $ticket = Ticket::find($ticketId);
         if (!$ticket) {
             return response()->json([
@@ -99,8 +100,7 @@ class CartController extends Controller
         Session::put('cart', $cart);
         return response()->json([
             'success' => true,
-            'success' => 'cart successfully.',
-            'test' => $cart,
+            'message' => 'cart successfully.',
         ]);
     }
     ///// remove form cart item
