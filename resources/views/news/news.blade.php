@@ -10,7 +10,7 @@
     </span>
     <div class="grid grid-cols-1 px-20 gap-1 lg:grid-cols-3 lg:gap-1">
       <div class="left-news rounded-lg  lg:col-span-2">
-        <h2 class="text-xl mb-2 font-bold text-gray-900 sm:text-3xl">Evens</h2>
+        <h2 class="text-xl mb-2 font-bold text-gray-900 sm:text-3xl">Events</h2>
         <div class="flex justify-end border-t border-gray-500"></div>
         <div class="_news_left">
           <div id="newsContainer"></div>

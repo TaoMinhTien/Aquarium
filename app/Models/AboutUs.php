@@ -7,8 +7,5 @@ class AboutUs extends Model
 {
     protected $fillable = ['client_name', 'description'];
 
-    public function images(): HasMany
-    {
-        return $this->hasMany(AboutUsImage::class);
-    }
+    protected $table = 'about_uss';
 }

@@ -23,31 +23,44 @@ class BannerController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:100',
             'description' => 'required|max:150',
-            'images.*' => 'required|image|max:2048',
+            'images.*' => 'required|image|max:4000',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        $uploadedImages = $request->file('images');
+        if ($uploadedImages === null) {
+            return redirect()->back()->with('error', 'No images were uploaded.');
+        }
+        else{
+        $uploadedImagesCount = count($request->file('images'));
+        if ($uploadedImagesCount < 3 || $uploadedImagesCount > 3) {
+            return redirect()->back()->with('error', 'You can only upload 3 pictures');
+
+        }}
         try {
             DB::beginTransaction();
             $banner = new Banner();
             $banner->title = $request->input('title');
             $banner->description  = $request->input('description');
-            $banner->save();
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
-                    $originName = $image->getClientOriginalName();
-                    $fileName = pathinfo($originName, PATHINFO_FILENAME);
-                    $extension = $image->getClientOriginalExtension();
-                    $fileName = $fileName . '_' . time() . '.' . $extension;
-                    $image->move(public_path('banner_image'), $fileName);
-                    $url = asset('banner_image/' . $fileName);
-                    $BannerImage = new BannerImage();
-                    $BannerImage->banner_id = $banner->id;
-                    $BannerImage->image_url = $fileName;
-                    $BannerImage->save();
+            $banner->status = $request->input('status');
+            if($banner->save()){
+                if ($request->hasFile('images')) {
+                    foreach ($request->file('images') as $image) {
+                        $originName = $image->getClientOriginalName();
+                        $fileName = pathinfo($originName, PATHINFO_FILENAME);
+                        $extension = $image->getClientOriginalExtension();
+                        $fileName = $fileName . '_' . time() . '.' . $extension;
+                        $image->move(public_path('banner_image'), $fileName);
+                        $url = asset('banner_image/' . $fileName);
+                        $BannerImage = new BannerImage();
+                        $BannerImage->banner_id = $banner->id;
+                        $BannerImage->image_url = $fileName;
+                        $BannerImage->save();
+                    }
                 }
             }
+           
             DB::commit();
             return redirect()->back()->with('success', 'Banner uploaded successfully!');
         } catch (\Exception $e) {
@@ -87,5 +100,67 @@ class BannerController extends Controller
             'banner' => $banner,
             'imgBanners' => $imgBanners,
         ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:100',
+            'description' => 'required|max:150',
+            'images.*' => 'required|image|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $uploadedImages = $request->file('images');
+        if ($uploadedImages === null) {
+            return redirect()->back()->with('error', 'No images were uploaded.');
+        }
+        else{
+        $uploadedImagesCount = count($request->file('images'));
+        if ($uploadedImagesCount < 3 || $uploadedImagesCount > 3) {
+            return redirect()->back()->with('error', 'You can only upload 3 pictures');
+
+        }}
+        try {
+            DB::beginTransaction();
+           
+            
+                $banner = Banner::findOrFail($id);
+                $banner->title = $request->input('title');
+                $banner->description  = $request->input('description');
+                $banner->status = $request->input('status');
+                if($banner->save()){
+                    $bannerImg = BannerImage::where('banner_id', $banner->id)->get();
+                        foreach ($bannerImg as $image) {
+                            $image->delete();
+                        }
+                        if ($request->hasFile('images')) {
+                        foreach ($request->file('images') as $image) {
+                            $originName = $image->getClientOriginalName();
+                            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+                            $extension = $image->getClientOriginalExtension();
+                            $fileName = $fileName . '_' . time() . '.' . $extension;
+                            $image->move(public_path('banner_image'), $fileName);
+                            $url = asset('banner_image/' . $fileName);
+                            $bannerImage = BannerImage::updateOrCreate(
+                                ['image_url' => $fileName],
+                                ['banner_id' => $banner->id]
+                            );
+                            
+                        }
+                    }
+                }
+            
+
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Banner updated successfully');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
+        
     }
 }

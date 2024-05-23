@@ -33,17 +33,18 @@
               <td class=" px-4 py-2 text-gray-900">{{ $value -> description }}</td>
               <td class=" px-4 py-2 text-gray-900">{{ $value -> created_at }}</td>
               <td>
-                <form action="{{ route('banner.delete', ['id' => $value->id]) }}" method="POST">
+                <form action="{{ route('banners.delete', ['id' => $value->id]) }}" method="POST">
                   @csrf
                   @method('DELETE')
-                  <button onclick="return confirm('Do you want to delete this banner?')" type="submit" class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-3 rounded-full">
+                  <button onclick="return confirm('Do you want to delete this Banners?')" type="submit" class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-3 rounded-full">
                     Delete
                   </button>
                 </form>
               </td>
               <td>
-                <form action="{{ route('banner.update.submit', ['id' =>  $value -> id]) }}" method="GET">
+                <form action="{{ route('banners.update.submit', ['id' =>  $value -> id]) }}" method="GET">
                   @csrf
+
                   <button type="submit" class="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-3 rounded-full">
                     Update
                   </button>

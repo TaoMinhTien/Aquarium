@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
@@ -92,10 +92,25 @@ Route::get('/test', [InformationController::class, 'index'])->name('test');
 Route::middleware('auth.admin')->group(function () {
     Route::get('/banner/upload', [BannerController::class, 'create'])->name('banner.create');
     Route::get('/banner/edit', [BannerController::class, 'edit'])->name('banner.edit');
-    Route::get('/banner/update', [BannerController::class, 'update'])->name('admin.banners.update');
-    Route::get('/banner/update/{id}', [BannerController::class, 'handleUpdate'])->name('banner.update.submit');
+    Route::post('/banner/update/{id}', [BannerController::class, 'update'])->name('admin.banners.update');
+    Route::get('/banner/update/{id}', [BannerController::class, 'handleUpdate'])->name('banners.update.submit');
     Route::post('/banner/store', [BannerController::class, 'bannerStore'])->name('banners.store');
-    Route::delete('/banner/delete/{id}', [BannerController::class, 'deleteBanner'])->name('banner.delete');
+    Route::delete('/banner/delete/{id}', [BannerController::class, 'deleteBanner'])->name('banners.delete');
+
+    Route::get('/information/upload', [InformationController::class, 'create'])->name('information.create');
+    Route::get('/information/edit', [InformationController::class, 'edit'])->name('information.edit');
+    Route::post('/information/update/{id}', [InformationController::class, 'update'])->name('admin.information.update');
+    Route::get('/information/update/{id}', [InformationController::class, 'handleUpdate'])->name('information.update.submit');
+    Route::post('/information/store', [InformationController::class, 'InformationStore'])->name('information.store');
+    Route::delete('/information/delete/{id}', [InformationController::class, 'deleteInformation'])->name('information.delete');
+
+    Route::get('/overview/upload', [OverviewController::class, 'create'])->name('overview.create');
+    Route::get('/overview/edit', [OverviewController::class, 'edit'])->name('overview.edit');
+    Route::post('/overview/update/{id}', [OverviewController::class, 'update'])->name('admin.overview.update');
+    Route::get('/overview/update/{id}', [OverviewController::class, 'handleUpdate'])->name('overview.update.submit');
+    Route::post('/overview/store', [OverviewController::class, 'OverviewStore'])->name('overview.store');
+    Route::delete('/overview/delete/{id}', [OverviewController::class, 'deleteOverview'])->name('overview.delete');
+
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/news/upload', [NewsController::class, 'uploadNews'])->name('news.upload');
     Route::get('/contactAdmin', [ContactAdminController::class, 'index'])->name('contact.contactAdmin');
@@ -104,6 +119,9 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/bill', [BillController::class, 'view'])->name('bill.view');
     Route::get('/bill/filter', [BillController::class, 'filter'])->name('bill.filter');
     Route::get('/animals/upload', [AnimalsController::class, 'animalsUpload'])->name('animals.upload');
+    Route::get('/animals/update', [AnimalsController::class, 'animalsUpdate'])->name('animals.update');
+    Route::get('/animals/delete', [AnimalsController::class, 'animalsDelete'])->name('animals.infor.delete');
+    Route::get('/animals/edit', [AnimalsController::class, 'animalsEdit'])->name('animal.infor.edit');
     Route::get('/user', [UserController::class, 'view'])->name('user.view');
     Route::post('/user/delete', [UserController::class, 'userDelete'])->name('user.delete');
     Route::get('/user/edit', [UserController::class, 'userEdit'])->name('user.edit');
@@ -120,15 +138,4 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/animal/update', [AnimalsController::class, 'animalsUpdate'])->name('animals.update');
     Route::post('/animal/delete', [AnimalsController::class, 'animalsDelete'])->name('animals.infor.delete');
     Route::get('/animal/edit/{id}', [AnimalsController::class, 'animalsEdit'])->name('animal.infor.edit');
-    Route::get('/information/create', [InformationController::class, 'create'])->name('information.create');
-    Route::post('/information', [InformationController::class, 'store'])->name('information.store');
-    Route::get('/information/edit', [InformationController::class, 'edit'])->name('information.edit');
-    Route::put('/information/{information}', [InformationController::class, 'update'])->name('information.update');
-    Route::delete('/information/{information}', [InformationController::class, 'destroy'])->name('information.destroy');
-    Route::get('/overview/create', [HomeOverviewController::class, 'create'])->name('overview.create');
-    Route::post('/overview', [HomeOverviewController::class, 'store'])->name('overview.store');
-    Route::get('/overview/edit', [HomeOverviewController::class, 'edit'])->name('overview.edit');
-    Route::put('/overview/{overview}', [HomeOverviewController::class, 'update'])->name('overview.update');
-    Route::delete('/overview/{overview}', [HomeOverviewController::class, 'destroy'])->name('overview.destroy');
 });
-////////////
