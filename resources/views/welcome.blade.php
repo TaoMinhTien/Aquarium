@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<<<<<<< Updated upstream
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -33,6 +34,11 @@
     <script src="{{ asset('asset/js/theme_quang.js') }}"></script>
     <script src="{{ asset('asset/js/theme-tien.js') }}"></script>
     {{-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> --}}
+=======
+    <script src="{{ asset('asset/js/theme-hieu.js') }}"></script>
+    <script src="{{ asset('asset/js/theme-thanh.js') }}"></script>
+
+>>>>>>> Stashed changes
 </head>
 
 <body>
